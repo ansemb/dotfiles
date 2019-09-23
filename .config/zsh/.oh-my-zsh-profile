@@ -1,3 +1,6 @@
+# oh-my-zsh profile
+
+# path to oh-my-zsh installation
 export ZSH="$ZDOTDIR/.oh-my-zsh"
 
 # if oh-my-zsh is snot installed return
@@ -16,6 +19,4 @@ plugins=(
   rake
 )
 
-source $ZSH/oh-my-zsh.sh
-
-
+source "$ZSH/oh-my-zsh.sh"
