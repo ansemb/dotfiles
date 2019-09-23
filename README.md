@@ -1,12 +1,11 @@
 # dotfiles
 
-### First time setup
+## First time setup
 create a git bare repo
-
 ```
-git init --bare $HOME/dotfiles
-alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
-echo "alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'" >> $HOME/.config/.aliases
+git init --bare $HOME/.dotfiles
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+echo "alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.config/.aliases
 dotfiles config --local status.showUntrackedFiles no
 ```
 now add/commit/push files to the dotfiles repo like:
@@ -15,8 +14,34 @@ dotfiles add ~/.config/.aliases
 dotfiles commit -m "message"
 dotfiles push
 ```
+add modified/deleted files
+```
+git add -u
+```
 
-### Install
+## Install existing dotfiles onto a new system
+Ignore the dotfiles repo
+```
+echo ".dotfiles" >> .gitignore
+```
+Now clone your dotfiles into a bare repository in a "dot" folder of your $HOME:
+```
+git clone --bare <git-repo-url> $HOME/.dotfiles
+```
+define alias in the current shell scope
+```
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+```
+Checkout the actual content from the bare repository to your $HOME (if error, probably from setting the dotfiles on the same computer, remove then and type):
+```
+dotfiles checkout
+```
+Set the flag showUntrackedFiles to no on this specific (local) repository:
+```
+dotfiles config --local status.showUntrackedFiles no
+```
+
+### Install packages new system
 install some packages
 
 #### On debian
