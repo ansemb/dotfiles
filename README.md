@@ -21,12 +21,12 @@ install some packages
 
 #### On debian
 ```
-sudo apt install vim neovim curl wget zsh git
+sudo apt install vim neovim curl wget zsh git fonts-powerline
 ```
 
 #### On arch
 ```
-sudo pacman -S vim neovim curl wget zsh git
+sudo pacman -S vim neovim curl wget zsh git fonts-powerline
 ```
 
 #### set zsh as default shell
