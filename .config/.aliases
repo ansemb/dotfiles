@@ -1,0 +1,8 @@
+
+# for git dotfiles
+alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+
+# list aliases
+alias ll='ls -lah'
+alias la='ls -A'
+alias l='ls -CF' 
