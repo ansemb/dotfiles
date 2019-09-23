@@ -1,3 +1,5 @@
+export ZSH="$ZDOTDIR/.oh-my-zsh"
+
 # Set up the prompt
 
 autoload -Uz promptinit
@@ -9,18 +11,29 @@ setopt histignorealldups sharehistory
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
+# theme
+ZSH_THEME="agnoster"
 
-# create directory if not exist and histfile
+plugins=(
+  git
+  bundler
+  dotenv
+  rake
+  zsh-autosuggestions
+)
+source $ZSH/oh-my-zsh.sh
+
+# create HISTFILE directory and file if nonexisting
 [ ! -d "$HOME/.cache/zsh" ] && mkdir -p "$HOME/.cache/zsh"
 [ ! -f "$HOME/.cache/zsh/.history" ] && touch "$HOME/.cache/zsh/.history";
 
-HISTFILE='~/.cache/zsh/.history'
+HISTSIZE=1000
+SAVEHIST=2000
+HISTFILE="$HOME/.cache/zsh/.history"
 
 # Use modern completion system
 autoload -Uz compinit
+zstyle ':completion:*' menu select
 compinit
 
 zstyle ':completion:*' auto-description 'specify: %d'
