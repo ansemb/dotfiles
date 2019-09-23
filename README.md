@@ -17,14 +17,24 @@ dotfiles push
 ```
 
 ### Install
-install my required packages
+install some packages
 
 #### On debian
 ```
-sudo apt install vim neovim curl python3 python3-pip tmux zsh git wget
+sudo apt install vim neovim curl wget zsh git
 ```
 
 #### On arch
 ```
-sudo pacman -S vim neovim curl python3 python3-pip tmux zsh git wget
+sudo pacman -S vim neovim curl wget zsh git
+```
+
+#### set zsh as default shell
+```
+chsh -s $(which zsh)
+```
+
+#### oh-my-zsh
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
