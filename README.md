@@ -1,7 +1,5 @@
 # dotfiles
 
-take a look at [a link](https://www.atlassian.com/git/tutorials/dotfiles)
-
 ## First time setup
 create a git bare repo
 ```
@@ -22,11 +20,11 @@ git add -u
 ```
 
 ## Install these existing dotfiles on a new system
-Ignore the dotfiles repo
+ignore the dotfiles repo
 ```
 echo ".dotfiles" >> .gitignore
 ```
-Now clone your dotfiles into a bare repository in a "dot" folder of your $HOME:
+clone dotfiles into a bare repository:
 ```
 git clone --bare <git-repo-url> $HOME/.dotfiles
 ```
@@ -34,16 +32,16 @@ define alias in the current shell scope
 ```
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 ```
-Checkout the actual content from the bare repository to your $HOME (if error, probably from setting the dotfiles on the same computer, remove then and type):
+checkout the actual content from the bare repository to your $HOME (if error, probably from setting the dotfiles on the same computer; remove the listed files and checkout again:
 ```
 dotfiles checkout
 ```
-Set the flag showUntrackedFiles to no on this specific (local) repository:
+set the flag showUntrackedFiles to 'no' on this specific (local) repository:
 ```
 dotfiles config --local status.showUntrackedFiles no
 ```
 
-Remove/ignore README.md
+remove/ignore README.md
 ```
 dotfiles config core.sparsecheckout true
 echo '/*' >> ~/.dotfiles/info/sparse-checkout
