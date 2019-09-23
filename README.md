@@ -1,5 +1,7 @@
 # dotfiles
 
+take a look at [a link](https://www.atlassian.com/git/tutorials/dotfiles)
+
 ## First time setup
 create a git bare repo
 ```
@@ -19,7 +21,7 @@ add modified/deleted files
 git add -u
 ```
 
-## Install existing dotfiles onto a new system
+## Install these existing dotfiles on a new system
 Ignore the dotfiles repo
 ```
 echo ".dotfiles" >> .gitignore
@@ -51,7 +53,7 @@ dotfiles checkout
 ```
 
 
-### Install packages new system
+### Install packages on new system
 install some packages
 
 #### On debian
