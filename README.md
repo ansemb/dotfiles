@@ -69,7 +69,8 @@ sudo pacman -S vim neovim curl wget zsh git fonts-powerline
 chsh -s $(which zsh)
 ```
 
-#### clone oh-my-zsh to .config/zsh dir
+#### clone oh-my-zsh to .config/zsh dir add syntax higlighting
 ```
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.config/zsh/.oh-my-zsh
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
