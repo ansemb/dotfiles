@@ -34,7 +34,7 @@ sudo pacman -S vim neovim curl wget zsh git fonts-powerline
 chsh -s $(which zsh)
 ```
 
-#### oh-my-zsh
+#### clone oh-my-zsh to .config/zsh dir
 ```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.config/zsh/.oh-my-zsh
 ```
