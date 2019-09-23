@@ -7,6 +7,7 @@ create a git bare repo
 git init --bare $HOME/dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 echo "alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'" >> $HOME/.config/.aliases
+dotfiles config --local status.showUntrackedFiles no
 ```
 now add/commit/push files to the dotfiles repo like:
 ```
