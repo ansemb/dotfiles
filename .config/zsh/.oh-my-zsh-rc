@@ -1,0 +1,21 @@
+export ZSH="$ZDOTDIR/.oh-my-zsh"
+
+# if oh-my-zsh is snot installed return
+if [ ! -d "$ZSH" ]; then
+    return
+fi
+
+# theme
+ZSH_THEME="agnoster"
+
+# plugins
+plugins=(
+  git
+  bundler
+  dotenv
+  rake
+)
+
+source $ZSH/oh-my-zsh.sh
+
+

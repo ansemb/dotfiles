@@ -1,5 +1,3 @@
-export ZSH="$ZDOTDIR/.oh-my-zsh"
-
 # Set up the prompt
 
 autoload -Uz promptinit
@@ -11,17 +9,8 @@ setopt histignorealldups sharehistory
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
-# theme
-ZSH_THEME="agnoster"
-
-plugins=(
-  git
-  bundler
-  dotenv
-  rake
-  zsh-autosuggestions
-)
-source $ZSH/oh-my-zsh.sh
+# add oh-my-zsh settings if installed
+[ ! -d "$ZDOTDIR/.oh-my-zsh-rc" ] && . "$ZDOTDIR/.oh-my-zsh-rc"
 
 # create HISTFILE directory and file if nonexisting
 [ ! -d "$HOME/.cache/zsh" ] && mkdir -p "$HOME/.cache/zsh"
