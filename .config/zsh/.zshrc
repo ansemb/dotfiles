@@ -21,4 +21,5 @@ HISTFILE="$HOME/.cache/zsh/.history"
 [ -f "$HOME/.config/.aliases" ] && source "$HOME/.config/.aliases"
 [ -f "$HOME/.config/.shortcutrc" ] && source "$HOME/.config/.shortcutrc"
 
-
+# Load zsh-syntax-highlighting; should be last.
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

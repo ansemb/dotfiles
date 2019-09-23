@@ -17,6 +17,7 @@ plugins=(
   bundler
   dotenv
   rake
+  zsh-syntax-highlighting
 )
 
 source "$ZSH/oh-my-zsh.sh"
