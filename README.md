@@ -19,7 +19,7 @@ add modified/deleted files
 git add -u
 ```
 
-## Install these existing dotfiles on a new system
+## Install existing dotfiles on a new system
 ignore the dotfiles repo
 ```
 echo ".dotfiles" >> .gitignore
