@@ -41,7 +41,7 @@ set the flag showUntrackedFiles to 'no' on this specific (local) repository:
 dotfiles config --local status.showUntrackedFiles no
 ```
 
-remove/ignore README.md
+remove/ignore README.md from local repo
 ```
 dotfiles config core.sparsecheckout true
 echo '/*' >> ~/.dotfiles/info/sparse-checkout
