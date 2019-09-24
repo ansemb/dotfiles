@@ -8,6 +8,10 @@ if [ ! -d "$ZSH" ]; then
     return
 fi
 
+# set z plugin path
+export _Z_DATA="$ZCACHEDIR/.z"
+
+
 # theme
 ZSH_THEME="agnoster"
 
