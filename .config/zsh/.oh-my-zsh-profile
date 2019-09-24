@@ -13,7 +13,7 @@ export _Z_DATA="$ZCACHEDIR/.z"
 
 
 # theme
-ZSH_THEME="agnoster"
+ZSH_THEME="spaceship"
 
 # plugins
 plugins=(
