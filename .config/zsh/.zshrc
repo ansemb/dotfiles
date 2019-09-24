@@ -9,13 +9,12 @@ fi
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
-# create HISTFILE directory and file if nonexisting
-[ ! -d "$HOME/.cache/zsh" ] && mkdir -p "$HOME/.cache/zsh"
-[ ! -f "$HOME/.cache/zsh/.history" ] && touch "$HOME/.cache/zsh/.history";
+# create HISTFILE file if nonexisting
+[ ! -f "$ZCACHEDIR/.history" ] && touch "$ZCACHEDIR/.history";
 
 HISTSIZE=1000
 SAVEHIST=2000
-HISTFILE="$HOME/.cache/zsh/.history"
+HISTFILE="$ZCACHEDIR/.history"
 
 # load aliases and shortcuts if exist
 [ -f "$HOME/.config/.aliases" ] && source "$HOME/.config/.aliases"
