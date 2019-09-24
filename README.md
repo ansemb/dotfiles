@@ -72,5 +72,9 @@ chsh -s $(which zsh)
 #### clone oh-my-zsh to .config/zsh dir add syntax higlighting
 ```
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.config/zsh/.oh-my-zsh
+```
+#### add some plugins to oh-my-zsh
+```
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
