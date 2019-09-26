@@ -19,13 +19,19 @@ HISTFILE="$ZCACHEDIR/.history"
 
 # PLUGIN MANAGER
 PLUGIN_MANAGER=""
-PLUGIN_MANAGER_DIR="$ZDOTDIR/.zplugin"
+plugin_dir="$ZDOTDIR/.zplugin"
+
+# install plugin manager if not installed
+if [ ! -d "$plugin_dir" ]; then
+    mkdir "$plugin_dir"
+    git clone https://github.com/zdharma/zplugin.git "$plugin_dir/bin"
+fi
 
 # add settings if plugin-manager is installed
-if [ -d "$PLUGIN_MANAGER_DIR" ] && [ -f "$ZDOTDIR/.plugin-manager-profile" ]; then
+if [ -d "$plugin_dir" ] && [ -f "$ZDOTDIR/.plugin-manager-profile" ]; then
     . "$ZDOTDIR/.plugin-manager-profile"
 else
-    # use the default profile if oh-my-zsh is not installed
+    # use the default profile if no plugin manager is installed is not installed
     . "$ZDOTDIR/.zsh-default-profile"
 fi
 

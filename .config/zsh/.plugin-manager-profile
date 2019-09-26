@@ -1,15 +1,15 @@
 # zplugin profile
 
-
-# if oh-my-zsh is snot installed return
-if [ ! -d "$PLUGIN_MANAGER_DIR" ]; then
+# if zplugin is not installe when arriving here return
+if [ ! -d "$ZDOTDIR/.zplugin" ]; then
     return
 fi
 
 declare -A ZPLGM # initial Zplugin's hash definition, if configuring before loading Zplugin
 
-ZPLGM[BIN_DIR]="$PLUGIN_MANAGER_DIR/bin/zplugin.zsh"
-ZPLGM[HOME_DIR]="$PLUGIN_MANAGER_DIR"
+ZPLGM[BIN_DIR]="$ZDOTDIR/.zplugin/bin/zplugin.zsh"
+ZPLGM[HOME_DIR]="$ZDOTDIR/.zplugin"
+ZPLGM[PLUGINS_DIR]="$ZDOTDIR/.zplugin/plugins"
 source "$ZPLGM[BIN_DIR]"
 
 
