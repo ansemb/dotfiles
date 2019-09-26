@@ -44,8 +44,7 @@ dotfiles config --local status.showUntrackedFiles no
 remove/ignore README.md from local repo
 ```
 dotfiles config core.sparsecheckout true
-echo '/*' >> ~/.dotfiles/info/sparse-checkout
-echo '!README.md' >> ~/.dotfiles/info/sparse-checkout
+echo '/*\n!README.md' > ~/.dotfiles/info/sparse-checkout
 rm README.md
 dotfiles checkout
 ```
