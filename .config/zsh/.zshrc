@@ -1,10 +1,4 @@
 
-# add oh-my-zsh settings if installed
-[ ! -d "$ZDOTDIR/.oh-my-zsh-profile" ] && . "$ZDOTDIR/.oh-my-zsh-profile"
-# use the default profile if oh-my-zsh is not installed
-if [ ! -d "$ZSH" ]; then
-    . "$ZDOTDIR/.zsh-default-profile"
-fi
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
@@ -20,5 +14,18 @@ HISTFILE="$ZCACHEDIR/.history"
 [ -f "$HOME/.config/.aliases" ] && source "$HOME/.config/.aliases"
 [ -f "$HOME/.config/.shortcutrc" ] && source "$HOME/.config/.shortcutrc"
 
-# Load zsh-syntax-highlighting; should be last.
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
+
+
+# PLUGIN MANAGER
+PLUGIN_MANAGER=""
+PLUGIN_MANAGER_DIR="$ZDOTDIR/.zplugin"
+
+# add settings if plugin-manager is installed
+if [ -d "$PLUGIN_MANAGER_DIR" ] && [ -f "$ZDOTDIR/.plugin-manager-profile" ]; then
+    . "$ZDOTDIR/.plugin-manager-profile"
+else
+    # use the default profile if oh-my-zsh is not installed
+    . "$ZDOTDIR/.zsh-default-profile"
+fi
+
