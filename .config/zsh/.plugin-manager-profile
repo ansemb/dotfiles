@@ -51,8 +51,8 @@ zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
 # On OSX, you might need to install coreutils from homebrew and use the
 # g-prefix – gsed, gdircolors
-zplugin ice atclone"dircolors -b "$HOME/.dir_colors" > c.zsh" atpull'%atclone' pick"c.zsh"
-zplugin load trapd00r/LS_COLORS
+#zplugin ice atclone"dircolors -b "$HOME/.dir_colors" > c.zsh" atpull'%atclone' pick"c.zsh"
+#zplugin load trapd00r/LS_COLORS
 
 # revolver
 zplugin ice wait"2" lucid as"program" pick"revolver"
