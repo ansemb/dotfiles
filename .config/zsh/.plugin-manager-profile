@@ -13,10 +13,12 @@ ZPLGM[PLUGINS_DIR]="$ZDOTDIR/.zplugin/plugins"
 source "$ZPLGM[BIN_DIR]"
 
 
+
+
 # Load the prompt system and completion system and initilize them
-autoload -Uz compinit promptinit
-# Load and initialize the completion system ignoring insecure directories with a
-# cache time of 20 hours, so it should almost always regenerate the first time a
+autoload -Uz compinit promptinit _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+
 # shell is opened each day.
 _comp_files=(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))
 if (( $#_comp_files )); then
@@ -26,22 +28,70 @@ else
 fi
 unset _comp_files
 
-# Functions to make configuration less verbose
-zt() { zplugin ice wait"${1}" lucid               "${@:2}"; } # Turbo
-zi() { zplugin ice lucid                            "${@}"; } # Regular Ice
-z()  { [ -z $2 ] && zplugin light "${@}" || zplugin "${@}"; } # zplugin
+promptinit
 
-# oh-my-zsh setup
+
+
+
+
+# PLUGINS
+
+# load oh-my-zsh setup
+zplugin snippet OMZ::lib/git.zsh
+zplugin snippet OMZ::lib/history.zsh
+
+# Load Git plugin from OMZ
+zplugin snippet OMZ::plugins/git/git.plugin.zsh
+zplugin cdclear -q # <- forget completions provided up to this moment
+
 setopt promptsubst
 
+zplugin ice wait lucid
+zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+
+
+# scripts
+zplugin ice atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh"
+zplugin load trapd00r/LS_COLORS
+
+# revolver
+zplugin ice wait"2" lucid as"program" pick"revolver"
+zplugin light molovo/revolver
+
+# zunit
+zplugin ice wait"2" lucid as"program" pick"zunit" \
+            atclone"./build.zsh" atpull"%atclone"
+zplugin load molovo/zunit
+
+zplugin ice as"program" cp"wd.sh -> wd" mv"_wd.sh -> _wd" \
+    atpull'!git reset --hard' pick"wd"
+zplugin light mfaerevaag/wd
+
+# git extensions
+zplugin ice wait"2" lucid as"program" pick"bin/git-dsf"
+zplugin light zdharma/zsh-diff-so-fancy
+
+zplugin ice wait"2" lucid as"program" pick"$ZPFX/bin/git-now" make"prefix=$ZPFX install"
+zplugin light iwata/git-now
+
+zplugin ice wait"2" lucid as"program" pick"$ZPFX/bin/git-alias" make"PREFIX=$ZPFX" nocompile
+zplugin light tj/git-extras
+
+zplugin ice wait"2" lucid as"program" atclone'perl Makefile.PL PREFIX=$ZPFX' atpull'%atclone' \
+            make'install' pick"$ZPFX/bin/git-cal"
+zplugin light k4rthik/git-cal
+
+zplugin ice as"program" id-as"git-unique" pick"git-unique"
+zplugin snippet https://github.com/Osse/git-scripts/blob/master/git-unique
+
+
 # Two regular plugins loaded without tracking.
-z light zsh-users/zsh-autosuggestions
-z light zdharma/fast-syntax-highlighting
+zplugin light zsh-users/zsh-autosuggestions
+zplugin light zdharma/fast-syntax-highlighting
 
 # Plugin history-search-multi-word loaded with tracking.
-z load zdharma/history-search-multi-word
+zplugin load zdharma/history-search-multi-word
 
 # Load the pure theme, with zsh-async library that's bundled with it.
-zi pick"async.zsh" src"pure.zsh"
-z light sindresorhus/pure
-
+zplugin ice pick"async.zsh" src"pure.zsh"
+zplugin light sindresorhus/pure
