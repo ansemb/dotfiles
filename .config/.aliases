@@ -9,6 +9,10 @@ alias config='/usr/bin/git --git-dir=$HOME/.config/system/ --work-tree=/'
 alias sudo='sudo '
 
 # list aliases
-alias ll='ls -lah'
+alias ls="exa -bh --color=auto"
+alias ll='ls -lah' l.='ls -d .*'
 alias la='ls -A'
 alias l='ls -CF' 
+
+
+alias reload="exec $SHELL -l -i"  grep="command grep --colour=auto"
