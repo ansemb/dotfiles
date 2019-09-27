@@ -12,7 +12,7 @@ alias sudo='sudo '
 alias ls="exa -bh --color=auto"
 alias ll='ls -lah' l.='ls -d .*'
 alias la='ls -A'
-alias l='ls -CF' 
+alias l='ls -F' 
 
 
 alias reload="exec $SHELL -l -i"  grep="command grep --colour=auto"

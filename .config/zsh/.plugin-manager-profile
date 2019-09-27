@@ -16,22 +16,19 @@ source "$ZPLGM[BIN_DIR]"
 
 
 # Load the prompt system and completion system and initilize them
-autoload -Uz compinit promptinit _zplugin
+autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
 # shell is opened each day.
-_comp_files=(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))
-if (( $#_comp_files )); then
-  compinit -i -C
-else
-  compinit -i
-fi
-unset _comp_files
+#_comp_files=(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))
+#if (( $#_comp_files )); then
+#  compinit -i -C
+#else
+#  compinit -i
+#fi
+#unset _comp_files
 
-promptinit
-
-
-
+#promptinit
 
 
 # PLUGINS
@@ -51,21 +48,15 @@ zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
 
 # scripts
-zplugin ice atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh"
+
+# On OSX, you might need to install coreutils from homebrew and use the
+# g-prefix – gsed, gdircolors
+zplugin ice atclone"dircolors -b "$HOME/.dir_colors" > c.zsh" atpull'%atclone' pick"c.zsh"
 zplugin load trapd00r/LS_COLORS
 
 # revolver
 zplugin ice wait"2" lucid as"program" pick"revolver"
 zplugin light molovo/revolver
-
-# zunit
-zplugin ice wait"2" lucid as"program" pick"zunit" \
-            atclone"./build.zsh" atpull"%atclone"
-zplugin load molovo/zunit
-
-zplugin ice as"program" cp"wd.sh -> wd" mv"_wd.sh -> _wd" \
-    atpull'!git reset --hard' pick"wd"
-zplugin light mfaerevaag/wd
 
 # git extensions
 zplugin ice wait"2" lucid as"program" pick"bin/git-dsf"
@@ -84,8 +75,7 @@ zplugin light k4rthik/git-cal
 zplugin ice as"program" id-as"git-unique" pick"git-unique"
 zplugin snippet https://github.com/Osse/git-scripts/blob/master/git-unique
 
-
-# Two regular plugins loaded without tracking.
+# autocomplete
 zplugin light zsh-users/zsh-autosuggestions
 zplugin light zdharma/fast-syntax-highlighting
 
@@ -93,5 +83,5 @@ zplugin light zdharma/fast-syntax-highlighting
 zplugin load zdharma/history-search-multi-word
 
 # Load the pure theme, with zsh-async library that's bundled with it.
-zplugin ice pick"async.zsh" src"pure.zsh"
+zplugin ice pick"/dev/null" multisrc"{async,pure}.zsh"
 zplugin light sindresorhus/pure
