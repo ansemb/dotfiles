@@ -1,4 +1,3 @@
-echo "zshenv"
 
 export ZDOTDIR="$HOME/.config/zsh"
 export ZCACHEDIR="$HOME/.cache/zsh"
