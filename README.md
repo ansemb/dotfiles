@@ -49,7 +49,6 @@ rm README.md
 dotfiles checkout
 ```
 
-
 ### Install packages on new system
 install some packages
 
