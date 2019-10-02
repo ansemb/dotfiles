@@ -1,0 +1,9 @@
+
+export ZDOTDIR="$HOME/.config/zsh"
+export ZCACHEDIR="$HOME/.cache/zsh"
+# Default programs:
+export EDITOR='nvim'
+
+export DOTNET_ROOT="/opt/dotnet"
+export PATH=$PATH:$DOTNET_ROOT
+

@@ -1,5 +1,7 @@
 # zshrc
 
+[ -f ~/.config/.paths ] && . ~/.config/.paths
+
 # create cache dir if not exist
 [ ! -d "$ZCACHEDIR" ] && mkdir -p "$ZCACHEDIR"
 
