@@ -1,10 +1,13 @@
 # zshrc
-
 [ -f ~/.config/.paths ] && . ~/.config/.paths
 
 # create cache dir if not exist
 [ ! -d "$ZCACHEDIR" ] && mkdir -p "$ZCACHEDIR"
 
+# solves tab space problem (when clicking tab, first characters repeat)
+export LC_CTYPE=en_US.UTF-8
+
+# colors
 eval $( dircolors -b $HOME/.dir_colors)
 
 # BINDKEYS
@@ -58,7 +61,6 @@ else
   compinit -i
 fi
 unset _comp_files
-
 promptinit
 
 autoload -Uz allopt zed zmv zcalc colors
@@ -73,6 +75,8 @@ select-word-style default
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
 
+setopt complete_in_word
+setopt always_to_end
 
 # ALIASES
 [ -f "$HOME/.config/.aliases" ] && source "$HOME/.config/.aliases"
@@ -100,5 +104,20 @@ unset -v plugin_dir
 
 
 
-zstyle ':completion:*' menu select
 zstyle ':completion::complete:*' gain-privileges 1
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
