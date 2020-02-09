@@ -1,4 +1,4 @@
-
+# ZSH
 export ZDOTDIR="$HOME/.config/zsh"
 export ZCACHEDIR="$HOME/.cache/zsh"
 
@@ -9,7 +9,7 @@ export ZCACHEDIR="$HOME/.cache/zsh"
 
 
 # PLUGIN MANAGER
-ZPLUGIN_DIR="$HOME/.config/zplugin"
+ZPLUGIN_DIR="$HOME/.config/zsh/zplugin"
 
 # Default programs:
 export EDITOR='nvim'
@@ -19,5 +19,4 @@ export PATH=$PATH:$DOTNET_ROOT
 
 export JDK_HOME=/usr/lib/jvm/default/
 export JAVA_HOME=/usr/lib/jvm/default-runtime/
-
 
