@@ -66,3 +66,8 @@ sudo pacman -S vim neovim curl wget zsh git exa
 ```
 chsh -s $(which zsh)
 ```
+
+#### WSL
+```
+chmod -R 755 /home/ace/.config/zsh/zplugin
+```
