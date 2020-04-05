@@ -69,5 +69,5 @@ chsh -s $(which zsh)
 
 #### WSL
 ```
-chmod -R 755 /home/ace/.config/zsh/zplugin
+chmod -R 755 $HOME/.config/zsh/zplugin
 ```
