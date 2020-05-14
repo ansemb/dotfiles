@@ -6,6 +6,9 @@
 # create cache dir if not exist
 [ ! -d "$ZCACHEDIR" ] && mkdir -p "$ZCACHEDIR"
 
+# create vim undo dir
+[ ! -d "$VIMUNDODIR" ] && mkdir -p "$ZVIMUNDODIR"
+
 # solves tab space problem (when clicking tab, first characters repeat)
 export LC_CTYPE=en_US.UTF-8
 

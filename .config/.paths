@@ -11,6 +11,12 @@ export ZCACHEDIR="$HOME/.cache/zsh"
 # PLUGIN MANAGER
 ZPLUGIN_DIR="$HOME/.config/zsh/zplugin"
 
+# vim
+export VIMDIR='$HOME/.config/vim'
+export VIMUNDODIR='$VIMDIR/undodir'
+export VIMINIT='source $MYVIMRC'
+export MYVIMRC='$VIMDIR/.vimrc'
+
 # Default programs:
 export EDITOR='nvim'
 
@@ -20,3 +26,7 @@ export PATH=$PATH:$DOTNET_ROOT
 export JDK_HOME=/usr/lib/jvm/default/
 export JAVA_HOME=/usr/lib/jvm/default-runtime/
 
+
+export PATH=$PATH:"$HOME/.cargo/bin"
+
+export PATH=$PATH:"$HOME/.local/bin"
