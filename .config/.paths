@@ -1,21 +1,23 @@
+
+export CONFIG_HOME="$HOME/.config"
+
 # ZSH
-export ZDOTDIR="$HOME/.config/zsh"
+export ZDOTDIR="$CONFIG_HOME/zsh"
 export ZCACHEDIR="$HOME/.cache/zsh"
 
 
 # ALIASES
-[ -f "$HOME/.config/.aliases" ] && source "$HOME/.config/.aliases"
-[ -f "$HOME/.config/.shortcutrc" ] && source "$HOME/.config/.shortcutrc"
+[ -f "$CONFIG_HOME/.aliases" ] && source "$CONFIG_HOME/.aliases"
+[ -f "$CONFIG_HOME/.shortcutrc" ] && source "$CONFIG_HOME/.shortcutrc"
 
+# NVIM
+export NVIMDIR="$CONFIG_HOME/nvim"
+export NVIMUNDODIR="$NVIMDIR/undodir"
+#export MYVIMRC="$NVIMDIR/init.vim"
+#:export VIMINIT='source $MYVIMRC'
 
 # PLUGIN MANAGER
-ZPLUGIN_DIR="$HOME/.config/zsh/zinit"
-
-# vim
-export VIMDIR="$HOME/.config/vim"
-export VIMUNDODIR="$VIMDIR/undodir"
-export MYVIMRC="$VIMDIR/.vimrc"
-export VIMINIT='source $MYVIMRC'
+ZPLUGIN_DIR="$CONFIG_HOME/zsh/zinit"
 
 # Default programs:
 export EDITOR='nvim'

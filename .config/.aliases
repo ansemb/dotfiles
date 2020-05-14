@@ -5,6 +5,9 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # for git system settings
 alias config='/usr/bin/git --git-dir=$HOME/.config/system/ --work-tree=/'
 
+# vim
+alias vim='nvim'
+
 # run these aliases as sudo
 alias sudo='sudo '
 
