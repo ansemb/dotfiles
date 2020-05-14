@@ -26,7 +26,7 @@ echo ".dotfiles" >> .gitignore
 ```
 clone dotfiles into a bare repository:
 ```
-git clone --bare <git-repo-url> $HOME/.dotfiles
+git clone --bare https://github.com/ansemb/dotfiles.git $HOME/.dotfiles
 ```
 define alias in the current shell scope
 ```
@@ -43,7 +43,7 @@ dotfiles config --local status.showUntrackedFiles no
 
 ignore README.md from local repo
 ```
-git update-index --assume-unchanged $HOME/README.md
+dotfiles update-index --assume-unchanged $HOME/README.md
 rm $HOME/README.md
 ```
 
@@ -69,5 +69,5 @@ chsh -s $(which zsh)
 
 #### WSL
 ```
-chmod -R 755 $HOME/.config/zsh/zplugin
+chmod -R 755 $HOME/.config/zsh/zinit
 ```
