@@ -18,3 +18,9 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 
+" PLUGINS
+call plug#begin('$VIMDIR/plugged')
+
+
+
+call plug#end()

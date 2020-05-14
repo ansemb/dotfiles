@@ -3,11 +3,9 @@
 # import all paths
 [ -f ~/.config/.paths ] && . ~/.config/.paths
 
-# create cache dir if not exist
-[ ! -d "$ZCACHEDIR" ] && mkdir -p "$ZCACHEDIR"
+# launch setup
+[ -f "$ZDOTDIR/.setup" ] && source "$ZDOTDIR/.setup"
 
-# create vim undo dir
-[ ! -d "$VIMUNDODIR" ] && mkdir -p "$ZVIMUNDODIR"
 
 # solves tab space problem (when clicking tab, first characters repeat)
 export LC_CTYPE=en_US.UTF-8
@@ -21,7 +19,6 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
 bindkey -e
-
 
 # keybindings for zsh
 bindkey "^[[1;5C"    forward-word # Ctrl+Right
@@ -43,20 +40,14 @@ bindkey "^?"      backward-delete-char  "^H"      backward-delete-char
 # What characters are considered to be a part of a word
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
-
-# create HISTFILE file if nonexisting
-[ ! -f "$ZCACHEDIR/.history" ] && touch "$ZCACHEDIR/.history";
-
 HISTSIZE=1000
 SAVEHIST=2000
 HISTFILE="$ZCACHEDIR/.history"
 
 
-
 # ALIASES
 [ -f "$HOME/.config/.aliases" ] && source "$HOME/.config/.aliases"
 [ -f "$HOME/.config/.shortcutrc" ] && source "$HOME/.config/.shortcutrc"
-
 
 # LOAD PLUGIN MANAGER
 # install plugin manager if not installed
@@ -80,6 +71,7 @@ fi
 #
 
 autoload -Uz compinit promptinit
+
 # shell is opened each day.
 _comp_files=(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))
 if (( $#_comp_files )); then
