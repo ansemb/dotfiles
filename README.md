@@ -41,12 +41,10 @@ set the flag showUntrackedFiles to 'no' on this specific (local) repository:
 dotfiles config --local status.showUntrackedFiles no
 ```
 
-remove/ignore README.md from local repo
+ignore README.md from local repo
 ```
-dotfiles config core.sparsecheckout true
-echo '/*\n!README.md' > ~/.dotfiles/info/sparse-checkout
-rm README.md
-dotfiles checkout
+git update-index --assume-unchanged $HOME/README.md
+rm $HOME/README.md
 ```
 
 ### Install packages on new system
@@ -54,12 +52,14 @@ install some packages
 
 #### On debian
 ```
-sudo apt install vim neovim curl wget zsh git exa
+sudo apt install vim neovim curl wget zsh git cargo
+cargo install exa
 ```
 
 #### On arch
 ```
-sudo pacman -S vim neovim curl wget zsh git exa
+sudo pacman -S vim neovim curl wget zsh git cargo
+cargo install exa
 ```
 
 #### set zsh as default shell
