@@ -54,6 +54,10 @@ install some packages
 ```
 sudo apt install vim neovim curl wget zsh git cargo
 cargo install exa
+
+# for nvim python packages
+python3 -m pip install --user --upgrade pynvim
+python2 -m pip install --user --upgrade pynvim
 ```
 
 #### On arch
