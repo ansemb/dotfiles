@@ -1,44 +1,21 @@
 
-" PLUGIN
-if ! filereadable(system('echo -n "${CONFIG_HOME:-$HOME/.config}/nvim/site/autoload/plug.vim"'))
+" PLUGIN MANAGER
+if ! filereadable(system('echo -n "${CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
         echo "Downloading junegunn/vim-plug to manage plugins..."
-        silent !mkdir -p ${CONFIG_HOME:-$HOME/.config}/nvim/site/autoload/
-        silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${CONFIG_HOME:-$HOME/.config}/nvim/site/autoload/plug.vim
+        silent !mkdir -p ${CONFIG_HOME:-$HOME/.config}/nvim/autoload/
+        silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim
         autocmd VimEnter * PlugInstall
 endif
-
-
-syntax on
-
-set noerrorbells
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-set expandtab!
-set smartindent
-set nu
-set nowrap
-set smartcase
-set noswapfile
-set nobackup
-set undodir="$NVIMUNDODIR"
-set undofile
-set incsearch
-
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-
 
 
 " PLUGINS
 call plug#begin("$NVIMDIR/plugged")
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jremmen/vim-ripgrep'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-utils/vim-man'
-Plug 'mbbill/undotree'
-Plug 'sheerun/vim-polyglot'
-Plug 'ycm-core/YouCompleteMe'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -46,3 +23,64 @@ Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
 
 call plug#end()
+
+" color scheme
+" colorscheme gruvbox
+
+" coc config
+let g:coc_global_extensions = [
+	\ 'coc-snippets',
+	\ 'coc-pairs',
+	\ 'coc-clangd',
+	\ 'coc-python',
+	\ 'coc-eslint',
+	\ 'coc-git',
+	\ 'coc-emoji',
+	\ 'coc-tsserver',
+	\ 'coc-json',
+	\ 'coc-css',
+	\ 'coc-html',
+	\ 'coc-yaml'
+	\ ]
+
+" ctrlp
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" settings
+syntax enable
+set nocompatible
+filetype plugin on
+
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set noexpandtab
+set smartindent
+set number relativenumber
+set nowrap
+set smartcase
+set noswapfile
+set nobackup
+set undodir="$NVIMUNDODIR"
+set undofile
+set incsearch
+set scrolloff=6
+
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+
+
+" key mapping
+noremap ; l
+noremap l k
+noremap k j
+noremap j h
+
+" newlines
+nnoremap <C-k> o<ESC>k
+nnoremap <C-l> O<ESC>j
+
+
+
+
