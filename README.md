@@ -52,8 +52,10 @@ install some packages
 
 #### On debian
 ```
-sudo apt install vim neovim curl wget zsh git cargo
-cargo install exa
+sudo apt install vim neovim curl build-essential file wget zsh git cargo
+
+# brew (https://brew.sh/)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 # for nvim python packages
 python3 -m pip install --user --upgrade pynvim
@@ -62,7 +64,7 @@ python2 -m pip install --user --upgrade pynvim
 
 #### On arch
 ```
-sudo pacman -S vim neovim curl wget zsh git cargo
+sudo pacman -S vim neovim curl build-essential file wget zsh git cargo
 cargo install exa
 ```
 
