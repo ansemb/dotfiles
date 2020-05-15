@@ -26,4 +26,5 @@ export EDITOR='nvim'
 export DOTNET_ROOT="/opt/dotnet"
 export PATH=$PATH:$DOTNET_ROOT
 export PATH=$PATH:"$HOME/.cargo/bin"
+[ -d "/home/linuxbrew/.linuxbrew/bin" ] && export PATH=$PATH:"/home/linuxbrew/.linuxbrew/bin"
 export PATH=$PATH:"$HOME/.local/bin"
