@@ -70,16 +70,9 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 
-
-" key mapping
-noremap ; l
-noremap l k
-noremap k j
-noremap j h
-
 " newlines
-nnoremap <C-k> o<ESC>k
-nnoremap <C-l> O<ESC>j
+nnoremap <C-j> o<ESC>j
+nnoremap <C-k> O<ESC>k
 
 
 
