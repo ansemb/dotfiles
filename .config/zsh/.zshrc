@@ -54,7 +54,6 @@ HISTFILE="$ZCACHEDIR/.history"
 if [ ! -d "$ZPLUGIN_DIR" ]; then
     mkdir "$ZPLUGIN_DIR"
     git clone https://github.com/zdharma/zplugin.git "$ZPLUGIN_DIR/bin"
-    zplugin self-update
 fi
 
 # add settings if plugin-manager is installed

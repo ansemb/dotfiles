@@ -1,0 +1,4 @@
+# setup
+
+# create history directory
+[ ! -d "$ZCACHEDIR" ] && mkdir -p "$ZCACHEDIR"
