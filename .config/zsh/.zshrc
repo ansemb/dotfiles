@@ -52,7 +52,7 @@ HISTFILE="$ZCACHEDIR/.history"
 # LOAD PLUGIN MANAGER
 # install plugin manager if not installed
 if [ ! -d "$ZPLUGIN_DIR" ]; then
-    mkdir "$ZPLUGIN_DIR"
+    mkdir -p "$ZPLUGIN_DIR"
     git clone https://github.com/zdharma/zinit.git "$ZPLUGIN_DIR/bin"
 fi
 
