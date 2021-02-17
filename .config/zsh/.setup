@@ -2,3 +2,7 @@
 
 # create history directory
 [ ! -d "$ZCACHEDIR" ] && mkdir -p "$ZCACHEDIR"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0b4d89b95c982cf66e7abaf75fa083c2e78042d4
