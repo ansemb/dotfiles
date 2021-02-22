@@ -1,79 +1,20 @@
 # dotfiles
 
-## First time setup
-create a git bare repo
-```
-git init --bare $HOME/.dotfiles
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.config/.aliases
-dotfiles config --local status.showUntrackedFiles no
-```
-now add/commit/push files to the dotfiles repo like:
-```
-dotfiles add ~/.config/.aliases
-dotfiles commit -m "message"
-dotfiles push
-```
-add modified/deleted files
-```
-git add -u
-```
+## Install guide
 
-## Install existing dotfiles on a new system
-ignore the dotfiles repo
-```
-echo ".dotfiles" >> .gitignore
-```
-clone dotfiles into a bare repository:
-```
-git clone --bare https://github.com/ansemb/dotfiles.git $HOME/.dotfiles
-```
-define alias in the current shell scope
-```
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-```
-checkout the actual content from the bare repository to your $HOME (if error, probably from setting the dotfiles on the same computer; remove the listed files and checkout again:
-```
-dotfiles checkout
-```
-set the flag showUntrackedFiles to 'no' on this specific (local) repository:
-```
-dotfiles config --local status.showUntrackedFiles no
-```
-
-ignore README.md from local repo
-```
-dotfiles update-index --assume-unchanged $HOME/README.md
-rm $HOME/README.md
-```
-
-### Install packages on new system
-install some packages
+### First install packages on new system
 
 #### On debian
 ```
-sudo apt install vim neovim curl build-essential file wget zsh git cargo
-
-# brew (https://brew.sh/)
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-
-# for nvim python packages
-python3 -m pip install --user --upgrade pynvim
-python2 -m pip install --user --upgrade pynvim
+sudo apt update && sudo apt upgrade -y && sudo apt install build-essential curl python3 python3-pip git zsh vim neovim file wget -y
 ```
 
 #### On arch
 ```
-sudo pacman -S vim neovim curl build-essential file wget zsh git cargo
-cargo install exa
+sudo pacman -S curl python3 python3-pip git zsh vim neovim file wget
 ```
 
-#### set zsh as default shell
+### Run Install script
 ```
-chsh -s $(which zsh)
-```
-
-#### WSL
-```
-chmod -R 755 $HOME/.config/zsh/zinit
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.sh)"
 ```
