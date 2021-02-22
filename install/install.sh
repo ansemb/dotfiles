@@ -8,14 +8,16 @@ fi
 
 
 # for nvim python packages
-python3 -m pip install -U pip
+python3 -m pip install --user --upgrade pip
 python3 -m pip install --user --upgrade pynvim
 
 
 # brew install
 if ! type brew >/dev/null 2>&1; then
+    echo "installing brew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
+    echo "updating brew..."
     brew update
 fi
 
@@ -31,10 +33,14 @@ brew install gcc exa
 # nvm install
 export NVM_DIR="$HOME/.config/nvm"
 if [ ! -d "$NVM_DIR" ]; then
+    echo "isntalling nvm..."
     mkdir -p $NVM_DIR
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/HEAD/install.sh NVM_DIR="$HOME/.config/nvm" | bash
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    echo "done."
+    
     # install node (needed for coc.nvim)
+    echo "installing node..."
     nvm install node
 fi
 
@@ -69,7 +75,7 @@ dotfiles update-index --assume-unchanged "$home_dir/install/"
 rm -rf "$home_dir/install"
 
 
-# change shell to zsh
+# run zsh shell to download zsh plugins
 /bin/zsh -i -c exit
 
 # change permissions for zinit directory
