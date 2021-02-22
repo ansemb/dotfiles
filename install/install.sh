@@ -13,14 +13,13 @@ python3 -m pip install --user --upgrade pynvim
 
 
 # brew install
-brew_install_path=$(which brew)
-if [ -z "$brew_install_path" ]; then
+if ! type brew >/dev/null 2>&1; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew_install_path=$(which brew)
 else
     brew update
 fi
 
+brew_install_path=$(which brew)
 if [ -z "$brew_install_path" ]; then
     echo "brew not installed. exiting..."
     exit
@@ -30,9 +29,8 @@ export PATH="$PATH:$brew_install_path"
 brew install gcc exa
 
 # nvm install
-node_install_path=$(which node)
-if [ -z "$node_install_path" ]; then
-    export NVM_DIR="$HOME/.config/nvm"
+export NVM_DIR="$HOME/.config/nvm"
+if [ ! -d "$NVM_DIR" ]; then
     mkdir -p $NVM_DIR
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/HEAD/install.sh NVM_DIR="$HOME/.config/nvm" | bash
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -44,9 +42,12 @@ fi
 home_dir=$HOME
 dotfiles_dir="$home_dir/.dotfiles"
 echo "Installing dotfiles into dir: $home_dir"
+# removing directory for clean install
 [ -d "$dotfiles_dir" ] && rm -rf "$dotfiles_dir"
 
-echo ".dotfiles" >> "$home_dir/.gitignore"
+if [ ! -f "$home_dir/.gitignore" ] || ! grep -q ".dotfiles" "$home_dir/.gitignore"; then
+    echo ".dotfiles" >> "$home_dir/.gitignore"
+fi
 
 git clone --bare https://github.com/ansemb/dotfiles.git $home_dir/.dotfiles
 
