@@ -1,14 +1,11 @@
 #!/bin/bash
 set -u
 
-if [[ $EUID > 0 ]]; then
-    echo "Please run as root."
+if [[ $EUID == 0 ]]; then
+    echo "Do not run as root."
     exit
 fi
 
-# ubuntu upgrade packages and install dependencies
-sudo apt update && sudo apt upgrade -y
-sudo apt install build-essential curl python3 git zsh vim neovim file wget 
 
 # for nvim python packages
 python3 -m pip install -U pip
@@ -16,19 +13,28 @@ python3 -m pip install --user --upgrade pynvim
 
 # brew install (https://brew.sh/)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+if [ ! -d "/home/linuxbrew/.linuxbrew" ]; then
+    echo "brew not installed. exiting..."
+    exit
+fi
+
 export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
-brew install exa
+brew install gcc exa
 
 
-# get hoome directory of user executing script
-home_dir=$(/bin/bash -c "eval echo ~$SUDO_USER")
+# get home directory of user executing script
+home_dir=$HOME
+dotfiles_dir="$home_dir/.dotfiles"
 echo "Installing dotfiles into dir: $home_dir"
+[ -d "$dotfiles_dir" ] && rm -rf "$dotfiles_dir"
 
 echo ".dotfiles" >> "$home_dir/.gitignore"
 
 git clone --bare https://github.com/ansemb/dotfiles.git $home_dir/.dotfiles
 
-alias dotfiles='/usr/bin/git --git-dir=$home_dir/.dotfiles/ --work-tree=$home_dir'
+shopt -s expand_aliases
+alias dotfiles='/usr/bin/git --git-dir=$dotfiles_dir/ --work-tree=$home_dir'
 
 dotfiles checkout -f master
 dotfiles config --local status.showUntrackedFiles no
@@ -38,13 +44,21 @@ dotfiles update-index --assume-unchanged "$home_dir/README.md"
 rm "$home_dir/README.md"
 
 # ignore install directory
-dotfiles update-index --assume-unchanged "$home_dir/install"
+for filename in "$home_dir/install"/*; do
+        dotfiles update-index --assume-unchanged "$filename"
+done
+dotfiles update-index --assume-unchanged "$home_dir/install/"
 rm -rf "$home_dir/install"
 
 
 # change shell to zsh
-chsh -s $(which zsh)
-zsh
+/bin/zsh -i -c exit
 
 # change permissions for zinit directory
 chmod -R 755 $home_dir/.config/zsh/zinit
+
+# change default shell
+echo -e "\n"
+echo "changing default shell to zsh, please input password"
+chsh -s $(which zsh)
+echo "restart shell or run zsh command"
