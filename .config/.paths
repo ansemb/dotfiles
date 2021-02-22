@@ -33,6 +33,7 @@ export PATH=$PATH:$DOTNET_ROOT
 
 # brew
 [ -d "/home/linuxbrew/.linuxbrew/bin" ] && export PATH=$PATH:"/home/linuxbrew/.linuxbrew/bin"
+[ -d "$HOME/.linuxbrew/bin" ] && export PATH=$PATH:"$HOME/.linuxbrew/bin"
 
 # local bin
 export PATH=$PATH:"$HOME/.local/bin"
