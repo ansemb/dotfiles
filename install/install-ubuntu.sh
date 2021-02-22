@@ -30,7 +30,7 @@ git clone --bare https://github.com/ansemb/dotfiles.git $home_dir/.dotfiles
 
 alias dotfiles='/usr/bin/git --git-dir=$home_dir/.dotfiles/ --work-tree=$home_dir'
 
-dotfiles checkout
+dotfiles checkout -f master
 dotfiles config --local status.showUntrackedFiles no
 
 # ignore readme
