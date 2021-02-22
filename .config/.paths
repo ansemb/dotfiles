@@ -17,7 +17,7 @@ export NVIMUNDODIR="$NVIMDIR/undodir"
 #:export VIMINIT='source $MYVIMRC'
 
 # PLUGIN MANAGER
-ZPLUGIN_DIR="$CONFIG_HOME/zsh/.zinit"
+ZPLUGIN_DIR="$CONFIG_HOME/zsh/zinit"
 
 # Default programs:
 export EDITOR='nvim'
