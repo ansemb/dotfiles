@@ -25,11 +25,11 @@ brew install gcc exa
 
 # nvm install
 export NVM_DIR="$HOME/.config/nvm"
-mkdir $NVM_DIR
+mkdir -p $NVM_DIR
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/HEAD/install.sh NVM_DIR="$HOME/.config/nvm" | bash
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# install node
+# install node (needed for coc.nvim)
 nvm install node
 
 # get home directory of user executing script
