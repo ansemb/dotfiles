@@ -14,12 +14,13 @@ python3 -m pip install --user --upgrade pynvim
 # brew install (https://brew.sh/)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-if [ ! -d "/home/linuxbrew/.linuxbrew" ]; then
+if [ ! -d "/home/linuxbrew/.linuxbrew" ] && [ ! -d "$HOME/.linuxbrew" ]; then
     echo "brew not installed. exiting..."
     exit
 fi
 
 export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+export PATH="$PATH:$HOME/.linuxbrew"
 brew install gcc exa
 
 
