@@ -11,26 +11,34 @@ fi
 python3 -m pip install -U pip
 python3 -m pip install --user --upgrade pynvim
 
-# brew install (https://brew.sh/)
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-if [ ! -d "/home/linuxbrew/.linuxbrew" ] && [ ! -d "$HOME/.linuxbrew" ]; then
+# brew install
+brew_install_path=$(which brew)
+if [ -z "$brew_install_path" ]; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew_install_path=$(which brew)
+else
+    brew update
+fi
+
+if [ -z "$brew_install_path" ]; then
     echo "brew not installed. exiting..."
     exit
 fi
 
-export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
-export PATH="$PATH:$HOME/.linuxbrew"
+export PATH="$PATH:$brew_install_path"
 brew install gcc exa
 
 # nvm install
-export NVM_DIR="$HOME/.config/nvm"
-mkdir -p $NVM_DIR
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/HEAD/install.sh NVM_DIR="$HOME/.config/nvm" | bash
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# install node (needed for coc.nvim)
-nvm install node
+node_install_path=$(which node)
+if [ -z "$node_install_path" ]; then
+    export NVM_DIR="$HOME/.config/nvm"
+    mkdir -p $NVM_DIR
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/HEAD/install.sh NVM_DIR="$HOME/.config/nvm" | bash
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    # install node (needed for coc.nvim)
+    nvm install node
+fi
 
 # get home directory of user executing script
 home_dir=$HOME
