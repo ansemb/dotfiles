@@ -21,13 +21,15 @@ else
     brew update
 fi
 
-brew_install_path=$(which brew)
-if [ -z "$brew_install_path" ]; then
+brew_global_install_path="/home/linuxbrew/.linuxbrew"
+brew_local_install_path="$HOME/.linuxbrew"
+
+if [ ! -f "$brew_global_install_path/bin/brew" ] && [ ! -f "$brew_local_install_path/bin/brew" ]; then
     echo "brew not installed. exiting..."
     exit
 fi
 
-export PATH="$PATH:$brew_install_path"
+export PATH="$PATH:$brew_global_install_path/bin:$brew_local_install_path/bin"
 brew install gcc exa
 
 # nvm install
