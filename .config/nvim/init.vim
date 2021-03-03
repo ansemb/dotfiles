@@ -25,7 +25,7 @@ Plug 'morhetz/gruvbox'
 call plug#end()
 
 " color scheme
-" colorscheme gruvbox
+colorscheme gruvbox
 
 " coc config
 let g:coc_global_extensions = [
@@ -66,8 +66,8 @@ set undofile
 set incsearch
 set scrolloff=6
 
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
+" set colorcolumn=80
+" highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 
 " newlines
