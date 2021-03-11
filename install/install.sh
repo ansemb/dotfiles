@@ -6,11 +6,16 @@ if [[ $EUID == 0 ]]; then
     exit
 fi
 
+# functions
 
-# for nvim python packages
-python3 -m pip install --user --upgrade pip
-python3 -m pip install --user --upgrade pynvim
-
+pathadd() {
+  for ARG in "$@"
+  do
+    if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+       PATH="${PATH:+"$PATH:"}$ARG"
+    fi
+  done
+}
 
 # brew install
 if ! type brew >/dev/null 2>&1; then
@@ -29,8 +34,27 @@ if [ ! -f "$brew_global_install_path/bin/brew" ] && [ ! -f "$brew_local_install_
     exit
 fi
 
-export PATH="$PATH:$brew_global_install_path/bin:$brew_local_install_path/bin"
+pathadd "$brew_global_install_path/bin" "$brew_local_install_path/bin"
 brew install gcc exa pyenv
+
+# setup pyenv with latest python version
+export PYENV_ROOT="$HOME/.pyenv"
+pathadd "$PYENV_ROOT/bin"
+
+# pyenv init
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
+
+# get latest python version
+latest_py=$(pyenv install --list | grep -P "^\s*(\d|\.)+\s*$" | tail -1 | xargs)
+# install python version
+pyenv install "$latest_py"
+pyenv global "$latest_py"
+
+# for nvim python packages
+python3 -m pip install --user --upgrade pip
+python3 -m pip install --user --upgrade wheel pynvim neovim 
 
 # nvm install
 export NVM_DIR="$HOME/.config/nvm"
