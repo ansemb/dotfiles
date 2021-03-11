@@ -30,7 +30,7 @@ if [ ! -f "$brew_global_install_path/bin/brew" ] && [ ! -f "$brew_local_install_
 fi
 
 export PATH="$PATH:$brew_global_install_path/bin:$brew_local_install_path/bin"
-brew install gcc exa
+brew install gcc exa pyenv
 
 # nvm install
 export NVM_DIR="$HOME/.config/nvm"
