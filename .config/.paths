@@ -5,7 +5,6 @@ export CONFIG_HOME="$HOME/.config"
 export ZDOTDIR="$CONFIG_HOME/zsh"
 export ZCACHEDIR="$HOME/.cache/zsh"
 
-
 # ALIASES
 [ -f "$CONFIG_HOME/.aliases" ] && source "$CONFIG_HOME/.aliases"
 [ -f "$CONFIG_HOME/.shortcutrc" ] && source "$CONFIG_HOME/.shortcutrc"
@@ -17,7 +16,7 @@ export NVIMUNDODIR="$NVIMDIR/undodir"
 #:export VIMINIT='source $MYVIMRC'
 
 # PLUGIN MANAGER
-ZPLUGIN_DIR="$CONFIG_HOME/zsh/zinit"
+export ZPLUGIN_DIR="$CONFIG_HOME/zsh/zinit"
 
 # Default programs:
 export EDITOR='nvim'
@@ -29,18 +28,21 @@ export NVM_DIR="$HOME/.config/nvm"
 
 # dotnet
 export DOTNET_ROOT="/opt/dotnet"
-export PATH=$PATH:$DOTNET_ROOT
+pathadd "$DOTNET_ROOT"
 
 # brew
-[ -d "/home/linuxbrew/.linuxbrew/bin" ] && export PATH=$PATH:"/home/linuxbrew/.linuxbrew/bin"
-[ -d "$HOME/.linuxbrew/bin" ] && export PATH=$PATH:"$HOME/.linuxbrew/bin"
+test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+[ -d "/home/linuxbrew/.linuxbrew/bin" ] && pathadd "/home/linuxbrew/.linuxbrew/bin"
+[ -d "$HOME/.linuxbrew/bin" ] && pathadd "$HOME/.linuxbrew/bin"
 
-# local bin
-export PATH=$PATH:"$HOME/.local/bin"
+# bin
+pathadd "$HOME/.local/bin" "/usr/bin:/bin:/usr/sbin:/sbin"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+pathadd "$PYENV_ROOT/bin"
+
 # pyenv init
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"

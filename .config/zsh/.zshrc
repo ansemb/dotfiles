@@ -1,5 +1,16 @@
 # zshrc
 
+# functions
+pathadd() {
+  for ARG in "$@"
+  do
+    if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+       PATH="${PATH:+"$PATH:"}$ARG"
+    fi
+  done
+}
+
+
 # import all paths
 [ -f ~/.config/.paths ] && . ~/.config/.paths
 
