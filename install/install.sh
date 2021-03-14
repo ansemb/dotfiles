@@ -35,7 +35,7 @@ if [ ! -f "$brew_global_install_path/bin/brew" ] && [ ! -f "$brew_local_install_
 fi
 
 pathadd "$brew_global_install_path/bin" "$brew_local_install_path/bin"
-brew install gcc exa pyenv
+brew install gcc pyenv
 
 # setup pyenv with latest python version
 export PYENV_ROOT="$HOME/.pyenv"
