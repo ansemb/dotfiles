@@ -37,7 +37,7 @@ test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew
 [ -d "$HOME/.linuxbrew/bin" ] && pathadd "$HOME/.linuxbrew/bin"
 
 # bin
-pathadd "$HOME/.local/bin" "/usr/bin:/bin:/usr/sbin:/sbin"
+pathadd "$HOME/.local/bin"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
