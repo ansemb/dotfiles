@@ -28,20 +28,20 @@ export NVM_DIR="$HOME/.config/nvm"
 
 # dotnet
 export DOTNET_ROOT="/opt/dotnet"
-pathadd "$DOTNET_ROOT"
+pathappend "$DOTNET_ROOT"
 
 # brew
 test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
 test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-[ -d "/home/linuxbrew/.linuxbrew/bin" ] && pathadd "/home/linuxbrew/.linuxbrew/bin"
-[ -d "$HOME/.linuxbrew/bin" ] && pathadd "$HOME/.linuxbrew/bin"
+[ -d "/home/linuxbrew/.linuxbrew/bin" ] && pathappend "/home/linuxbrew/.linuxbrew/bin"
+[ -d "$HOME/.linuxbrew/bin" ] && pathappend "$HOME/.linuxbrew/bin"
 
 # bin
-pathadd "$HOME/.local/bin"
+pathappend "$HOME/.local/bin"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
-pathadd "$PYENV_ROOT/bin"
+pathprepend "$PYENV_ROOT/bin"
 
 # pyenv init
 if command -v pyenv 1>/dev/null 2>&1; then
