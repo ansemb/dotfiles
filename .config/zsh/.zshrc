@@ -2,8 +2,7 @@
 
 # functions
 pathappend() {
-  for ARG in "$@"
-  do
+  for ARG in "$@"; do
     if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
        PATH="${PATH:+"$PATH:"}$ARG"
     fi
@@ -11,10 +10,7 @@ pathappend() {
 }
 
 pathprepend() {
-  arr=("$@")
-  for ((i = ${#arr[@]} - 1; i > 0; i--)); do
-    ARG="${arr[i]}"
-	echo "$ARG"
+  for ARG in "$@"; do
     if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
         PATH="$ARG${PATH:+":$PATH"}"
     fi
