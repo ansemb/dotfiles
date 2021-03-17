@@ -8,11 +8,22 @@ fi
 
 # functions
 
-pathadd() {
+pathappend() {
   for ARG in "$@"
   do
     if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
        PATH="${PATH:+"$PATH:"}$ARG"
+    fi
+  done
+}
+
+pathprepend() {
+  num_args=$#
+  arr=("$@")
+  for ((i = num_args; i > 0; i--)); do
+    ARG="${arr[i]}"
+    if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+        PATH="$ARG${PATH:+":$PATH"}"
     fi
   done
 }
@@ -34,12 +45,12 @@ if [ ! -f "$brew_global_install_path/bin/brew" ] && [ ! -f "$brew_local_install_
     exit
 fi
 
-pathadd "$brew_global_install_path/bin" "$brew_local_install_path/bin"
+pathappend "$brew_global_install_path/bin" "$brew_local_install_path/bin"
 brew install gcc pyenv
 
 # setup pyenv with latest python version
 export PYENV_ROOT="$HOME/.pyenv"
-pathadd "$PYENV_ROOT/bin"
+pathprepend "$PYENV_ROOT/bin"
 
 # pyenv init
 if command -v pyenv 1>/dev/null 2>&1; then
