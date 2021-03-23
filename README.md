@@ -9,7 +9,7 @@
 sudo apt update && sudo apt upgrade -y && sudo apt install  --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev curl git zsh vim neovim file wget exa -y
 ```
 
-Note: exa is currently in unstable release, so add the following to /etc/apt/sources.list.d/unstable.list:
+Note: exa is currently in unstable release, so add the following to /etc/apt/preferences.d/unstable.pref:
 ```
 # 0 < P < 100: causes a version to be installed only if there is no installed version of the package
 Package: *
