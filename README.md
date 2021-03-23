@@ -6,7 +6,7 @@
 
 #### On debian
 ```
-sudo apt update && sudo apt upgrade -y && sudo apt install  --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev curl git zsh vim neovim file wget exa -y
+sudo apt update && sudo apt upgrade -y && sudo apt install  --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev curl git zsh vim neovim file wget -y
 ```
 
 Note: exa is currently in unstable release, so add the following to /etc/apt/preferences.d/unstable.pref:
@@ -30,7 +30,7 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
 ```
 update system and install exa:
 ```
-sudo apt update && sudo apt install exa
+sudo apt update && sudo apt install exa -y
 ```
 
 #### On arch
