@@ -19,9 +19,10 @@ if [[ $(dotfiles log -p HEAD..FETCH_HEAD | wc -l) -eq 0 ]]; then
 	exit
 fi
 
-read -p "Changes detected on remote version. Continue update (this will overwrite local changes) (Y/n)? " -n 2 -r
+read -p "Changes detected on remote version. Continue update (this will overwrite local changes) (Y/n)? " -n 1 -r
 echo ""
-if [[ ! $REPLY =~ ^[Yy]$ ]] || [[ -z "$REPLY" ]]; then
+if [[ "$REPLY" =~ ^[Nn]$ ]]; then
+	echo "exiting..."
 	exit
 fi
 
@@ -38,7 +39,7 @@ fi
 # ignore install directory files
 for filename in "$(dotfiles ls-files "$home_dir/install")"; do
 	dotfiles update-index --assume-unchanged "$filename"
-	if [ -f "$filename" ]; then
+	if [[ -f "$filename" ]]; then
 		rm "$filename"
 	fi
 done
