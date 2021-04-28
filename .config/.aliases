@@ -19,3 +19,7 @@ alias l='ls -F'
 
 
 alias reload="exec $SHELL -l -i"  grep="command grep --colour=auto"
+
+
+# dotfiles update
+alias dotfiles-update='/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/update.sh)"'
