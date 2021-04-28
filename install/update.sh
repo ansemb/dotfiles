@@ -56,6 +56,4 @@ if [ -d "$home_dir/install" ]; then
 	fi
 fi
 
-echo "Finished update. Reloading shell"
-alias reload="exec $SHELL -l -i"  grep="command grep --colour=auto"
-reload
+echo "Finished update. Reload shell"
