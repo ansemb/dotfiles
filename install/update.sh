@@ -18,7 +18,7 @@ CHANGED=$(dotfiles diff-index --name-only HEAD --)
 if [ ! -n "$CHANGED" ]; then
 	echo "No changes. Exiting..."
 	exit
-if
+fi
 
 read -p "Changes detected on remote version. Continue update (this will overwrite local changes) (Y/n)? " -n 2 -r
 echo ""
@@ -56,4 +56,6 @@ if [ -d "$home_dir/install" ]; then
 	fi
 fi
 
-echo "Finished update. Reload shell"
+echo "Finished update. Reloading shell"
+alias reload="exec $SHELL -l -i"  grep="command grep --colour=auto"
+reload
