@@ -84,7 +84,8 @@ zinit load zdharma/history-search-multi-word
 zinit ice pick"/dev/null" multisrc"{async,pure}.zsh"
 zinit light sindresorhus/pure
 
-
+# jump quickly to directories that you have visited frequently
+zinit load agkozak/zsh-z
 
 
 
