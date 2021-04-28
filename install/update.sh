@@ -30,10 +30,11 @@ dotfiles pull --force
 dotfiles config --local status.showUntrackedFiles no
 
 # ignore readme
-dotfiles update-index --assume-unchanged "$home_dir/README.md"
+readme_file="$home_dir/README.md"
+dotfiles update-index --assume-unchanged "$readme_file"
 
-if [[ -f "$home_dir/README.mb" ]]; then
-	rm "$home_dir/README.md"
+if [[ -f "$readme_file" ]]; then
+	rm "$readme_file"
 fi
 
 # ignore and remove install directory files
