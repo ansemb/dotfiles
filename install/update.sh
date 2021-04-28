@@ -13,7 +13,7 @@ dotfiles_dir="$home_dir/.dotfiles"
 shopt -s expand_aliases
 alias dotfiles='/usr/bin/git --git-dir=$dotfiles_dir/ --work-tree=$home_dir'
 
-dotfiles fetch
+dotfiles fetch -q
 if [[ $(dotfiles log -p HEAD..FETCH_HEAD | wc -l) -eq 0 ]]; then
 	echo "No changes. Exiting..."
 	exit
