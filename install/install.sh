@@ -98,13 +98,21 @@ dotfiles config --local status.showUntrackedFiles no
 
 # ignore readme
 dotfiles update-index --assume-unchanged "$home_dir/README.md"
-rm "$home_dir/README.md"
+if [[ -f "$home_dir/README.md" ]]; then
+	rm "$home_dir/README.md"
+fi
 
-# ignore install directory files
-for filename in "$(dotfiles ls-files "$home_dir/install")"; do
+# ignore and remove install directory files
+while IFS= read -r filename; do
+	echo "dotfiles, ignoring file: $filename"
 	dotfiles update-index --assume-unchanged "$filename"
-	rm "$filename"
-done
+	if [[ -f "$filename" ]]; then
+		rm "$filename"
+	fi
+done < <(dotfiles ls-files "$home_dir/install")
+
+# do cleanup
+rmdir --ignore-fail-on-non-empty "$home_dir/install"
 
 
 # run zsh shell to download zsh plugins
@@ -112,17 +120,6 @@ done
 
 # change permissions for zinit directory
 chmod -R 755 $home_dir/.config/zsh/zinit
-
-
-# do cleanup
-
-# prompt user to remove install directory; user might have files in this directory
-read -p "Remove directory '$home_dir/install' completely (used for install files, but if directory is already used by you, answer no) (Y/n)? " -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]] || [ -z $REPLY ]; then
-	echo "Removing '$home_dir/install'"
-	rm -rf "$home_dir/install"
-fi
 
 
 # change default shell

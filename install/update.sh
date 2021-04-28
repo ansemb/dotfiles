@@ -36,25 +36,18 @@ if [[ -f "$home_dir/README.mb" ]]; then
 	rm "$home_dir/README.md"
 fi
 
-# ignore install directory files
-for filename in "$(dotfiles ls-files "$home_dir/install")"; do
+# ignore and remove install directory files
+while IFS= read -r filename; do
+	echo "dotfiles, ignoring file: $filename"
 	dotfiles update-index --assume-unchanged "$filename"
 	if [[ -f "$filename" ]]; then
 		rm "$filename"
 	fi
-done
-
+done < <(dotfiles ls-files "$home_dir/install")
 
 # do cleanup
-if [[ -d "$home_dir/install" ]]; then
-	# prompt user to remove install directory; user might have files in this directory
-	read -p "Remove directory '$home_dir/install' completely (used for install files, but if directory is already used by you, answer no) (Y/n)? " -n 1 -r
-	echo ""
-	if [[ $REPLY =~ ^[Yy]$ ]] || [[ -z $REPLY ]]; then
-		echo "Removing '$home_dir/install'"
-		rm -rf "$home_dir/install"
-	fi
-fi
+rmdir --ignore-fail-on-non-empty "$home_dir/install"
+
 
 echo "Finished update. Reloading shell"
 alias reload="exec $SHELL -l -i"  grep="command grep --colour=auto"
