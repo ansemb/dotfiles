@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # zinit profile
 
 # if zinit is not installe when arriving here return
@@ -13,30 +15,9 @@ ZINIT[HOME_DIR]="$ZPLUGIN_DIR"
 ZINIT[PLUGINS_DIR]="$ZPLUGIN_DIR/plugins"
 source "$ZINIT[BIN_DIR]/zinit.zsh"
 
+# set .z directory
+export ZSHZ_DATA="$CACHEDIR/z"
 
-# update zinit and plugins once a month
-last_login_path="$ZDOTDIR/.tmp/last_login.txt"
-if [[ ! -f "$last_login_path" ]]; then
-	echo "$(date +%Y%m)" > "$last_login_path"
-fi
-
-last_login="$(head -c 6 "$last_login_path")"
-
-# check if last login is a number, if not erase
-if ! [[ "$last_login" =~ '^[0-9]+$' ]]; then
-	echo "last_login is not a number: $last_login"
-	echo "$(date +%Y%m)" > "$last_login_path"
-	last_login="$(head -c 6 "$last_login_path")"
-fi
-
-cur_date=$(date +%Y%m)
-if [[ "$cur_date" -gt "$last_login" ]]; then
-	echo "dotfiles checking for updates..."
-	zinit self-update
-	zinit update
-	dotfiles-update
-fi
-echo "$(date +%Y%m)" > "$last_login_path"
 
 # Load the prompt system and completion system and initilize them
 autoload -Uz _zinit
