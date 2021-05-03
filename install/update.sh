@@ -47,7 +47,9 @@ while IFS= read -r filename; do
 done < <(dotfiles ls-files "$home_dir/install")
 
 # do cleanup
-rmdir --ignore-fail-on-non-empty "$home_dir/install"
+if [[ -d "$home_dir/install" ]]; then
+	rmdir --ignore-fail-on-non-empty "$home_dir/install"
+fi
 
 
 echo "Finished update. Reloading shell"
