@@ -15,11 +15,12 @@ alias dotfiles='/usr/bin/git --git-dir=$dotfiles_dir/ --work-tree=$home_dir'
 
 dotfiles fetch -q
 if [[ $(dotfiles log -p HEAD..FETCH_HEAD | wc -l) -eq 0 ]]; then
-	echo "No changes. Exiting..."
+	echo "No changes in dotfiles. Exiting..."
 	exit
 fi
 
-read -p "Changes detected on remote version. Continue update (this will overwrite local changes) (Y/n)? " -n 1 -r
+echo "Changes detected on remote version."
+read -p "Continue update (this will overwrite local changes)? [Y/n] " -n 1 -r
 echo ""
 if [[ "$REPLY" =~ ^[Nn]$ ]]; then
 	echo "exiting..."
