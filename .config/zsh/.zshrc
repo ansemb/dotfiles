@@ -31,7 +31,11 @@ pathprepend() {
 export LC_CTYPE=en_US.UTF-8
 
 # colors
-eval $( dircolors -b $HOME/.dir_colors)
+if whence dircolors >/dev/null; then
+	eval "$(dircolors -b $HOME/.dir_colors)"
+else
+	export CLICOLOR=1
+fi
 
 # BINDKEYS
 autoload up-line-or-beginning-search down-line-or-beginning-search
