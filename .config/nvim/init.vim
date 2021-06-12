@@ -20,12 +20,13 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " color scheme
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
 " color scheme
-colorscheme gruvbox
+colorscheme nord
 
 " coc config
 let g:coc_global_extensions = [
