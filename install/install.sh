@@ -26,7 +26,7 @@ pathprepend() {
 }
 
 # brew install
-if ! type brew >/dev/null 2>&1; then
+if ! which brew >/dev/null 2>&1; then
     echo "installing brew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
@@ -36,13 +36,10 @@ fi
 
 brew_global_install_path="/home/linuxbrew/.linuxbrew"
 brew_local_install_path="$HOME/.linuxbrew"
+brew_mac_arm64="/opt/homebrew"
+brew_mac_intel="/usr/local/Homebrew"
 
-if [ ! -f "$brew_global_install_path/bin/brew" ] && [ ! -f "$brew_local_install_path/bin/brew" ]; then
-    echo "brew not installed. exiting..."
-    exit
-fi
-
-pathappend "$brew_global_install_path/bin" "$brew_local_install_path/bin"
+pathappend "$brew_global_install_path/bin" "$brew_local_install_path/bin" "$brew_mac_arm64/bin" "$brew_mac_intel/bin"
 brew install gcc pyenv
 
 # setup pyenv with latest python version
