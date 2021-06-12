@@ -30,6 +30,11 @@ sudo apt update && sudo apt install exa -y
 sudo pacman -S base-devel openssl zlib curl git zsh vim neovim file wget exa xz tk
 ```
 
+#### On mac
+```
+brew install exa wget neovim
+```
+
 ### Run Install script
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.sh)"
