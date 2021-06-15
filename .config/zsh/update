@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+last_login_path="$ZDOTDIR/.tmp/last_login.log"
+cur_date="$(date '+%Y%m%d')"
+
+# if no file exists, create one
+if [[ ! -f "$last_login_path" ]]; then
+	echo "$cur_date" > "$last_login_path"
+	return 0
+fi
+
+
+last_login=$(head -n 1 "$last_login_path")
+
+# update if new month
+if [[ cur_date -gt last_login ]]; then
+	echo "dotfiles checking for update..."
+	/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/update.sh)"
+fi
+
+# update tmp file
+echo "$cur_date" > "$last_login_path"

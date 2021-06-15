@@ -81,7 +81,7 @@ if [[ ! -d "$ZPLUGIN_DIR" ]]; then
 fi
 
 # check for update
-[[ -f "$ZDOTDIR/update.sh" ]] && source "$ZDOTDIR/update.sh"
+[[ -f "$ZDOTDIR/update" ]] && source "$ZDOTDIR/update"
 
 
 # add settings if plugin-manager is installed
@@ -90,5 +90,5 @@ if [[ -d "$ZPLUGIN_DIR" ]] && [[ -f "$ZDOTDIR/.plugin-manager-profile" ]]; then
 fi
 
 # load autoloads 
-[[ -f "$ZDOTDIR/autoloads.sh" ]] && source "$ZDOTDIR/autoloads.sh"
+[[ -f "$ZDOTDIR/autoloads" ]] && source "$ZDOTDIR/autoloads"
 
