@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/zsh
+
 set -u
 
 if [[ $EUID == 0 ]]; then
@@ -10,8 +11,11 @@ fi
 home_dir=$HOME
 dotfiles_dir="$home_dir/.dotfiles"
 
-shopt -s expand_aliases
-alias dotfiles='/usr/bin/git --git-dir=$dotfiles_dir/ --work-tree=$home_dir'
+# dotfiles function
+function dotfiles {
+	/usr/bin/git --git-dir="$dotfiles_dir/" --work-tree="$home_dir" "$@"
+}
+
 
 dotfiles fetch -q
 if [[ $(dotfiles log -p HEAD..FETCH_HEAD | wc -l) -eq 0 ]]; then
@@ -53,6 +57,4 @@ if [[ -d "$home_dir/install" ]]; then
 fi
 
 
-echo "Finished update. Reloading shell"
-alias reload="exec $SHELL -l -i"  grep="command grep --colour=auto"
-reload
+echo "Finished update. Reload shell"
