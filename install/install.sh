@@ -52,7 +52,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # get latest python version
-latest_py=$(pyenv install --list | grep -P "^\s*(\d|\.)+\s*$" | tail -1 | xargs)
+latest_py=$(pyenv install --list | perl -nle "print if m{^\s*(\d|\.)+\s*$}" | tail -1 | xargs)
 # install python version
 pyenv install "$latest_py"
 pyenv global "$latest_py"
