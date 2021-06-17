@@ -109,7 +109,7 @@ while IFS= read -r filename; do
 done < <(dotfiles ls-files "$home_dir/install")
 
 # do cleanup
-rmdir --ignore-fail-on-non-empty "$home_dir/install"
+rmdir "$home_dir/install" >/dev/null 2>&1
 
 
 # run zsh shell to download zsh plugins
