@@ -20,13 +20,13 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " color scheme
-" Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
 " color scheme
-colorscheme nord
+colorscheme gruvbox
 
 " coc config
 let g:coc_global_extensions = [
@@ -76,5 +76,5 @@ nnoremap <C-j> o<ESC>j
 nnoremap <C-k> O<ESC>k
 
 
-
-
+" maps
+map <F2> :NERDTreeToggle<CR>
