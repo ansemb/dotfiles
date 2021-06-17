@@ -53,7 +53,7 @@ done < <(dotfiles ls-files "$home_dir/install")
 
 # do cleanup
 if [[ -d "$home_dir/install" ]]; then
-	rmdir --ignore-fail-on-non-empty "$home_dir/install"
+	rmdir "$home_dir/install" >/dev/null 2>&1
 fi
 
 
