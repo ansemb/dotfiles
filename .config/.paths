@@ -49,3 +49,7 @@ pathprepend "$PYENV_ROOT/bin"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init --path)"
 fi
+
+# yarn version manager
+export YVM_DIR="$HOME/.yvm"
+[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
