@@ -30,17 +30,18 @@ colorscheme gruvbox
 
 " coc config
 let g:coc_global_extensions = [
-	\ 'coc-snippets',
-	\ 'coc-pairs',
 	\ 'coc-clangd',
-	\ 'coc-python',
+	\ 'coc-css',
+	\ 'coc-emoji',
 	\ 'coc-eslint',
 	\ 'coc-git',
-	\ 'coc-emoji',
-	\ 'coc-tsserver',
-	\ 'coc-json',
-	\ 'coc-css',
 	\ 'coc-html',
+	\ 'coc-json',
+	\ 'coc-pairs',
+	\ 'coc-python',
+	\ 'coc-rls',
+	\ 'coc-snippets',
+	\ 'coc-tsserver',
 	\ 'coc-yaml'
 	\ ]
 
