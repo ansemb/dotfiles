@@ -53,3 +53,7 @@ fi
 # yarn version manager
 export YVM_DIR="$HOME/.yvm"
 [ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
+
+# cargo
+[ -f "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
+
