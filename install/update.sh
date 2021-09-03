@@ -24,14 +24,14 @@ if [[ $(dotfiles log -p HEAD..FETCH_HEAD | wc -l) -eq 0 ]]; then
 fi
 
 echo "Changes detected on remote version."
-read -p "Continue update (this will overwrite local changes)? [Y/n] " -n 1 -r
+read "continue?Continue update? [Y/n] "
 echo ""
-if [[ "$REPLY" =~ ^[Nn]$ ]]; then
+if [[ "$continue" =~ ^[Nn]$ ]]; then
 	echo "exiting..."
 	exit
 fi
 
-dotfiles pull --force
+dotfiles pull
 dotfiles config --local status.showUntrackedFiles no
 
 # ignore readme
