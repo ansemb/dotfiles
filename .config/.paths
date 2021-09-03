@@ -57,3 +57,5 @@ export YVM_DIR="$HOME/.yvm"
 # cargo
 [ -f "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
 
+# gpg
+export GPG_TTY=$(tty)
