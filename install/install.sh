@@ -77,6 +77,8 @@ nvm install node
 # get home directory of user executing script
 home_dir=$HOME
 dotfiles_dir="$home_dir/.dotfiles"
+zdotdir="$home_dir/.config/zsh"
+
 echo "Installing dotfiles into dir: $home_dir"
 # removing directory for clean install
 [ -d "$dotfiles_dir" ] && rm -rf "$dotfiles_dir"
@@ -107,6 +109,9 @@ while IFS= read -r filename; do
 		rm "$filename"
 	fi
 done < <(dotfiles ls-files "$home_dir/install")
+
+# let user settings be changed without tracking
+dotfiles update-index --skip-worktree "$zdotdir/user-settings.zsh"
 
 # do cleanup
 rmdir "$home_dir/install" >/dev/null 2>&1
