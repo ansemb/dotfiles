@@ -10,6 +10,7 @@ fi
 # get home directory of user executing script
 home_dir=$HOME
 dotfiles_dir="$home_dir/.dotfiles"
+zdotdir="$home_dir/.config/zsh"
 
 # dotfiles function
 function dotfiles {
@@ -50,6 +51,9 @@ while IFS= read -r filename; do
 		rm "$filename"
 	fi
 done < <(dotfiles ls-files "$home_dir/install")
+
+# let user settings be changed without tracking
+dotfiles update-index --skip-worktree "$zdotdir/user-settings.zsh"
 
 # do cleanup
 if [[ -d "$home_dir/install" ]]; then
