@@ -21,10 +21,10 @@ pathprepend() {
 
 
 # import all paths
-[[ -f ~/.config/.paths ]] && source ~/.config/.paths
+[ -f ~/.config/.paths ] && source ~/.config/.paths
 
 # launch setup
-[[ -f "$ZDOTDIR/.setup" ]] && source "$ZDOTDIR/.setup"
+[ -f "$ZDOTDIR/.setup" ] && source "$ZDOTDIR/.setup"
 
 
 # solves tab space problem (when clicking tab, first characters repeat)
@@ -70,25 +70,28 @@ HISTFILE="$ZCACHEDIR/.history"
 
 
 # ALIASES
-[[ -f "$HOME/.config/.aliases" ]] && source "$HOME/.config/.aliases"
-[[ -f "$HOME/.config/.shortcutrc" ]] && source "$HOME/.config/.shortcutrc"
+[ -f "$HOME/.config/.aliases" ] && source "$HOME/.config/.aliases"
+[ -f "$HOME/.config/.shortcutrc" ] && source "$HOME/.config/.shortcutrc"
 
 # LOAD PLUGIN MANAGER
 # install plugin manager if not installed
-if [[ ! -d "$ZPLUGIN_DIR" ]]; then
+if [ ! -d "$ZPLUGIN_DIR" ]; then
     mkdir -p "$ZPLUGIN_DIR"
     git clone https://github.com/zdharma/zinit.git "$ZPLUGIN_DIR/bin"
 fi
 
 # check for update
-[[ -f "$ZDOTDIR/update" ]] && source "$ZDOTDIR/update"
+[ -f "$ZDOTDIR/update" ] && source "$ZDOTDIR/update"
 
 
 # add settings if plugin-manager is installed
-if [[ -d "$ZPLUGIN_DIR" ]] && [[ -f "$ZDOTDIR/.plugin-manager-profile" ]]; then
+if [ -d "$ZPLUGIN_DIR" ] && [ -f "$ZDOTDIR/.plugin-manager-profile" ]; then
     source "$ZDOTDIR/.plugin-manager-profile"
 fi
 
-# load autoloads 
-[[ -f "$ZDOTDIR/autoloads" ]] && source "$ZDOTDIR/autoloads"
+# load autoloads and completions
+[ -f "$ZDOTDIR/autoloads" ] && source "$ZDOTDIR/autoloads"
+
+# load user settings
+[ -f "$ZDOTDIR/user-settings.zsh" ] && source "$ZDOTDIR/user-settings.zsh"
 
