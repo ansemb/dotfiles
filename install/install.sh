@@ -51,15 +51,19 @@ if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init --path)"
 fi
 
+# install latest version of neovim
+brew install --HEAD luajit
+brew install --HEAD neovim
+
 # get latest python version
 latest_py=$(pyenv install --list | perl -nle "print if m{^\s*(\d|\.)+\s*$}" | tail -1 | xargs)
 # install python version
 pyenv install "$latest_py"
 pyenv global "$latest_py"
 
-# for nvim python packages
+# pynvim implements support for python plugins in Nvim
 python3 -m pip install --user --upgrade pip
-python3 -m pip install --user --upgrade wheel pynvim neovim 
+python3 -m pip install --user --upgrade wheel pynvim
 
 # nvm install
 export NVM_DIR="$HOME/.config/nvm"
