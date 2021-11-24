@@ -65,7 +65,10 @@ pyenv global "$latest_py"
 python3 -m pip install --user --upgrade pip
 python3 -m pip install --user --upgrade wheel pynvim
 
-# nvm install
+# install lunarvim (neovim config)
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+
+# install nvm
 export NVM_DIR="$HOME/.config/nvm"
 if [ ! -d "$NVM_DIR" ]; then
     echo "installing nvm..."
@@ -74,7 +77,8 @@ if [ ! -d "$NVM_DIR" ]; then
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     echo "done."
 fi
-# install node (needed for coc.nvim)
+
+# install node
 echo "installing node..."
 nvm install node
 
