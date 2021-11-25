@@ -39,3 +39,8 @@ brew install exa wget neovim
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.sh)"
 ```
+
+##### User specific settings can be set in:
+```
+$HOME/.config/zsh/user-settings.zsh
+```
