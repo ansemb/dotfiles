@@ -51,17 +51,24 @@ if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init --path)"
 fi
 
+# install latest version of neovim
+brew install --HEAD luajit
+brew install --HEAD neovim
+
 # get latest python version
 latest_py=$(pyenv install --list | perl -nle "print if m{^\s*(\d|\.)+\s*$}" | tail -1 | xargs)
 # install python version
 pyenv install "$latest_py"
 pyenv global "$latest_py"
 
-# for nvim python packages
+# pynvim implements support for python plugins in Nvim
 python3 -m pip install --user --upgrade pip
-python3 -m pip install --user --upgrade wheel pynvim neovim 
+python3 -m pip install --user --upgrade wheel pynvim
 
-# nvm install
+# install lunarvim (neovim config)
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+
+# install nvm
 export NVM_DIR="$HOME/.config/nvm"
 if [ ! -d "$NVM_DIR" ]; then
     echo "installing nvm..."
@@ -70,7 +77,8 @@ if [ ! -d "$NVM_DIR" ]; then
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     echo "done."
 fi
-# install node (needed for coc.nvim)
+
+# install node
 echo "installing node..."
 nvm install node
 
