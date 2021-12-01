@@ -6,7 +6,7 @@
 
 #### On debian
 ```
-sudo apt update && sudo apt upgrade -y && sudo apt install make build-essential wget curl tk-dev git zsh vim -y
+sudo apt update && sudo apt upgrade -y && sudo apt install make build-essential wget curl git zsh vim -y
 ```
 
 #### On arch
