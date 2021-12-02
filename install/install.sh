@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/zsh
+
 set -u
 
 if [[ $EUID == 0 ]]; then
@@ -55,11 +56,46 @@ fi
 brew install --HEAD luajit
 brew install --HEAD neovim
 
+# function to get python version number from user
+function get_python_version() {
+  read "number?${1}: "
+  if [[ "$number" == "q" ]]; then
+    py_version=-1;
+  elif [[ " ${py_versions[*]} " == *" ${number} "* ]]; then
+    py_version="$number"
+  else
+    get_python_version 'Invalid number. Try again (q to quit)'
+  fi
+}
+
 # get latest python version
 latest_py=$(pyenv install --list | perl -nle "print if m{^\s*(\d|\.)+\s*$}" | tail -1 | xargs)
+
+echo ""
+echo "Pyenv found latest python version: $latest_py"
+py_version="$latest_py"
+
+read "continue?Install this python version? [Y/n] "
+echo ""
+
+if [[ "$continue" =~ ^[Nn]$ ]]; then
+    py_versions=("${(@f)$(pyenv install --list  | perl -nle 'print if m{^\s*3\.(\d|\.)+\s*$}' | sed 's/\s*//')}")
+    echo 'Available python versions:'
+    printf '%s\n' "${py_versions[@]}"
+
+    get_python_version 'Select version to install (q to quit)'
+fi
+
+# if we found a python version, continue
+if [[ "$py_version" == "-1" ]]; then
+    echo ""
+    echo "exiting..."
+    exit
+fi
+
 # install python version
-pyenv install "$latest_py"
-pyenv global "$latest_py"
+pyenv install "$py_version"
+pyenv global "$py_version"
 
 # pynvim implements support for python plugins in Nvim
 python3 -m pip install --user --upgrade pip
