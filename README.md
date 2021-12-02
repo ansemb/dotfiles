@@ -11,7 +11,7 @@ sudo apt update && sudo apt upgrade -y && sudo apt install --no-install-recommen
 
 #### On arch
 ```
-sudo pacman -S base-devel openssl zlib curl git zsh vim neovim file wget exa xz tk
+sudo pacman -S base-devel openssl zlib curl git zsh vim neovim file wget exa cargo xz tk
 ```
 
 #### On mac
