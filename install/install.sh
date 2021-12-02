@@ -9,6 +9,23 @@ fi
 
 # functions
 
+# dotfiles function
+function dotfiles {
+	/usr/bin/git --git-dir="$dotfiles_dir/" --work-tree="$home_dir" "$@"
+}
+
+# function to get python version number from user
+function get_python_version() {
+  read "number?${1}: "
+  if [[ "$number" == "q" ]]; then
+    py_version=-1;
+  elif [[ " ${py_versions[*]} " == *" ${number} "* ]]; then
+    py_version="$number"
+  else
+    get_python_version 'Invalid number. Try again (q to quit)'
+  fi
+}
+
 pathappend() {
   for ARG in "$@"
   do
@@ -55,18 +72,6 @@ fi
 # install latest version of neovim
 brew install --HEAD luajit
 brew install --HEAD neovim
-
-# function to get python version number from user
-function get_python_version() {
-  read "number?${1}: "
-  if [[ "$number" == "q" ]]; then
-    py_version=-1;
-  elif [[ " ${py_versions[*]} " == *" ${number} "* ]]; then
-    py_version="$number"
-  else
-    get_python_version 'Invalid number. Try again (q to quit)'
-  fi
-}
 
 # get latest python version
 latest_py=$(pyenv install --list | perl -nle "print if m{^\s*(\d|\.)+\s*$}" | tail -1 | xargs)
