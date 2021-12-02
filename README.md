@@ -6,7 +6,7 @@
 
 #### On debian
 ```
-sudo apt update && sudo apt upgrade -y && sudo apt install --no-install-recommends wget curl git zsh vim make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev  -y
+sudo apt update && sudo apt upgrade -y && sudo apt install --no-install-recommends wget curl git zsh vim cargo make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev  -y
 ```
 
 #### On arch
