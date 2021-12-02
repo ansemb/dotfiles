@@ -66,7 +66,7 @@ python3 -m pip install --user --upgrade pip
 python3 -m pip install --user --upgrade wheel pynvim
 
 # install lunarvim (neovim config)
-bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+LV_BRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/rolling/utils/installer/install.sh)
 
 # install nvm
 export NVM_DIR="$HOME/.config/nvm"
