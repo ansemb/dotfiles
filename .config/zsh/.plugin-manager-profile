@@ -10,7 +10,7 @@ fi
 # set custom directories
 declare -A ZINIT # initial Zplugin's hash definition, if configuring before loading Zinit
 
-ZINIT[BIN_DIR]="$ZPLUGIN_DIR/bin"
+ZINIT[BIN_DIR]="$ZINIT_HOME"
 ZINIT[HOME_DIR]="$ZPLUGIN_DIR"
 ZINIT[PLUGINS_DIR]="$ZPLUGIN_DIR/plugins"
 source "$ZINIT[BIN_DIR]/zinit.zsh"
@@ -54,7 +54,7 @@ zinit light molovo/revolver
 
 # git extensions
 zinit ice wait"2" lucid as"program" pick"bin/git-dsf"
-zinit light zdharma/zsh-diff-so-fancy
+zinit light zdharma-continuum/zsh-diff-so-fancy
 
 zinit ice wait"2" lucid as"program" pick"$ZPFX/bin/git-now" make"prefix=$ZPFX install"
 zinit light iwata/git-now
@@ -71,10 +71,10 @@ zinit snippet https://github.com/Osse/git-scripts/blob/master/git-unique
 
 # autocomplete
 zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # Plugin history-search-multi-word loaded with tracking.
-zinit load zdharma/history-search-multi-word
+zinit load zdharma-continuum/history-search-multi-word
 
 # Load the pure theme, with zsh-async library that's bundled with it.
 zinit ice pick"/dev/null" multisrc"{async,pure}.zsh"
