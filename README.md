@@ -6,7 +6,13 @@
 
 #### On debian
 ```
-sudo apt update && sudo apt upgrade -y && sudo apt install --no-install-recommends wget curl git zsh vim make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev  -y
+sudo apt update && sudo apt upgrade -y && \
+sudo apt install wget curl git zsh make -y && \
+sudo apt install --no-install-recommends \
+build-essential libssl-dev zlib1g-dev libbz2-dev \
+libreadline-dev libsqlite3-dev llvm \
+libncursesw5-dev xz-utils tk-dev libxml2-dev \
+libxmlsec1-dev libffi-dev liblzma-dev -y
 ```
 
 #### On arch
