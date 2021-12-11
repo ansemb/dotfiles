@@ -42,10 +42,6 @@ test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew
 # bin
 pathappend "$HOME/.local/bin"
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-pathprepend "$PYENV_ROOT/bin"
-
 # pyenv init
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init --path)"
