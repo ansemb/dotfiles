@@ -60,10 +60,6 @@ brew_mac_intel="/usr/local/Homebrew"
 pathappend "$brew_global_install_path/bin" "$brew_local_install_path/bin" "$brew_mac_arm64/bin" "$brew_mac_intel/bin"
 brew install gcc pyenv
 
-# setup pyenv with latest python version
-export PYENV_ROOT="$HOME/.pyenv"
-pathprepend "$PYENV_ROOT/bin"
-
 # pyenv init
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init --path)"
