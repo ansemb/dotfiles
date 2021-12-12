@@ -19,10 +19,12 @@ function get_python_version() {
   read "number?${1}: "
   if [[ "$number" == "q" ]]; then
     py_version=-1;
+  elif [[ "$number" == "s" ]]; then
+    py_version=0;
   elif [[ " ${py_versions[*]} " == *" ${number} "* ]]; then
     py_version="$number"
   else
-    get_python_version 'Invalid number. Try again (q to quit)'
+    get_python_version 'Invalid number. Try again (q to quit/s to skip)'
   fi
 }
 
@@ -84,7 +86,7 @@ if [[ "$continue" =~ ^[Nn]$ ]]; then
     echo 'Available python versions:'
     printf '%s\n' "${py_versions[@]}"
 
-    get_python_version 'Select version to install (q to quit)'
+    get_python_version 'Select version to install (q to quit/s to skip)'
 fi
 
 # if we found a python version, continue
@@ -94,9 +96,11 @@ if [[ "$py_version" == "-1" ]]; then
     exit
 fi
 
-# install python version
-pyenv install "$py_version"
-pyenv global "$py_version"
+# install python version if not skipping
+if [[ "$py_version" != "0" ]]; then
+    pyenv install "$py_version"
+    pyenv global "$py_version"
+fi
 
 # pynvim implements support for python plugins in Nvim
 python3 -m pip install --user --upgrade pip
