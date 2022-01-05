@@ -49,7 +49,8 @@ bindkey "^[[1;5C"    forward-word # Ctrl+Right
 bindkey "^[[1;5D"    backward-word # Ctrl+Left
 bindkey "^[[5~"      up-history # PageUp
 bindkey "^[[6~"      down-history # PageDown
-bindkey "^W"      backward-kill-word
+bindkey "^u"      backward-kill-line
+bindkey "^w"      backward-kill-word
 bindkey "\e[1~"   beginning-of-line
 bindkey "\e[7~"   beginning-of-line
 bindkey "\e[H"    beginning-of-line
