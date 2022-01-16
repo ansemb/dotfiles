@@ -49,8 +49,8 @@ zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 #zinit load trapd00r/LS_COLORS
 
 # revolver
-zinit ice wait"2" lucid as"program" pick"revolver"
-zinit light molovo/revolver
+# zinit ice wait"2" lucid as"program" pick"revolver"
+# zinit light molovo/revolver
 
 # git extensions
 zinit ice wait"2" lucid as"program" pick"bin/git-dsf"
@@ -66,22 +66,22 @@ zinit ice wait"2" lucid as"program" atclone'perl Makefile.PL PREFIX=$ZPFX' atpul
             make'install' pick"$ZPFX/bin/git-cal"
 zinit light k4rthik/git-cal
 
-zinit ice as"program" id-as"git-unique" pick"git-unique"
-zinit snippet https://github.com/Osse/git-scripts/blob/master/git-unique
+# zinit ice as"program" id-as"git-unique" pick"git-unique"
+# zinit snippet https://github.com/Osse/git-scripts/blob/master/git-unique
 
 # autocomplete
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 # Plugin history-search-multi-word loaded with tracking.
-zinit load zdharma-continuum/history-search-multi-word
+zinit light zdharma-continuum/history-search-multi-word
 
 # Load the pure theme, with zsh-async library that's bundled with it.
-zinit ice pick"/dev/null" multisrc"{async,pure}.zsh"
-zinit light sindresorhus/pure
+# zinit ice pick"/dev/null" multisrc"{async,pure}.zsh"
+# zinit light sindresorhus/pure
 
 # jump quickly to directories that you have visited frequently
-zinit load agkozak/zsh-z
+zinit light agkozak/zsh-z
 
 
 

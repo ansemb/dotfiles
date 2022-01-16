@@ -74,6 +74,9 @@ HISTFILE="$ZCACHEDIR/.history"
 [ -f "$HOME/.config/.aliases" ] && source "$HOME/.config/.aliases"
 [ -f "$HOME/.config/.shortcutrc" ] && source "$HOME/.config/.shortcutrc"
 
+# starship
+eval "$(starship init zsh)"
+
 # LOAD PLUGIN MANAGER
 # install plugin manager if not installed
 if [ ! -d "$ZPLUGIN_DIR" ]; then
