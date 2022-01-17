@@ -40,7 +40,7 @@ curl https://sh.rustup.rs -sSf | sh
 ### (3) run install script
 
 ```
-/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.sh)"
+/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.zsh)"
 ```
 
 <br /><br /><br /><br />
