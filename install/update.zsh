@@ -8,7 +8,7 @@ if [[ $EUID == 0 ]]; then
 fi
 
 # source common
-source <(curl https://raw.githubusercontent.com/ansemb/dotfiles/master/.config/zsh/common.zsh)
+source <(wget -qO- https://raw.githubusercontent.com/ansemb/dotfiles/master/.config/zsh/common.zsh)
 
 dotfiles fetch -q
 if [[ $(dotfiles log -p HEAD..FETCH_HEAD | wc -l) -eq 0 ]]; then
