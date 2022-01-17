@@ -8,7 +8,7 @@ fi
 # functions
 
 # source common
-source <(curl https://raw.githubusercontent.com/ansemb/dotfiles/master/.config/zsh/common.zsh)
+source <(curl -fsSL "$DOTFILES_REPO/.config/zsh/common.zsh")
 
 # function to get python version number from user
 function get_python_version() {

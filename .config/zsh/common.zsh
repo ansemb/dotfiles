@@ -7,6 +7,7 @@ export CACHEDIR="$HOME/.cache"
 
 # DOTFILELS
 export DOTFILES_DIR="$HOME/.dotfiles"
+export DOTFILES_REPO="https://raw.githubusercontent.com/ansemb/dotfiles/HEAD"
 
 # ZSH
 export ZDOTDIR="$CONFIG_HOME/zsh"
