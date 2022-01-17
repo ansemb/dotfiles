@@ -1,7 +1,10 @@
 #!/bin/zsh
 
-last_login_path="$ZDOTDIR/.tmp/last_login.log"
+last_login_dir="$ZCACHEDIR"
+last_login_path="$last_login_dir/.last_login"
 cur_date="$(date '+%Y%m')"
+
+[ -d "$last_login_dir" ] || mkdir "$last_login_dir"
 
 # if no file exists, create one
 if [[ ! -f "$last_login_path" ]]; then

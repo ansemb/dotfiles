@@ -14,8 +14,6 @@ export ZCACHEDIR="$CACHEDIR/zsh"
 # NVIM
 export NVIMDIR="$CONFIG_HOME/nvim"
 export NVIMUNDODIR="$NVIMDIR/undodir"
-#export MYVIMRC="$NVIMDIR/init.vim"
-#:export VIMINIT='source $MYVIMRC'
 
 # PLUGIN MANAGER
 export ZPLUGIN_DIR="$ZDOTDIR/zinit"

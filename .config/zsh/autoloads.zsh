@@ -1,20 +1,9 @@
 #!/bin/zsh
 
 
-#
 # Autoloads
-#
 
-autoload -Uz compinit promptinit
-
-# shell is opened each day.
-_comp_files=(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))
-if (( $#_comp_files )); then
-  compinit -i -C
-else
-  compinit -i
-fi
-unset _comp_files
+autoload -Uz promptinit
 promptinit
 
 autoload -Uz allopt zed zmv zcalc colors
