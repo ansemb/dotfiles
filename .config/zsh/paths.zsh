@@ -1,12 +1,5 @@
 #!/bin/zsh
 
-export CONFIG_HOME="$HOME/.config"
-export CACHEDIR="$HOME/.cache"
-
-# ALIASES
-[ -f "$CONFIG_HOME/.aliases" ] && source "$CONFIG_HOME/.aliases"
-[ -f "$CONFIG_HOME/.shortcutrc" ] && source "$CONFIG_HOME/.shortcutrc"
-
 # NVIM
 export NVIMDIR="$CONFIG_HOME/nvim"
 export NVIMUNDODIR="$NVIMDIR/undodir"
@@ -21,7 +14,6 @@ export EDITOR='lvim'
 # Nvm
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # dotnet
 export DOTNET_ROOT="/opt/dotnet"
@@ -33,7 +25,7 @@ test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew
 [ -d "/home/linuxbrew/.linuxbrew/bin" ] && pathappend "/home/linuxbrew/.linuxbrew/bin"
 [ -d "$HOME/.linuxbrew/bin" ] && pathappend "$HOME/.linuxbrew/bin"
 
-# bin
+# local bin
 pathappend "$HOME/.local/bin"
 
 # pyenv init

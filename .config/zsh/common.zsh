@@ -2,6 +2,9 @@
 
 # variables
 
+export CONFIG_HOME="$HOME/.config"
+export CACHEDIR="$HOME/.cache"
+
 # DOTFILELS
 export DOTFILES_DIR="$HOME/.dotfiles"
 
