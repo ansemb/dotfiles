@@ -3,10 +3,6 @@
 export CONFIG_HOME="$HOME/.config"
 export CACHEDIR="$HOME/.cache"
 
-# ZSH
-export ZDOTDIR="$CONFIG_HOME/zsh"
-export ZCACHEDIR="$CACHEDIR/zsh"
-
 # ALIASES
 [ -f "$CONFIG_HOME/.aliases" ] && source "$CONFIG_HOME/.aliases"
 [ -f "$CONFIG_HOME/.shortcutrc" ] && source "$CONFIG_HOME/.shortcutrc"
