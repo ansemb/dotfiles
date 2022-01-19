@@ -115,7 +115,7 @@ if [ -d "$DOTFILES_DIR" ]; then
   read "continue?This needs to be deleted to continue. Delete it? [Y/n] "
   echo ""
 
-  if [[ "$continue" =~ ^[Nn]$ ]]; then
+  if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
     rm -rf "$DOTFILES_DIR"
   else
     echo "exiting..."
