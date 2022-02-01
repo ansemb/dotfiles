@@ -21,6 +21,3 @@ alias l='ls -F'
 
 alias reload="exec $SHELL -l -i"  grep="command grep --colour=auto"
 
-
-# dotfiles update
-alias dotfiles-update='/bin/zsh -c "$(curl -fsSL $DOTFILES_REPO/install/update.zsh)"'

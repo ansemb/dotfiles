@@ -18,7 +18,7 @@ last_login=$(head -n 1 "$last_login_path")
 # update if new month
 if [[ cur_date -gt last_login ]]; then
 	echo "dotfiles checking for update..."
-	/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/update.sh)"
+  dotfiles-update
 fi
 
 # update tmp file

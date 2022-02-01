@@ -36,6 +36,10 @@ function dotfiles {
 	/usr/bin/git --git-dir="$DOTFILES_DIR/" --work-tree="$HOME" "$@"
 }
 
+function dotfiles-update(){
+  /bin/zsh -c "$(curl -fsSL $DOTFILES_REPO/install/update.zsh)"
+}
+
 function dotfiles-update-index() {
   # remove unwanted files and update
   # git index
@@ -64,3 +68,4 @@ function dotfiles-update-index() {
   # let user settings be changed without tracking
   dotfiles update-index --skip-worktree "$ZDOTDIR/user-settings.zsh"
 }
+
