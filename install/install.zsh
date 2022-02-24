@@ -52,6 +52,8 @@ brew install --HEAD luajit
 brew install --HEAD neovim
 
 # get latest python version
+# set CC flag: https://github.com/pyenv/pyenv/issues/2159#issuecomment-983960026
+CC="$(brew --prefix gcc)/bin/gcc-11"
 latest_py=$(pyenv install --list | perl -nle "print if m{^\s*(\d|\.)+\s*$}" | tail -1 | xargs)
 
 echo ""
