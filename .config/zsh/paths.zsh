@@ -42,3 +42,12 @@ export YVM_DIR="$HOME/.yvm"
 
 # gpg
 export GPG_TTY=$(tty)
+
+# den
+export DENO_INSTALL="$HOME/.deno"
+pathappend "$DENO_INSTALL/bin"
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+pathappend "$PNPM_HOME"
+
