@@ -5,6 +5,8 @@ if [[ $EUID == 0 ]]; then
   exit
 fi
 
+OS="$(uname)"
+
 # functions
 
 # source common
@@ -17,45 +19,41 @@ function get_python_version() {
     py_version=-1;
   elif [[ "$number" == "s" ]]; then
     py_version=0;
-  elif [[ " ${py_versions[*]} " == *" ${number} "* ]]; then
+  elif [[ " ${PY_VERSIONS[*]} " == *" ${number} "* ]]; then
     py_version="$number"
   else
     get_python_version 'Invalid number. Try again (q to quit/s to skip)'
   fi
 }
 
+# INSTALLATION
 
-# brew install
-if ! which brew >/dev/null 2>&1; then
-  read "continue?Brew is not installed, install it? [Y/n] "
+# ask user to install pyenv 
+if ! type pyenv > /dev/null; then
+  read "continue?Pyenv is not installed, install it? [Y/n] "
+  echo ""
   
   if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
-    echo "installing brew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo "Installing pyenv to: $HOME/.pyenv"
+    if [[ "${OS}" == "Linux" ]]
+    then
+      # TODO: allow for custom installation path of pyenv
+      git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+      cd ~/.pyenv && src/configure && make -C src
+    elif [[ "${OS}" == "Darwin" ]]
+    then
+      brew update
+      brew install pyenv
+      
+      # set CC flag: https://github.com/pyenv/pyenv/issues/2159#issuecomment-983960026
+      # CC="$(brew --prefix gcc)/bin/gcc-11"
+    fi
   fi
-else
-  echo "updating brew..."
-  brew update
 fi
 
-brew_global_install_path="/home/linuxbrew/.linuxbrew"
-brew_local_install_path="$HOME/.linuxbrew"
-brew_mac_arm64="/opt/homebrew"
-brew_mac_intel="/usr/local/Homebrew"
-
-if type brew > /dev/null; then
-  pathappend "$brew_global_install_path/bin" "$brew_local_install_path/bin" "$brew_mac_arm64/bin" "$brew_mac_intel/bin"
-  brew install gcc pyenv starship
-  # install latest version of neovim
-  brew install --HEAD luajit
-  brew install --HEAD neovim
-
-  # set CC flag: https://github.com/pyenv/pyenv/issues/2159#issuecomment-983960026
-  CC="$(brew --prefix gcc)/bin/gcc-11"
-fi
-
-# pyenv init
+# install latest/ a specific python version with pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
+  # pyenv init
   eval "$(pyenv init --path)"
   # get latest python version
   latest_py=$(pyenv install --list | perl -nle "print if m{^\s*(\d|\.)+\s*$}" | tail -1 | xargs)
@@ -68,9 +66,9 @@ if command -v pyenv 1>/dev/null 2>&1; then
   echo ""
 
   if [[ "$continue" =~ ^[Nn]$ ]]; then
-    py_versions=("${(@f)$(pyenv install --list  | perl -nle 'print if m{^\s*3\.(\d|\.)+\s*$}' | sed 's/\s*//')}")
+    PY_VERSIONS=("${(@f)$(pyenv install --list  | perl -nle 'print if m{^\s*3\.(\d|\.)+\s*$}' | sed 's/\s*//')}")
     echo 'Available python versions:'
-    printf '%s\n' "${py_versions[@]}"
+    printf '%s\n' "${PY_VERSIONS[@]}"
 
     get_python_version 'Select version to install (q to quit/s to skip)'
   fi
@@ -97,10 +95,13 @@ fi
 
 # install nvm and node
 if ! type node > /dev/null; then
-  echo "Node not found."
-  export NVM_DIR="$HOME/.config/nvm"
+  echo "nodejs not found."
+  
+  if ! (( ${+NVM_DIR} )); then
+    export NVM_DIR="$HOME/.config/nvm"
+  fi
   if [ ! -d "$NVM_DIR" ]; then
-    read "continue?Install nvm (for Node installation)? [Y/n] "
+    read "continue?Install nvm (for NodeJS installation)? [Y/n] "
     echo ""
     if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
       echo "installing nvm..."
@@ -112,9 +113,13 @@ if ! type node > /dev/null; then
   # load nvm
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
   if ! type nvm > /dev/null; then
-    # install node
-    echo "installing node..."
-    nvm install node
+    # prompt user for node installation
+    read "continue?Install node? [Y/n] "
+    echo ""
+    if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
+      echo "installing node..."
+      nvm install node
+    fi
   fi
 fi
 
@@ -142,6 +147,10 @@ echo ""
 if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
   LV_BRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/rolling/utils/installer/install.sh)
 fi
+
+# install starship to .local/bin
+# TODO: allow startship to be installed in custom location
+curl -sS https://starship.rs/install.sh | sh -s -- -b "$HOME/.local/bin"
 
 # install dotfiles
 echo "Installing dotfiles into dir: $HOME"
