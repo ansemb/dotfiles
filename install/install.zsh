@@ -97,18 +97,25 @@ fi
 
 # install nvm and node
 if ! type node > /dev/null; then
+  echo "Node not found."
   export NVM_DIR="$HOME/.config/nvm"
   if [ ! -d "$NVM_DIR" ]; then
-    echo "installing nvm..."
-    mkdir -p $NVM_DIR
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/HEAD/install.sh NVM_DIR="$HOME/.config/nvm" | bash
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    echo "done."
+    read "continue?Install nvm (for Node installation)? [Y/n] "
+    echo ""
+    if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
+      echo "installing nvm..."
+      mkdir -p $NVM_DIR
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/HEAD/install.sh NVM_DIR="$HOME/.config/nvm" | bash
+      echo "done."
+    fi
   fi
-
-  # install node
-  echo "installing node..."
-  nvm install node
+  # load nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  if ! type nvm > /dev/null; then
+    # install node
+    echo "installing node..."
+    nvm install node
+  fi
 fi
 
 # install rust/cargo
@@ -130,13 +137,16 @@ python3 -m pip install --user --upgrade pip
 python3 -m pip install --user --upgrade wheel pynvim
 
 # install lunarvim (neovim config)
-LV_BRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/rolling/utils/installer/install.sh)
+read "continue?Install LunarVim? [Y/n] "
+echo ""
+if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
+  LV_BRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/rolling/utils/installer/install.sh)
+fi
 
 # install dotfiles
 echo "Installing dotfiles into dir: $HOME"
 
 # removing directory for clean install
-
 if [ -d "$DOTFILES_DIR" ]; then
   echo "dotfiles directory already in use: $DOTFILES_DIR"
 
