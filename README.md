@@ -25,16 +25,13 @@ sudo pacman -S base-devel openssl zlib curl git zsh vim neovim file wget exa xz 
 brew install exa wget neovim
 ```
 
-### (2) install rust
-
-#### WSL:
+### (2) optional 
+To install nvm/rust in custom directory
+#### Set variables:
 ```
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
-
-#### Unix:
-```
-curl https://sh.rustup.rs -sSf | sh
+export NVM_DIR="/custom/installation/path/nvm"
+export RUSTUP_HOME="/custom/installation/path/rustup"
+export CARGO_HOME="/custom/installation/path/cargo"
 ```
 
 ### (3) run install script
