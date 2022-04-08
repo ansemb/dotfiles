@@ -106,7 +106,7 @@ if ! type node > /dev/null; then
     if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
       echo "installing nvm..."
       mkdir -p $NVM_DIR
-      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/HEAD/install.sh NVM_DIR="$HOME/.config/nvm" | bash
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/HEAD/install.sh | bash
       echo "done."
     fi
   fi
@@ -125,17 +125,21 @@ fi
 
 # install rust/cargo
 if ! type cargo > /dev/null; then
+  if ! (( ${+CARGO_HOME} )); then
+    export CARGO_HOME="$HOME/.cargo"
+  fi
   if grep -q "microsoft" /proc/sys/kernel/osrelease; then
     # we are in WSL
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
   else
     # linux/darwin
-    curl https://sh.rustup.rs -sSf | sh
+    curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path -y
   fi
   # load cargo
-  [ -f "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
+  [ -f "$CARGO_HOME/env" ] && \. "$CARGO_HOME/env"
 fi
 
+# TODO: generate a paths file based on custom cargo/nvm/pyenv installations and include it
 
 # pynvim implements support for python plugins in Nvim
 python3 -m pip install --user --upgrade pip
