@@ -133,7 +133,6 @@ python3 -m pip install --user --upgrade wheel pynvim
 LV_BRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/rolling/utils/installer/install.sh)
 
 # install dotfiles
-if ! type cargo > /dev/null; then
 echo "Installing dotfiles into dir: $HOME"
 
 # removing directory for clean install
