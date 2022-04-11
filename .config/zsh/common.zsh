@@ -55,13 +55,15 @@ function dotfiles-update-index() {
   while IFS= read -r filename; do
     echo "dotfiles, ignoring file: $filename"
     dotfiles update-index --assume-unchanged "$filename"
-    if [[ -f "$filename" ]]; then
-      rm "$filename"
+    if [[ -f "$HOME/$filename" ]]; then
+      echo "dotfiles, removing file: $filename"
+      rm "$HOME/$filename"
     fi
   done < <(dotfiles ls-files "$HOME/install")
 
   # do cleanup
   if [[ -d "$HOME/install" ]]; then
+    echo "dotfiles, removing install directory if empty."
     rmdir "$HOME/install" >/dev/null 2>&1
   fi
 
