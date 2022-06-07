@@ -12,6 +12,8 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "onedarker"
+vim.opt.clipboard = "unnamed"
+vim.opt.mouse = ""
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -137,14 +139,14 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-    { "lunarvim/colorschemes" },
-    { "arcticicestudio/nord-vim" },
-    { "lukas-reineke/indent-blankline.nvim"},
-    -- {"folke/tokyonight.nvim"},
-    {
-      "folke/trouble.nvim",
-      cmd = "TroubleToggle",
-    },
+  { "lunarvim/colorschemes" },
+  { "arcticicestudio/nord-vim" },
+  { "lukas-reineke/indent-blankline.nvim" },
+  -- {"folke/tokyonight.nvim"},
+  {
+    "folke/trouble.nvim",
+    cmd = "TroubleToggle",
+  },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
