@@ -138,7 +138,7 @@ if ! type cargo > /dev/null; then
   # load cargo
   [ -f "$CARGO_HOME/env" ] && \. "$CARGO_HOME/env"
 fi
-
+# TODO: isntall exa with cargo?: cargo install exa
 # TODO: generate a paths file based on custom cargo/nvm/pyenv installations and include it
 
 # pynvim implements support for python plugins in Nvim
