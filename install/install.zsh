@@ -154,6 +154,8 @@ fi
 
 # install starship to .local/bin
 # TODO: allow startship to be installed in custom location
+# create directory for starship, it needs to exist
+mkdir -p "$HOME/.local/bin"
 curl -sS https://starship.rs/install.sh | sh -s -- -b "$HOME/.local/bin"
 
 # install dotfiles
