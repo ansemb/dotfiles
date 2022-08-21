@@ -13,11 +13,11 @@ export EDITOR='lvim'
 
 # Nvm
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # dotnet
 export DOTNET_ROOT="/opt/dotnet"
-pathappend "$DOTNET_ROOT"
+[ -d "$DOTNET_ROOT" ] && pathappend "$DOTNET_ROOT"
 
 # brew
 test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
@@ -38,19 +38,20 @@ export YVM_DIR="$HOME/.yvm"
 [ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
 
 # cargo
-[ -f "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
+export CARGO_HOME="$HOME/.cargo"
+[ -f "$CARGO_HOME/env" ] && source "$CARGO_HOME/env"
 
 # gpg
 export GPG_TTY=$(tty)
 
 # den
 export DENO_INSTALL="$HOME/.deno"
-pathappend "$DENO_INSTALL/bin"
+[ -d "$DENO_INSTALL/bin" ] && pathappend "$DENO_INSTALL/bin"
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
-pathappend "$PNPM_HOME"
+[ -d "$PNPM_HOME" ] && pathappend "$PNPM_HOME"
 
 # ruby version manager
-pathappend "$HOME/.rvm/bin"
-source "$HOME/.rvm/scripts/rvm"
+[ -d "$HOME/.rvm/bin" ] && pathappend "$HOME/.rvm/bin"
+[ -f "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"
