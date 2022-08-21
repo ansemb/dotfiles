@@ -51,3 +51,6 @@ pathappend "$DENO_INSTALL/bin"
 export PNPM_HOME="$HOME/.local/share/pnpm"
 pathappend "$PNPM_HOME"
 
+# ruby version manager
+pathappend "$HOME/.rvm/bin"
+source "$HOME/.rvm/scripts/rvm"
