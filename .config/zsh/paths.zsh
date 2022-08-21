@@ -52,6 +52,9 @@ export DENO_INSTALL="$HOME/.deno"
 export PNPM_HOME="$HOME/.local/share/pnpm"
 [ -d "$PNPM_HOME" ] && pathappend "$PNPM_HOME"
 
+# golang
+[ -d "/usr/local/go/bin" ] && pathappend "/usr/local/go/bin"
+
 # ruby version manager
 [ -d "$HOME/.rvm/bin" ] && pathappend "$HOME/.rvm/bin"
 [ -f "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"
