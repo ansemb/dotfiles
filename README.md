@@ -7,7 +7,7 @@
 #### On debian
 ```
 sudo apt update && sudo apt upgrade -y && \
-sudo apt install wget curl git zsh make exa -y && \
+sudo apt install wget curl git zsh make -y && \
 sudo apt install --no-install-recommends \
 build-essential libssl-dev zlib1g-dev libbz2-dev \
 libreadline-dev libsqlite3-dev llvm \
@@ -17,7 +17,7 @@ libxmlsec1-dev libffi-dev liblzma-dev -y
 
 #### On arch
 ```
-sudo pacman -S base-devel openssl zlib curl git zsh vim neovim file wget exa xz tk
+sudo pacman -S base-devel openssl zlib curl git zsh vim neovim file wget xz tk
 ```
 
 #### On mac

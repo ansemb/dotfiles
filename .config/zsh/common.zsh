@@ -33,7 +33,7 @@ function pathprepend() {
 }
 
 function dotfiles {
-	/usr/bin/git --git-dir="$DOTFILES_DIR/" --work-tree="$HOME" "$@"
+  /usr/bin/git --git-dir="$DOTFILES_DIR/" --work-tree="$HOME" "$@"
 }
 
 function dotfiles-update(){

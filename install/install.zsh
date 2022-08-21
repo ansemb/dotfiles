@@ -118,7 +118,8 @@ if ! type node > /dev/null; then
     echo ""
     if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
       echo "installing node..."
-      nvm install node
+      nvm install node 16
+      nvm use 16
     fi
   fi
 fi
@@ -139,6 +140,9 @@ if ! type cargo > /dev/null; then
   [ -f "$CARGO_HOME/env" ] && \. "$CARGO_HOME/env"
 fi
 
+cargo install exa
+
+
 # TODO: generate a paths file based on custom cargo/nvm/pyenv installations and include it
 
 # pynvim implements support for python plugins in Nvim
@@ -154,6 +158,8 @@ fi
 
 # install starship to .local/bin
 # TODO: allow startship to be installed in custom location
+# create directory for starship, it needs to exist
+mkdir -p "$HOME/.local/bin"
 curl -sS https://starship.rs/install.sh | sh -s -- -b "$HOME/.local/bin"
 
 # install dotfiles
