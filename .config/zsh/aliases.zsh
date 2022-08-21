@@ -14,7 +14,7 @@ alias sudo='sudo '
 
 # list aliases
 alias ls="exa -bh --color=auto"
-alias ll='ls -lah' l.='ls -d .*'
+alias ll='ls -lahg' l.='ls -d .*'
 alias la='ls -A'
 alias l='ls -F' 
 
