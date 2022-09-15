@@ -71,25 +71,27 @@ function pyenv_exists() {
 function user_prompt_install_nvm() {
     # install nvm and node
   if node_exists; then
-    echo "nodejs not found."
-    
-    if ! (( ${+NVM_DIR} )); then
-      export NVM_DIR="$HOME/.config/nvm"
-    fi
-    if [ ! -d "$NVM_DIR" ]; then
-      read "continue?Install nvm (for NodeJS installation)? [Y/n] "
-      echo ""
-      if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
-        echo "installing nvm..."
-        mkdir -p $NVM_DIR
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/HEAD/install.sh | bash
-        echo "done."
-      fi
-    fi
-
-    # load nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    return
   fi
+
+  echo "nodejs not found."
+  
+  if ! (( ${+NVM_DIR} )); then
+    export NVM_DIR="$HOME/.config/nvm"
+  fi
+  if [ ! -d "$NVM_DIR" ]; then
+    read "continue?Install nvm (for NodeJS installation)? [Y/n] "
+    echo ""
+    if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
+      echo "installing nvm..."
+      mkdir -p $NVM_DIR
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/HEAD/install.sh | bash
+      echo "done."
+    fi
+  fi
+
+  # load nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 }
 
 function user_prompt_nvm_install_node() {
@@ -97,6 +99,7 @@ function user_prompt_nvm_install_node() {
     echo "nvm not found. skipping node install..."
     return
   fi
+
   # prompt user for node installation
   read "continue?Install node? [Y/n] "
   echo ""
@@ -128,12 +131,14 @@ function install_pyenv() {
 function user_prompt_install_pyenv() {
    # ask user to install pyenv 
   if pyenv_exists; then
-    read "continue?Pyenv is not installed, install it? [Y/n] "
-    echo ""
+    return
+  fi
 
-    if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
-      install_pyenv
-    fi
+  read "continue?Pyenv is not installed, install it? [Y/n] "
+  echo ""
+
+  if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
+    install_pyenv
   fi
 }
 
@@ -153,7 +158,7 @@ function get_python_version() {
 
 function user_prompt_pyenv_install_python() {
   if ! pyenv_exists; then
-    return;
+    return
   fi
 
   # pyenv init
@@ -182,6 +187,19 @@ function user_prompt_pyenv_install_python() {
     pyenv global "$py_version"
   fi
 }
+
+function user_prompt_install_lunarvim() {
+  # install lunarvim (neovim config)
+  read "continue?Install LunarVim? [Y/n] "
+  echo ""
+  if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
+    if ! node_exists; then
+      echo "node does not exists. skipping install..."
+    fi
+    LV_BRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/rolling/utils/installer/install.sh)
+  fi
+}
+
 
 function clean_prev_install_dotfiles() {
   # removing directory for clean install
@@ -238,22 +256,8 @@ user_prompt_install_lunarvim
 # python3 -m pip install --user --upgrade pip
 # python3 -m pip install --user --upgrade wheel pynvim
 
-user_prompt_install_lunarvim
-
 # TODO: generate a paths file based on custom cargo/nvm/pyenv installations and include it
 
-
-function user_prompt_install_lunarvim() {
-  # install lunarvim (neovim config)
-  read "continue?Install LunarVim? [Y/n] "
-  echo ""
-  if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
-    if ! node_exists; then
-      echo "node does not exists. skipping install..."
-    fi
-    LV_BRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/rolling/utils/installer/install.sh)
-  fi
-}
 
 
 # install dotfiles
