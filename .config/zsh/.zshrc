@@ -3,16 +3,19 @@
 # zshrc
 
 # import common
-[ -f "$ZDOTDIR/common.zsh" ] && source "$ZDOTDIR/common.zsh"
+source "$ZDOTDIR/common.zsh"
 
 # import all paths
-[ -f "$ZDOTDIR/paths.zsh" ] && source "$ZDOTDIR/paths.zsh"
+source "$ZDOTDIR/paths.zsh"
 
 # launch setup
-[ -f "$ZDOTDIR/setup.zsh" ] && source "$ZDOTDIR/setup.zsh"
+source "$ZDOTDIR/setup.zsh"
 
 # import bindkeys
-[ -f "$ZDOTDIR/bindkeys.zsh" ] && source "$ZDOTDIR/bindkeys.zsh"
+source "$ZDOTDIR/bindkeys.zsh"
+
+# import aliases
+source "$ZDOTDIR/aliases.zsh"
 
 
 # solves tab space problem (when clicking tab, first characters repeat)
@@ -26,9 +29,6 @@ HISTSIZE=1000
 SAVEHIST=2000
 HISTFILE="$ZCACHEDIR/.history"
 
-
-# import aliases
-[ -f "$ZDOTDIR/aliases.zsh" ] && source "$ZDOTDIR/aliases.zsh"
 
 # starship
 (( $+commands[starship] )) && eval "$(starship init zsh)"
