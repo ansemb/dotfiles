@@ -12,8 +12,15 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "onedarker"
-vim.opt.clipboard = "unnamed"
-vim.opt.mouse = ""
+
+vim.opt.relativenumber = true
+vim.opt.tabstop = 2
+vim.opt.numberwidth = 4
+vim.opt.scrolloff = 8
+
+-- vim.opt.clipboard = "unnamed"
+-- vim.opt.mouse = ""
+
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -84,7 +91,7 @@ lvim.builtin.treesitter.ensure_installed = {
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
-lvim.builtin.treesitter.highlight.enabled = true
+lvim.builtin.treesitter.highlight.enable = true
 
 -- generic LSP settings
 
@@ -113,7 +120,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
--- vim.tbl_map(function(server)
+-- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
 --   return server ~= "emmet_ls"
 -- end, lvim.lsp.automatic_configuration.skipped_servers)
 
@@ -166,6 +173,7 @@ lvim.plugins = {
   { "lunarvim/colorschemes" },
   { "arcticicestudio/nord-vim" },
   {
+    { "folke/tokyonight.nvim" },
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   },
