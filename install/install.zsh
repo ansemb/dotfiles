@@ -53,7 +53,7 @@ function install_starship() {
 
 function node_exists() {
   # if command -v pyenv 1>/dev/null 2>&1; then
-  if type node > /dev/null; then
+  if type node &> /dev/null; then
     return 1;
   fi
   return 0;
@@ -61,7 +61,7 @@ function node_exists() {
 
 function pyenv_exists() {
   # if command -v pyenv 1>/dev/null 2>&1; then
-  if type pyenv > /dev/null; then
+  if type pyenv &> /dev/null; then
     return 1;
   fi
   return 0;
@@ -69,11 +69,12 @@ function pyenv_exists() {
 
 
 function user_prompt_install_nvm() {
-    # install nvm and node
+  # don't install node if it exists
   if node_exists; then
     return
   fi
 
+  # install nvm and node
   echo "nodejs not found."
   
   if ! (( ${+NVM_DIR} )); then
