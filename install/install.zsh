@@ -119,8 +119,12 @@ function install_pyenv() {
   then
     # TODO: allow for custom installation path of pyenv
     git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-    cd ~/.pyenv && src/configure && make -C src
+    pushd "$HOME/.pyenv" && src/configure && make -C src && popd
     
+    pathappend "$HOME/.pyenv/bin"
+
+    # pyenv init
+    eval "$(pyenv init -)"
   elif [[ "${OS}" == "Darwin" ]]
   then
     brew update
@@ -164,8 +168,6 @@ function user_prompt_pyenv_install_python() {
     return
   fi
 
-  # pyenv init
-  eval "$(pyenv init --path)"
   # get latest python version
   latest_py=$(pyenv install --list | perl -nle "print if m{^\s*(\d|\.)+\s*$}" | tail -1 | xargs)
 
