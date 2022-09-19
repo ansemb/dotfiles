@@ -54,17 +54,19 @@ function install_starship() {
 function node_exists() {
   # if command -v pyenv 1>/dev/null 2>&1; then
   if type node &> /dev/null; then
-    return 1;
+    true
+  else
+    false
   fi
-  return 0;
 }
 
 function pyenv_exists() {
   # if command -v pyenv 1>/dev/null 2>&1; then
   if type pyenv &> /dev/null; then
-    return 1;
+    true
+  else
+    false
   fi
-  return 0;
 }
 
 
