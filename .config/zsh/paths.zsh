@@ -29,16 +29,22 @@ test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew
 pathappend "$HOME/.local/bin"
 
 # pyenv init
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init --path)"
+export PYENV_ROOT="$HOME/.config/pyenv"
+pathappend "$PYENV_ROOT/bin"
+if type pyenv &> /dev/null; then
+  eval "$(pyenv init -)"
 fi
 
 # yarn version manager
 export YVM_DIR="$HOME/.yvm"
 [ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
 
+# rustup
+export RUSTUP_HOME="$HOME/.config/rustup"
+
 # cargo
-export CARGO_HOME="$HOME/.cargo"
+export CARGO_HOME="$HOME/.config/cargo"
+pathappend "$CARGO_HOME/bin"
 [ -f "$CARGO_HOME/env" ] && source "$CARGO_HOME/env"
 
 # gpg

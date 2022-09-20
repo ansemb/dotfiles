@@ -21,21 +21,21 @@ export NVM_DIR
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
 
 if ! (( ${+PYENV_ROOT} )); then
-  PYENV_ROOT="$HOME/.config/.pyenv"
+  PYENV_ROOT="$HOME/.config/pyenv"
 fi
 export PYENV_ROOT
-PATH="$PATH:$PYENV_ROOT/bin"
+pathappend "$PYENV_ROOT/bin"
 
 if ! (( ${+RUSTUP_HOME} )); then
-  RUSTUP_HOME="$HOME/.config/.rustup"
+  RUSTUP_HOME="$HOME/.config/rustup"
 fi
 export RUSTUP_HOME
 
 if ! (( ${+CARGO_HOME} )); then
-  CARGO_HOME="$HOME/.config/.cargo"
+  CARGO_HOME="$HOME/.config/cargo"
 fi
 export CARGO_HOME
-PATH="$PATH:$CARGO_HOME/bin"
+pathappend "$CARGO_HOME/bin"
 [ -f "$CARGO_HOME/env" ] && source "$CARGO_HOME/env"
 
 
@@ -70,6 +70,7 @@ function install_rustup() {
     return
   fi
   
+  echo "rustup not found. skipping node install..."
   if grep -q "microsoft" /proc/sys/kernel/osrelease; then
     # we are in WSL
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
@@ -78,7 +79,11 @@ function install_rustup() {
     curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path -y
   fi
   # load cargo
+  pathappend "$CARGO_HOME/bin"
   [ -f "$CARGO_HOME/env" ] && \. "$CARGO_HOME/env"
+
+  rustup default stable
+  echo -e "\n"
 }
 
 function install_starship() {
@@ -86,17 +91,18 @@ function install_starship() {
   # TODO: allow startship to be installed in custom location
   # create directory for starship, it needs to exist
   curl -sS https://starship.rs/install.sh | sh -s -- -b "$HOME/.local/bin"
+  echo -e "\n"
 }
 
 function user_prompt_install_nvm() {
   # don't install node if it exists
   if nvm_exists; then
-    echo "node already exists. skipping installation..."
+    echo "nvm already exists. skipping installation..."
     return
   fi
 
   # install nvm and node
-  echo "nodejs not found."
+  echo "nvm not found."
 
   if [ ! -d "$NVM_DIR" ]; then
     read "continue?Install nvm (for NodeJS installation)? [Y/n] "
@@ -111,11 +117,16 @@ function user_prompt_install_nvm() {
 
   # load nvm
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  echo -e "\n"
 }
 
 function user_prompt_nvm_install_node() {
-  if ! type nvm > /dev/null; then
+  if nvm_exists; then
     echo "nvm not found. skipping node install..."
+    return
+  fi
+  if node_exists; then
+    echo "node already exists. skipping installation..."
     return
   fi
 
@@ -127,6 +138,7 @@ function user_prompt_nvm_install_node() {
     nvm install node 16
     nvm use 16
   fi
+  echo -e "\n"
 }
 
 function install_pyenv() {
@@ -134,6 +146,8 @@ function install_pyenv() {
   if [[ "${OS}" == "Linux" ]]; then
     git clone https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
     pushd "$PYENV_ROOT" && src/configure && make -C src && popd
+
+    pathappend "$PYENV_ROOT/bin"
 
     # pyenv init
     eval "$(pyenv init -)"
@@ -159,6 +173,7 @@ function user_prompt_install_pyenv() {
   if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
     install_pyenv
   fi
+  echo -e "\n"
 }
 
 # function to get python version number from user
