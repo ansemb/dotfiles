@@ -7,15 +7,52 @@ fi
 
 OS="$(uname)"
 
-# functions
-
 # source common
 source <(curl -fsSL https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/.config/zsh/common.zsh)
 
 # PATHS
 mkdir -p "$HOME/.local/bin"
 pathappend "$HOME/.local/bin"
+  
+if ! (( ${+NVM_DIR} )); then
+  NVM_DIR="$HOME/.config/nvm"
+fi
+export NVM_DIR
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
 
+if ! (( ${+PYENV_ROOT} )); then
+  PYENV_ROOT="$HOME/.config/.pyenv"
+fi
+export PYENV_ROOT
+pathappend "$PYENV_ROOT/bin"
+
+if ! (( ${+RUSTUP_HOME} )); then
+  RUSTUP_HOME="$HOME/.config/.rustup"
+fi
+export RUSTUP_HOME
+
+if ! (( ${+CARGO_HOME} )); then
+  CARGO_HOME="$HOME/.config/.cargo"
+fi
+export CARGO_HOME
+pathappend "$CARGO_HOME/bin"
+[ -f "$CARGO_HOME/env" ] && source "$CARGO_HOME/env"
+
+
+# FUNCTIONS
+
+function node_exists() {
+  type node &> /dev/null
+}
+
+function nvm_exists() {
+  type nvm &> /dev/null
+}
+
+function pyenv_exists() {
+  # if command -v pyenv 1>/dev/null 2>&1; then
+  type pyenv &> /dev/null
+}
 
 function install_neovim() {
   NVIM_BIN_DIR="$HOME/.local/bin"
@@ -28,20 +65,20 @@ function install_neovim() {
 
 function install_rustup() {
   # install rust/cargo
-  if ! type cargo > /dev/null; then
-    if ! (( ${+CARGO_HOME} )); then
-      export CARGO_HOME="$HOME/.cargo"
-    fi
-    if grep -q "microsoft" /proc/sys/kernel/osrelease; then
-      # we are in WSL
-      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
-    else
-      # linux/darwin
-      curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path -y
-    fi
-    # load cargo
-    [ -f "$CARGO_HOME/env" ] && \. "$CARGO_HOME/env"
+  if type rustup &> /dev/null; then
+    echo "rustup is already install. skipping installation..."
+    return
   fi
+  
+  if grep -q "microsoft" /proc/sys/kernel/osrelease; then
+    # we are in WSL
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
+  else
+    # linux/darwin
+    curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path -y
+  fi
+  # load cargo
+  [ -f "$CARGO_HOME/env" ] && \. "$CARGO_HOME/env"
 }
 
 function install_starship() {
@@ -51,42 +88,21 @@ function install_starship() {
   curl -sS https://starship.rs/install.sh | sh -s -- -b "$HOME/.local/bin"
 }
 
-function node_exists() {
-  # if command -v pyenv 1>/dev/null 2>&1; then
-  if type node &> /dev/null; then
-    true
-  else
-    false
-  fi
-}
-
-function pyenv_exists() {
-  # if command -v pyenv 1>/dev/null 2>&1; then
-  if type pyenv &> /dev/null; then
-    true
-  else
-    false
-  fi
-}
-
-
 function user_prompt_install_nvm() {
   # don't install node if it exists
-  if node_exists; then
+  if nvm_exists; then
+    echo "node already exists. skipping installation..."
     return
   fi
 
   # install nvm and node
   echo "nodejs not found."
-  
-  if ! (( ${+NVM_DIR} )); then
-    export NVM_DIR="$HOME/.config/nvm"
-  fi
+
   if [ ! -d "$NVM_DIR" ]; then
     read "continue?Install nvm (for NodeJS installation)? [Y/n] "
     echo ""
     if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
-      echo "installing nvm..."
+      echo "installing nvm to: $NVM_DIR"
       mkdir -p $NVM_DIR
       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/HEAD/install.sh | bash
       echo "done."
@@ -114,19 +130,14 @@ function user_prompt_nvm_install_node() {
 }
 
 function install_pyenv() {
-  echo "Installing pyenv to: $HOME/.pyenv"
-  if [[ "${OS}" == "Linux" ]]
-  then
-    # TODO: allow for custom installation path of pyenv
-    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-    pushd "$HOME/.pyenv" && src/configure && make -C src && popd
-    
-    pathappend "$HOME/.pyenv/bin"
+  echo "Installing pyenv to: $PYENV_ROOT"
+  if [[ "${OS}" == "Linux" ]]; then
+    git clone https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
+    pushd "$PYENV_ROOT" && src/configure && make -C src && popd
 
     # pyenv init
     eval "$(pyenv init -)"
-  elif [[ "${OS}" == "Darwin" ]]
-  then
+  elif [[ "${OS}" == "Darwin" ]]; then
     brew update
     brew install pyenv
 
@@ -138,6 +149,7 @@ function install_pyenv() {
 function user_prompt_install_pyenv() {
    # ask user to install pyenv 
   if pyenv_exists; then
+    echo "pyenv already exists. skipping installation..."
     return
   fi
 
@@ -165,6 +177,7 @@ function get_python_version() {
 
 function user_prompt_pyenv_install_python() {
   if ! pyenv_exists; then
+    echo "pyenv does not exist. skipping python installation..."
     return
   fi
 
@@ -204,7 +217,6 @@ function user_prompt_install_lunarvim() {
     LV_BRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/rolling/utils/installer/install.sh)
   fi
 }
-
 
 function clean_prev_install_dotfiles() {
   # removing directory for clean install
