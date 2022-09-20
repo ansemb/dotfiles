@@ -24,7 +24,7 @@ if ! (( ${+PYENV_ROOT} )); then
   PYENV_ROOT="$HOME/.config/.pyenv"
 fi
 export PYENV_ROOT
-pathappend "$PYENV_ROOT/bin"
+PATH="$PATH:$PYENV_ROOT/bin"
 
 if ! (( ${+RUSTUP_HOME} )); then
   RUSTUP_HOME="$HOME/.config/.rustup"
@@ -35,7 +35,7 @@ if ! (( ${+CARGO_HOME} )); then
   CARGO_HOME="$HOME/.config/.cargo"
 fi
 export CARGO_HOME
-pathappend "$CARGO_HOME/bin"
+PATH="$PATH:$CARGO_HOME/bin"
 [ -f "$CARGO_HOME/env" ] && source "$CARGO_HOME/env"
 
 
