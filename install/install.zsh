@@ -70,7 +70,7 @@ function install_rustup() {
     return
   fi
   
-  echo "rustup not found. skipping node install..."
+  echo "rustup not found. installing..."
   if grep -q "microsoft" /proc/sys/kernel/osrelease; then
     # we are in WSL
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
@@ -219,6 +219,7 @@ function user_prompt_pyenv_install_python() {
     pyenv install "$py_version"
     pyenv global "$py_version"
   fi
+  echo -e "\n"
 }
 
 function user_prompt_install_lunarvim() {
