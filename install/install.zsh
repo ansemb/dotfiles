@@ -121,7 +121,7 @@ function user_prompt_install_nvm() {
 }
 
 function user_prompt_nvm_install_node() {
-  if nvm_exists; then
+  if ! nvm_exists; then
     echo "nvm not found. skipping node install..."
     return
   fi
@@ -135,8 +135,8 @@ function user_prompt_nvm_install_node() {
   echo ""
   if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
     echo "installing node (16)..."
-    nvm install node 16
-    nvm use 16
+    nvm install --lts
+    nvm use --lts
   fi
   echo -e "\n"
 }
