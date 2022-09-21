@@ -7,7 +7,7 @@
 #### On debian
 ```
 sudo apt update && sudo apt upgrade -y && \
-sudo apt install wget curl git zsh make fuse -y && \
+sudo apt install wget curl git zsh make fuse cmake -y && \
 sudo apt install --no-install-recommends \
 build-essential libssl-dev zlib1g-dev libbz2-dev \
 libreadline-dev libsqlite3-dev llvm \
