@@ -66,11 +66,13 @@ function install_neovim() {
 function install_rustup() {
   # install rust/cargo
   if type rustup &> /dev/null; then
-    echo "rustup is already install. skipping installation..."
+    echo "rustup is already installed. skipping installation..."
     return
   fi
   
-  echo "rustup not found. installing..."
+  echo "rustup not found."
+  echo "installing rustup to: $RUSTUP_HOME"
+  
   if grep -q "microsoft" /proc/sys/kernel/osrelease; then
     # we are in WSL
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
@@ -84,17 +86,9 @@ function install_rustup() {
 
   rustup default stable
   echo -e "\n"
-}
+} 
 
-function install_starship() {
-  # install starship to .local/bin
-  # TODO: allow startship to be installed in custom location
-  # create directory for starship, it needs to exist
-  curl -sS https://starship.rs/install.sh | sh -s -- -b "$HOME/.local/bin"
-  echo -e "\n"
-}
-
-function user_prompt_install_nvm() {
+function install_nvm() {
   # don't install node if it exists
   if nvm_exists; then
     echo "nvm already exists. skipping installation..."
@@ -103,26 +97,19 @@ function user_prompt_install_nvm() {
 
   # install nvm and node
   echo "nvm not found."
-
-  if [ ! -d "$NVM_DIR" ]; then
-    read "continue?Install nvm (for NodeJS installation)? [Y/n] "
-    echo ""
-    if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
-      echo "installing nvm to: $NVM_DIR"
-      mkdir -p $NVM_DIR
-      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/HEAD/install.sh | bash
-      echo "done."
-    fi
-  fi
+  echo "installing nvm to: $NVM_DIR"
+  mkdir -p $NVM_DIR
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/HEAD/install.sh | bash
+  echo "done."
 
   # load nvm
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
   echo -e "\n"
 }
 
-function user_prompt_nvm_install_node() {
+function nvm_install_node() {
   if ! nvm_exists; then
-    echo "nvm not found. skipping node install..."
+    echo "nvm not found. this is required..."
     return
   fi
   if node_exists; then
@@ -130,20 +117,23 @@ function user_prompt_nvm_install_node() {
     return
   fi
 
-  # prompt user for node installation
-  read "continue?Install node? [Y/n] "
-  echo ""
-  if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
-    echo "installing node (16)..."
-    nvm install --lts
-    nvm use --lts
-  fi
+  echo "installing node..."
+  nvm install --lts
+  nvm use --lts
   echo -e "\n"
 }
 
 function install_pyenv() {
-  echo "Installing pyenv to: $PYENV_ROOT"
+  # ask user to install pyenv 
+  if pyenv_exists; then
+    echo "pyenv already exists. skipping installation..."
+    return
+  fi
+  
+  echo "pyenv not found."
+  
   if [[ "${OS}" == "Linux" ]]; then
+    echo "installing pyenv to: $PYENV_ROOT"
     git clone https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
     pushd "$PYENV_ROOT" && src/configure && make -C src && popd
 
@@ -158,21 +148,6 @@ function install_pyenv() {
     # set CC flag: https://github.com/pyenv/pyenv/issues/2159#issuecomment-983960026
     # CC="$(brew --prefix gcc)/bin/gcc-11"
   fi
-}
-
-function user_prompt_install_pyenv() {
-   # ask user to install pyenv 
-  if pyenv_exists; then
-    echo "pyenv already exists. skipping installation..."
-    return
-  fi
-
-  read "continue?Pyenv is not installed, install it? [Y/n] "
-  echo ""
-
-  if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
-    install_pyenv
-  fi
   echo -e "\n"
 }
 
@@ -186,20 +161,29 @@ function get_python_version() {
   elif [[ " ${PY_VERSIONS[*]} " == *" ${number} "* ]]; then
     py_version="$number"
   else
-    get_python_version 'Invalid number. Try again (s to skip)'
+    get_python_version 'Invalid number. Try again (s to skip/q to quit)'
   fi
 }
 
-function user_prompt_pyenv_install_python() {
+function user_prompt_require_pyenv_install_python() {
   if ! pyenv_exists; then
-    echo "pyenv does not exist. skipping python installation..."
-    return
+    echo "pyenv does not exist. exiting..."
+    exit
   fi
 
+  eval "$(pyenv init -)"
+ 
+  if [[ $(pyenv global) ]] &> /dev/null; then
+    echo "python version found with pyenv. skipping python installation..."
+    return
+  fi
+  
   # get latest python version
   latest_py=$(pyenv install --list | perl -nle "print if m{^\s*(\d|\.)+\s*$}" | tail -1 | xargs)
 
   echo ""
+  
+  echo "No python version is installed from pyenv. This is required."
   echo "Pyenv found latest python version: $latest_py"
   py_version="$latest_py"
 
@@ -219,6 +203,12 @@ function user_prompt_pyenv_install_python() {
     pyenv install "$py_version"
     pyenv global "$py_version"
   fi
+  if [[ "$py_version" == "-1" ]]; then
+    echo ""
+    echo "exiting..."
+    exit
+  fi
+
   echo -e "\n"
 }
 
@@ -267,30 +257,21 @@ function dotfiles_install() {
 
 #########################################
 # INSTALLATION
-user_prompt_install_pyenv
-user_prompt_pyenv_install_python
-
-# check if python is installed
-if ! type python3 > /dev/null; then
-  echo "python is not installed. exiting..."
-  exit
-fi
+install_pyenv
+user_prompt_require_pyenv_install_python
 
 install_neovim
 install_rustup
-install_starship
+
+cargo install starship
 cargo install exa
 
-user_prompt_install_nvm
-user_prompt_nvm_install_node
+install_nvm
+nvm_install_node
+
 user_prompt_install_lunarvim
 
-# pynvim implements support for python plugins in Nvim
-# python3 -m pip install --user --upgrade pip
-# python3 -m pip install --user --upgrade wheel pynvim
-
 # TODO: generate a paths file based on custom cargo/nvm/pyenv installations and include it
-
 
 
 # install dotfiles
