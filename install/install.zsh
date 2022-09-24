@@ -120,6 +120,7 @@ function nvm_install_node() {
   echo "installing node..."
   nvm install --lts
   nvm use --lts
+  nvm alias default "lts/*"
   echo -e "\n"
 }
 
