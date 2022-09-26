@@ -22,6 +22,7 @@ vim.opt.tabstop = 2
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
+
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
@@ -120,6 +121,11 @@ lvim.builtin.which_key.mappings["l"]["f"] = {
 table.insert(lvim.builtin.project.detection_methods, -2, "!>packages")
 
 -- generic LSP settings
+-- make sure server will always be installed even if the server is in skipped_servers list
+-- lvim.lsp.installer.setup.ensure_installed = {
+--   "sumeko_lua",
+--   "jsonls",
+-- }
 
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
@@ -152,11 +158,6 @@ formatters.setup {
 }
 
 
--- -- make sure server will always be installed even if the server is in skipped_servers list
--- lvim.lsp.installer.setup.ensure_installed = {
---     "sumeko_lua",
---     "jsonls",
--- }
 
 -- -- change UI setting of `LspInstallInfo`
 -- -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
@@ -227,44 +228,7 @@ formatters.setup {
 -- }
 
 -- Additional Plugins
-lvim.plugins = {
-  { "ellisonleao/gruvbox.nvim" },
-  { "romgrk/nvim-treesitter-context" },
-  { "lunarvim/colorschemes" },
-  { "arcticicestudio/nord-vim" },
-  {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-  },
-  {
-    "nvim-telescope/telescope-project.nvim",
-    event = "BufWinEnter",
-    setup = function()
-      vim.cmd [[packadd telescope.nvim]]
-    end,
-  },
-  {
-    "rmagatti/goto-preview",
-    config = function()
-      require('goto-preview').setup {
-        width = 120; -- Width of the floating window
-        height = 25; -- Height of the floating window
-        default_mappings = true; -- Bind default mappings
-        debug = false; -- Print debug information
-        opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
-        post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
-      }
-    end
-  },
-  {
-    "folke/persistence.nvim",
-    event = "BufReadPre", -- this will only start session saving when an actual file was opened
-    module = "persistence",
-    config = function()
-      require("persistence").setup()
-    end,
-  },
-}
+lvim.plugins = require_clean "user.plugins"
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
