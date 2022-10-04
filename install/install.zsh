@@ -54,6 +54,10 @@ function pyenv_exists() {
   type pyenv &> /dev/null
 }
 
+function install_zoxide() {
+  curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+}
+
 function install_neovim() {
   NVIM_BIN_DIR="$HOME/.local/bin"
   # remove previous
@@ -263,7 +267,7 @@ user_prompt_require_pyenv_install_python
 
 install_neovim
 install_rustup
-
+install_zoxide
 cargo install starship
 cargo install exa
 
