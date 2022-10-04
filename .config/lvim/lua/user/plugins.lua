@@ -15,6 +15,14 @@ return {
       vim.cmd [[packadd telescope.nvim]]
     end,
   },
+  -- Search
+  {
+    "jvgrootveld/telescope-zoxide",
+    after = "telescope.nvim",
+    config = function()
+      require("user.telescope").setup_z()
+    end,
+  },
   {
     "rmagatti/goto-preview",
     config = function()
@@ -53,5 +61,15 @@ return {
         show_cursorline = true, -- Enable 'cursorline' for the window while peeking
       }
     end,
+  },
+  {
+    "p00f/nvim-ts-rainbow",
+    require("nvim-treesitter.configs").setup {
+      rainbow = {
+        enable = true,
+        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+        max_file_lines = nil, -- Do not enable for files with more than n lines, int
+      }
+    }
   },
 }
