@@ -29,10 +29,15 @@ test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew
 pathappend "$HOME/.local/bin"
 
 # pyenv init
-export PYENV_ROOT="$HOME/.config/pyenv"
+export PYENV_ROOT="$CONFIG_HOME/pyenv"
 pathappend "$PYENV_ROOT/bin"
 if type pyenv &> /dev/null; then
   eval "$(pyenv init -)"
+fi
+
+# zoxide
+if type pyenv &> /dev/null; then
+  eval "$(zoxide init zsh)"
 fi
 
 # yarn version manager
@@ -43,7 +48,7 @@ export YVM_DIR="$HOME/.yvm"
 export RUSTUP_HOME="$HOME/.config/rustup"
 
 # cargo
-export CARGO_HOME="$HOME/.config/cargo"
+export CARGO_HOME="$CONFIG_HOME/cargo"
 pathappend "$CARGO_HOME/bin"
 [ -f "$CARGO_HOME/env" ] && source "$CARGO_HOME/env"
 
@@ -64,3 +69,12 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 # ruby version manager
 [ -d "$HOME/.rvm/bin" ] && pathappend "$HOME/.rvm/bin"
 [ -f "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"
+
+# fuzzy finder
+FZF_DIR="$CONFIG_HOME/fzf"
+pathappend "$FZF_DIR/bin"
+
+[ -f "$FZF_DIR/shell/completion.zsh" ] && [[ $- == *i* ]] && source "$FZF_DIR/shell/completion.zsh" 2> /dev/null
+[ -f "$FZF_DIR/shell/key-bindings.zsh" ] && source "$FZF_DIR/shell/key-bindings.zsh"
+
+

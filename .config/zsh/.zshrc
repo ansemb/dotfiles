@@ -54,3 +54,4 @@ fi
 # load user settings
 [ -f "$ZDOTDIR/user-settings.zsh" ] && source "$ZDOTDIR/user-settings.zsh"
 
+

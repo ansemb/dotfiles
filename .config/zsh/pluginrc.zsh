@@ -43,10 +43,6 @@ zinit ice atclone"dircolors -b "$home/.dir_colors"  > clrs.zsh" \
     atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
 zinit light trapd00r/LS_COLORS
 
-# revolver
-zinit ice wait"2" lucid as"program" pick"revolver"
-zinit light molovo/revolver
-
 zinit ice wait'2' lucid as"program" pick"bin/git-dsf"
 zinit light zdharma-continuum/zsh-diff-so-fancy
 
@@ -64,10 +60,6 @@ zinit light k4rthik/git-cal
 # Plugin history-search-multi-word loaded with tracking.
 zinit ice wait'2' lucid
 zinit light zdharma-continuum/history-search-multi-word
-
-# jump quickly to directories that you have visited frequently
-zinit ice wait'0' lucid
-zinit light agkozak/zsh-z
 
 # autocomplete
 zinit wait lucid light-mode for \
