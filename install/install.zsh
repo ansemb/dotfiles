@@ -77,6 +77,7 @@ function install_neovim() {
 function install_rustup() {
   # install rust/cargo
   if type rustup &> /dev/null; then
+    rustup default stable
     echo "rustup is already installed. skipping installation..."
     return
   fi
