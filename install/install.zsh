@@ -178,7 +178,7 @@ function user_prompt_require_pyenv_install_python() {
 
   eval "$(pyenv init -)"
  
-  if [[ $(pyenv global) ]] &> /dev/null; then
+  if [[ $(pyenv global) = "system" ]] &> /dev/null; then
     echo "python version found with pyenv. skipping python installation..."
     return
   fi
