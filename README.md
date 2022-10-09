@@ -36,8 +36,14 @@ export CARGO_HOME="/custom/installation/path/cargo"
 
 ### (3) run install script
 
+Unix:
 ```
-/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.zsh)"
+curl -sSf https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.zsh | zsh
+```
+
+WSL:
+```
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.zsh | zsh
 ```
 
 <br /><br /><br /><br />
