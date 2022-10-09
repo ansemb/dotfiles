@@ -40,6 +40,9 @@ pathappend "$CARGO_HOME/bin"
 
 
 # FUNCTIONS
+function is_env_wsl() {
+  grep -q "microsoft" /proc/sys/kernel/osrelease
+}
 
 function node_exists() {
   type node &> /dev/null
@@ -55,7 +58,11 @@ function pyenv_exists() {
 }
 
 function install_zoxide() {
-  curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+  if is_env_wsl; then
+    curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash -s
+  else
+    curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+  fi
 }
 
 function install_neovim() {
@@ -77,7 +84,7 @@ function install_rustup() {
   echo "rustup not found."
   echo "installing rustup to: $RUSTUP_HOME"
   
-  if grep -q "microsoft" /proc/sys/kernel/osrelease; then
+  if is_env_wsl; then
     # we are in WSL
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
   else
