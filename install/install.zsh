@@ -40,6 +40,9 @@ pathappend "$CARGO_HOME/bin"
 
 
 # FUNCTIONS
+function is_env_wsl() {
+  grep -q "microsoft" /proc/sys/kernel/osrelease
+}
 
 function node_exists() {
   type node &> /dev/null
@@ -54,6 +57,14 @@ function pyenv_exists() {
   type pyenv &> /dev/null
 }
 
+function install_zoxide() {
+  if is_env_wsl; then
+    curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash -s
+  else
+    curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+  fi
+}
+
 function install_neovim() {
   NVIM_BIN_DIR="$HOME/.local/bin"
   # remove previous
@@ -66,6 +77,7 @@ function install_neovim() {
 function install_rustup() {
   # install rust/cargo
   if type rustup &> /dev/null; then
+    rustup default stable
     echo "rustup is already installed. skipping installation..."
     return
   fi
@@ -73,7 +85,7 @@ function install_rustup() {
   echo "rustup not found."
   echo "installing rustup to: $RUSTUP_HOME"
   
-  if grep -q "microsoft" /proc/sys/kernel/osrelease; then
+  if is_env_wsl; then
     # we are in WSL
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
   else
@@ -174,7 +186,7 @@ function user_prompt_require_pyenv_install_python() {
 
   eval "$(pyenv init -)"
  
-  if [[ $(pyenv global) ]] &> /dev/null; then
+  if [[ ! $(pyenv global) = "system" ]] &> /dev/null; then
     echo "python version found with pyenv. skipping python installation..."
     return
   fi
@@ -263,7 +275,7 @@ user_prompt_require_pyenv_install_python
 
 install_neovim
 install_rustup
-
+install_zoxide
 cargo install starship
 cargo install exa
 
