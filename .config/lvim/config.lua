@@ -5,6 +5,8 @@ lvim.colorscheme = "gruvbox"
 
 vim.opt.relativenumber = true
 vim.opt.tabstop = 2
+vim.opt.spell = true
+vim.opt.spelloptions:append("camel")
 
 -- Change theme settings
 lvim.builtin.theme.options.dim_inactive = true
@@ -96,7 +98,7 @@ lvim.lsp.installer.setup.ensure_installed = {
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   {
-    command = "prettier",
+    command = "prettierd",
   },
 }
 
@@ -121,12 +123,18 @@ local code_actions = require "lvim.lsp.null-ls.code_actions"
 code_actions.setup {
   {
     exe = "eslint_d",
+    filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
   },
 }
 
 
 -- Additional Plugins
 lvim.plugins = require_clean "user.plugins"
+
+-- lvim.builtin.telescope.on_config_done = function(telescope)
+--   pcall(telescope.load_extension, "telescope-nvim")
+--   -- any other extensions loading
+-- end
 
 
 -- Autocommands
