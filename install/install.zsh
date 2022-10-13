@@ -276,8 +276,8 @@ user_prompt_require_pyenv_install_python
 install_neovim
 install_rustup
 install_zoxide
-cargo install starship
-cargo install exa
+cargo install starship exa fd-find
+
 
 install_nvm
 nvm_install_node
