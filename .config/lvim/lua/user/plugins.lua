@@ -1,9 +1,14 @@
-return {
-  { "ellisonleao/gruvbox.nvim" },
-  { "romgrk/nvim-treesitter-context" },
-  { "lunarvim/colorschemes" },
-  { "arcticicestudio/nord-vim" },
-  { "gpanders/editorconfig.nvim" },
+lvim.plugins = {
+  "ellisonleao/gruvbox.nvim",
+  "romgrk/nvim-treesitter-context",
+  "lunarvim/colorschemes",
+  "arcticicestudio/nord-vim",
+  "gpanders/editorconfig.nvim",
+  "folke/zen-mode.nvim",
+  "sindrets/diffview.nvim",
+  "leoluz/nvim-dap-go",
+
+  "jose-elias-alvarez/typescript.nvim",
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
@@ -40,6 +45,10 @@ return {
     config = function()
       require("persistence").setup()
     end,
+  },
+  {
+    'LukasPietzschmann/telescope-tabs',
+    requires = { 'nvim-telescope/telescope.nvim' },
   },
   -- TMUX and session management
   {

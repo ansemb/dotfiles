@@ -1,11 +1,12 @@
 local M = {}
-local _, comment = pcall(require, "Comment.api")
 
 lvim.keys = {
   normal_mode = {
     ["<C-q>"] = ":q<cr>",
-    ["<C-_>"] = comment.toggle.linewise.current,
+    ["<C-_>"] = "<Plug>(comment_toggle_linewise_current)",
     ["<C-s>"] = ":w<cr>",
+    ["<S-l>"] = ":BufferLineCycleNext<cr>",
+    ["<S-h>"] = ":BufferLineCyclePrev<cr>",
   },
 
   visual_mode = {

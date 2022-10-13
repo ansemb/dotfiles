@@ -1,4 +1,4 @@
-utils = require "user.utils"
+local _, utils = pcall(require, "user.utils")
 
 local M = {
   P = { "<cmd>Telescope projects<CR>", "Projects" },
