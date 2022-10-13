@@ -6,8 +6,11 @@ lvim.plugins = {
   "gpanders/editorconfig.nvim",
   "folke/zen-mode.nvim",
   "sindrets/diffview.nvim",
+  "simrat39/rust-tools.nvim",
   "leoluz/nvim-dap-go",
-
+  "mfussenegger/nvim-dap-python",
+  "mxsdev/nvim-dap-vscode-js",
+  "monaqa/dial.nvim",
   "jose-elias-alvarez/typescript.nvim",
   {
     "folke/trouble.nvim",
