@@ -13,7 +13,7 @@ lvim.builtin.theme.options.dim_inactive = true
 lvim.builtin.theme.options.style = "storm"
 lvim.builtin.treesitter.highlight.enabled = true
 
-lvim.colorscheme = "gruvbox"
+lvim.colorscheme = "catppuccin-frappe"
 lvim.leader = "space"
 
 -- table.insert(lvim.builtin.project.detection_methods, -2, "!>packages")

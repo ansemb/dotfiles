@@ -107,4 +107,15 @@ lvim.plugins = {
       })
     end,
   },
+  -- theme
+  {
+    "catppuccin/nvim",
+    as = "catppuccin",
+    config = function()
+        require("catppuccin").setup {
+            flavour = "macchiato" -- mocha, macchiato, frappe, latte
+        }
+        vim.api.nvim_command "colorscheme catppuccin"
+    end
+  }
 }
