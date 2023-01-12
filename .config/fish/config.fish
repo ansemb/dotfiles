@@ -94,7 +94,7 @@ end
 
 
 # theme
-fish_config theme choose Nord
+fish_config theme choose "Catppuccin Mocha"
 
 # starship
 starship init fish | source
