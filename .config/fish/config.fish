@@ -5,6 +5,7 @@ end
 
 set -Ux EDITOR lvim
 set -gx CONFIG_HOME "$HOME/.config"
+set -gx FISH_HOME "$CONFIG_HOME/fish"
 set -gx CACHEDIR "$HOME/.cache"
 
 fish_add_path "$HOME/.local/bin"
@@ -34,7 +35,7 @@ if type -q zoxide
 end
 
 # deno
-set -gx DENO_INSTALL="$HOME/.deno"
+set -gx DENO_INSTALL "$HOME/.deno"
 fish_add_path "$DENO_INSTALL/bin"
 
 # pnpm
@@ -45,7 +46,25 @@ fish_add_path "$PNPM_HOME"
 fish_add_path "/usr/local/go/bin"
 
 # gpg
-set -gx GPG_TTY $(tty)
+# set -gx GPG_TTY $(tty)
+
+# brew
+if test -d ~/.linuxbrew
+  # local installation
+  eval ~/.linuxbrew/bin/brew shellenv
+  fish_add_path "$HOME/.linuxbrew/bin"
+end
+
+if test -d /home/linuxbrew/.linuxbrew
+  fish_add_path "/home/linuxbrew/.linuxbrew/bin"
+  set -gx HOMEBREW_PREFIX "/home/linuxbrew/.linuxbrew"
+  set -gx HOMEBREW_CELLAR "/home/linuxbrew/.linuxbrew/Cellar"
+  set -gx HOMEBREW_REPOSITORY "/home/linuxbrew/.linuxbrew/Homebrew"
+  set -q PATH
+  set -q MANPATH
+  set -q INFOPATH
+end
+
 
 function dotfiles
   /usr/bin/git --git-dir="$DOTFILES_DIR/" --work-tree="$HOME" $argv
@@ -73,6 +92,9 @@ function lt
   ls --tree --long --level=2 $argv
 end
 
+
+# theme
+fish_config theme choose Nord
 
 # starship
 starship init fish | source
