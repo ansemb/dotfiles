@@ -1,6 +1,16 @@
 #!/bin/zsh
 
 # zshrc
+# history
+HISTSIZE=1000
+SAVEHIST=2000
+HISTFILE="$ZCACHEDIR/.history"
+
+# solves tab space problem (when clicking tab, first characters repeat)
+export LC_CTYPE=en_US.UTF-8
+
+# What characters are considered to be a part of a word
+export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # import common
 source "$ZDOTDIR/common.zsh"
@@ -16,18 +26,6 @@ source "$ZDOTDIR/bindkeys.zsh"
 
 # import aliases
 source "$ZDOTDIR/aliases.zsh"
-
-
-# solves tab space problem (when clicking tab, first characters repeat)
-export LC_CTYPE=en_US.UTF-8
-
-# What characters are considered to be a part of a word
-export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-
-# history
-HISTSIZE=1000
-SAVEHIST=2000
-HISTFILE="$ZCACHEDIR/.history"
 
 
 # starship
