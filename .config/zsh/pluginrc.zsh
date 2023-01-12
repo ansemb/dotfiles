@@ -18,7 +18,7 @@ source "$ZINIT[BIN_DIR]/zinit.zsh"
 # set .z directory
 export ZSHZ_DATA="$CACHEDIR/z"
 export ZSH_HIGHLIGHT_MAXLENGTH=512
-export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
 
 # Load the prompt system and completion system and initilize them
