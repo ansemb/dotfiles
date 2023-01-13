@@ -10,7 +10,7 @@ bufferline = "multiple"
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
-select = "underline"
+#select = "underline"
 
 [editor.indent-guides]
 render = true
