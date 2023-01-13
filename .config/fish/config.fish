@@ -70,6 +70,10 @@ function dotfiles
   /usr/bin/git --git-dir="$DOTFILES_DIR/" --work-tree="$HOME" $argv
 end
 
+function gitui
+  "$CARGO_HOME/bin/gitui" -t themes/mocha.ron
+end
+
 
 # aliases
 function ls
