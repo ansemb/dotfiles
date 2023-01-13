@@ -84,18 +84,21 @@ function l --wraps "exa -bhF --color=auto"
   exa -bhF --color=auto $argv
 end
 
-function la --wraps "exa -bh --color=auto"
-  exa -bh --color=auto $argv
+function la --wraps "exa -bhA --color=auto"
+  exa -bhA --color=auto $argv
 end
 
-function ll --wraps "exa -bh --color=auto"
-  exa -bh --color=auto $argv
+function ll --wraps "exa -bhlag --color=auto"
+  exa -bhlag --color=auto $argv
 end
 
 function lt --wraps "exa -bh --color=auto -tree --long --level=2"
   exa -bh --color=auto -tree --long --level=2 $argv
 end
 
+# function hx --wraps "hx"
+#   "hx" $argv
+# end
 
 # theme
 fish_config theme choose "Catppuccin Mocha"
