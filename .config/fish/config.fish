@@ -76,24 +76,24 @@ end
 
 
 # aliases
-function ls
+function ls --wraps "exa -bh --color=auto"
   exa -bh --color=auto $argv
 end
 
-function l
-  ls -F $argv
+function l --wraps "exa -bhF --color=auto"
+  exa -bhF --color=auto $argv
 end
 
-function la
-  ls -A $argv
+function la --wraps "exa -bh --color=auto"
+  exa -bh --color=auto $argv
 end
 
-function ll
-  ls -lahg $argv
+function ll --wraps "exa -bh --color=auto"
+  exa -bh --color=auto $argv
 end
 
-function lt
-  ls --tree --long --level=2 $argv
+function lt --wraps "exa -bh --color=auto -tree --long --level=2"
+  exa -bh --color=auto -tree --long --level=2 $argv
 end
 
 
@@ -102,3 +102,5 @@ fish_config theme choose "Catppuccin Mocha"
 
 # starship
 starship init fish | source
+
+nvm use 16
