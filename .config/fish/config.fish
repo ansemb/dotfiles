@@ -29,10 +29,6 @@ set -gx CARGO_HOME "$CONFIG_HOME/cargo"
 fish_add_path "$CARGO_HOME/bin"
 
 
-# zoxide
-if type -q zoxide
-  zoxide init fish | source
-end
 
 # deno
 set -gx DENO_INSTALL "$HOME/.deno"
@@ -103,7 +99,10 @@ end
 # theme
 fish_config theme choose "Catppuccin Mocha"
 
+# zoxide
+if type -q zoxide
+  zoxide init fish | source
+end
+
 # starship
 starship init fish | source
-
-nvm use 16
