@@ -2,7 +2,7 @@ import:
   - ~/.config/alacritty/themes/catppuccin/catppuccin-mocha.yml
 font:
   normal:
-    family: DejaVuSansMono Nerd Font
+    family: DejaVuSansMonoNerdFont
 
 #shell:
 #  program: /home/adrian/.nix-profile/bin/fish
