@@ -45,11 +45,11 @@ export YVM_DIR="$HOME/.yvm"
 [ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
 
 # rustup
-export RUSTUP_HOME="$HOME/.config/rustup"
+export RUSTUP_HOME="$HOME/.rustup"
 
 # cargo
 export CARGO_HOME="$CONFIG_HOME/cargo"
-pathappend "$CARGO_HOME/bin"
+pathappend "$HOME/.cargo"
 [ -f "$CARGO_HOME/env" ] && source "$CARGO_HOME/env"
 
 # gpg
