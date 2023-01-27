@@ -27,12 +27,12 @@ export PYENV_ROOT
 pathappend "$PYENV_ROOT/bin"
 
 if ! (( ${+RUSTUP_HOME} )); then
-  RUSTUP_HOME="$HOME/.config/rustup"
+  RUSTUP_HOME="$HOME/.rustup"
 fi
 export RUSTUP_HOME
 
 if ! (( ${+CARGO_HOME} )); then
-  CARGO_HOME="$HOME/.config/cargo"
+  CARGO_HOME="$HOME/.cargo"
 fi
 export CARGO_HOME
 pathappend "$CARGO_HOME/bin"
