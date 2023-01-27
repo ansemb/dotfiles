@@ -22,10 +22,10 @@ if type -q pyenv
 end
 
 # rustup
-set -gx RUSTUP_HOME "$HOME/.config/rustup"
+set -gx RUSTUP_HOME "$HOME/.rustup"
 
 # cargo
-set -gx CARGO_HOME "$CONFIG_HOME/cargo"
+set -gx CARGO_HOME "$HOME/.cargo"
 fish_add_path "$CARGO_HOME/bin"
 
 
