@@ -1,0 +1,10 @@
+[Unit]
+Description=Nextcloud desktop client
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/flatpak run com.nextcloud.desktopclient.nextcloud
+Restart=always
+
+[Install]
+WantedBy=default.target
