@@ -1,0 +1,10 @@
+- keyboards: [ "ITE Tech. Inc. ITE Device(8910) Keyboard" ]
+
+  keymap:
+    capslock: leftctrl
+  # Specify layered configurations (much similar to fn+F keys)
+  layers:
+    - modifiers: ["leftctrl", "leftshift", "leftalt"]
+      keymap:
+        grave: capslock
+
