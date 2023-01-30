@@ -48,7 +48,7 @@ export YVM_DIR="$HOME/.yvm"
 export RUSTUP_HOME="$HOME/.rustup"
 
 # cargo
-export CARGO_HOME="$CONFIG_HOME/cargo"
+export CARGO_HOME="$HOME/cargo"
 pathappend "$HOME/.cargo"
 [ -f "$CARGO_HOME/env" ] && source "$CARGO_HOME/env"
 
