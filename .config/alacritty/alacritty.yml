@@ -8,3 +8,11 @@ font:
 #  program: /home/adrian/.nix-profile/bin/fish
 key_bindings:
   - { key: Space, mods: Control, chars: "\x00" } # Ctrl + Space
+
+window:
+  padding:
+   x: 7
+   y: 7
+
+selection:
+  save_to_clipboard: true

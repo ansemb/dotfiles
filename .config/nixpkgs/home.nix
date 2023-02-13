@@ -8,6 +8,8 @@
     pkgs.zsh
     pkgs.exa
     pkgs.helix
+    pkgs.zellij
+    pkgs.lf
   ];
 
 
