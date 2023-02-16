@@ -15,7 +15,7 @@ set -gx DOTFILES_DIR "$HOME/.dotfiles"
 set -gx DOTFILES_REPO "https://raw.githubusercontent.com/ansemb/dotfiles/HEAD"
 
 # pyenv
-set -gx PYENV_ROOT "$CONFIG_HOME/pyenv"
+set -gx PYENV_ROOT "$HOME/.pyenv"
 fish_add_path "$PYENV_ROOT/bin"
 if type -q pyenv
   pyenv init - | source
