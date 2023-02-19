@@ -21,7 +21,7 @@ export NVM_DIR
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
 
 if ! (( ${+PYENV_ROOT} )); then
-  PYENV_ROOT="$HOME/.config/pyenv"
+  PYENV_ROOT="$HOME/.pyenv"
 fi
 export PYENV_ROOT
 pathappend "$PYENV_ROOT/bin"
