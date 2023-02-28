@@ -1,95 +1,104 @@
 
 [[language]]
-name = "html"
-formatter = { command = "prettier", args = ["--parser", "html"] }
-auto-format = true
-
-[[language]]
 name = "json"
-formatter = { command = "prettier", args = ["--parser", "json"] }
+formatter = { command = "prettier", args = ["--parser", "json5"] }
 auto-format = true
 
+
 [[language]]
-name = "css"
-formatter = { command = "prettier", args = ["--parser", "css"] }
+name = "yaml"
+formatter = { command = "prettier", args = ["--parser", "yaml"] }
+auto-format = true
+
+
+[[language]]
+name = "rust"
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+
+
+[[language]]
+name = "toml"
+indent = { tab-width = 2, unit = "  " }
+formatter = { command = "taplo", args = ["fmt", "-"] }
+auto-format = true
+
+
+[[language]]
+name = "typescript"
+language-servers = [
+  { except-features = [
+    "format",
+  ], name = "typescript-language-server" },
+  "eslint",
+]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "javascript"
+language-servers = [
+  { except-features = [
+    "format",
+  ], name = "typescript-language-server" },
+  "eslint",
+]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "jsx"
+language-servers = [
+  { except-features = [
+    "format",
+  ], name = "typescript-language-server" },
+  "eslint",
+]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "tsx"
+language-servers = [
+  { except-features = [
+    "format",
+  ], name = "typescript-language-server" },
+  "eslint",
+]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
+[language-server.eslint]
+args = ["--stdio"]
+command = "vscode-eslint-language-server"
 
-[[language]]
-name = "json"
-scope = "source.json"
-injection-regex = "json"
-file-types = ["json", "jsonc"]
-roots = []
-language-server = { command = "vscode-json-language-server", args = [
-  "--stdio",
-] }
-auto-format = true
-config = { "provideFormatter" = true }
-indent = { tab-width = 2, unit = "  " }
+[language-server.eslint.config]
+format = true
+nodePath = ""
+onIgnoredFiles = "off"
+quiet = false
+rulesCustomizations = []
+run = "onType"
+validate = "on"
 
-[[language]]
-name = "fish"
-scope = "source.fish"
-injection-regex = "fish"
-file-types = ["fish"]
-shebangs = ["fish"]
-roots = []
-comment-token = "#"
-indent = { tab-width = 4, unit = "    " }
+[language-server.eslint.config.codeAction]
+[language-server.eslint.config.codeAction.disableRuleComment]
+enable = true
+location = "separateLine"
 
-[[grammar]]
-name = "fish"
-source = { git = "https://github.com/ram02z/tree-sitter-fish", rev = "84436cf24c2b3176bfbb220922a0fdbd0141e406" }
+[language-server.eslint.config.codeAction.showDocumentation]
+enable = true
 
-[[language]]
-name = "rust"
-scope = "source.rust"
-injection-regex = "rust"
-file-types = ["rs"]
-roots = ["Cargo.toml", "Cargo.lock"]
-auto-format = true
-comment-token = "//"
-language-server = { command = "rust-analyzer" }
-indent = { tab-width = 2, unit = "  " }
+[language-server.eslint.config.codeActionOnSave]
+enable = true
+mode = "all"
 
-[[grammar]]
-name = "rust"
-source = { git = "https://github.com/tree-sitter/tree-sitter-rust", rev = "0431a2c60828731f27491ee9fdefe25e250ce9c9" }
+[language-server.eslint.config.workingDirectory]
+mode = "location"
 
-[[language]]
-name = "toml"
-scope = "source.toml"
-injection-regex = "toml"
-file-types = ["toml"]
-roots = []
-comment-token = "#"
-auto-format = true
-language-server = { command = "taplo", args = ["lsp", "stdio"] }
-formatter = { command = "taplo", args = ["fmt", "-"] }
-indent = { tab-width = 2, unit = "  " }
+[language-server.typescript-language-server]
+args = ["--stdio"]
+command = "typescript-language-server"
 
-[[grammar]]
-name = "toml"
-source = { git = "https://github.com/ikatyang/tree-sitter-toml", rev = "7cff70bbcbbc62001b465603ca1ea88edd668704" }
-
-
-[[language]]
-name = "typescript"
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
-auto-format = true
+[language-server.typescript-language-server.config]
+documentFormatting = false

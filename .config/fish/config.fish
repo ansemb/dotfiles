@@ -70,6 +70,10 @@ function gitui
   "$CARGO_HOME/bin/gitui" -t themes/mocha.ron
 end
 
+function zel-last
+  zellij attach (zellij list-sessions | head -1)
+end
+
 
 # aliases
 function ls --wraps "exa -bh --color=auto"
@@ -91,6 +95,7 @@ end
 function lt --wraps "exa -bh --color=auto -tree --long --level=2"
   exa -bh --color=auto -tree --long --level=2 $argv
 end
+
 
 # function hx --wraps "hx"
 #   "hx" $argv
