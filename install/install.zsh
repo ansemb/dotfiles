@@ -277,6 +277,7 @@ install_neovim
 install_rustup
 install_zoxide
 cargo install starship exa fd-find
+cargo install --locked zellij
 
 
 install_nvm
