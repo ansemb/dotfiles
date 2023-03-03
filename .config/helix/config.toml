@@ -2,7 +2,7 @@ theme = "catppuccin_mocha"
 
 [editor]
 auto-pairs = false
-bufferline = "multiple"
+bufferline = "always"
 color-modes = true
 line-number = "relative"
 true-color = true
