@@ -41,6 +41,7 @@ fish_add_path "$PNPM_HOME"
 # golang
 fish_add_path "/usr/local/go/bin"
 
+
 # gpg
 # set -gx GPG_TTY $(tty)
 
@@ -111,3 +112,9 @@ end
 
 # starship
 starship init fish | source
+
+# osxcross
+set -gx OSX_SDK_VERSION 13.1
+set -gx OSX_VERSION_MIN 10.14
+set -gx MACOSX_DEPLOYMENT_TARGET "$OSX_VERSION_MIN"
+fish_add_path "/usr/local/osxcross/target/bin"
