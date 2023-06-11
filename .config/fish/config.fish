@@ -3,7 +3,7 @@ if status is-interactive
 end
 
 
-set -Ux EDITOR lvim
+set -Ux EDITOR hx
 set -gx CONFIG_HOME "$HOME/.config"
 set -gx FISH_HOME "$CONFIG_HOME/fish"
 set -gx CACHEDIR "$HOME/.cache"
