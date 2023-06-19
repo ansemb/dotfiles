@@ -78,13 +78,17 @@ args = ["--stdio"]
 command = "vscode-eslint-language-server"
 
 [language-server.eslint.config]
-format = true
+format = false
 nodePath = ""
 onIgnoredFiles = "off"
 quiet = false
 rulesCustomizations = []
+useESLintClass = false
 run = "onType"
 validate = "on"
+experimental = { useFlatConfig = false }
+workingDirectory = { mode = "location" }
+
 
 [language-server.eslint.config.codeAction]
 [language-server.eslint.config.codeAction.disableRuleComment]
@@ -97,9 +101,6 @@ enable = true
 [language-server.eslint.config.codeActionOnSave]
 enable = true
 mode = "all"
-
-[language-server.eslint.config.workingDirectory]
-mode = "location"
 
 [language-server.typescript-language-server]
 args = ["--stdio"]
