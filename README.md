@@ -9,7 +9,7 @@
 sudo apt install software-properties-common && \
 sudo apt-add-repository ppa:fish-shell/release-3 && \
 sudo apt update && sudo apt upgrade -y && \
-sudo apt install wget curl git zsh make fuse cmake fish -y && \
+sudo apt install wget curl git zsh make cmake fish -y && \
 sudo apt install --no-install-recommends \
 build-essential libssl-dev zlib1g-dev libbz2-dev \
 libreadline-dev libsqlite3-dev llvm \
