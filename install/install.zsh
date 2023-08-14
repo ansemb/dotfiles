@@ -13,12 +13,6 @@ source <(curl -fsSL https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/.conf
 # PATHS
 mkdir -p "$HOME/.local/bin"
 pathappend "$HOME/.local/bin"
-  
-if ! (( ${+NVM_DIR} )); then
-  NVM_DIR="$HOME/.config/nvm"
-fi
-export NVM_DIR
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
 
 if ! (( ${+PYENV_ROOT} )); then
   PYENV_ROOT="$HOME/.pyenv"
@@ -48,10 +42,6 @@ function node_exists() {
   type node &> /dev/null
 }
 
-function nvm_exists() {
-  type nvm &> /dev/null
-}
-
 function pyenv_exists() {
   # if command -v pyenv 1>/dev/null 2>&1; then
   type pyenv &> /dev/null
@@ -65,13 +55,8 @@ function install_zoxide() {
   fi
 }
 
-function install_neovim() {
-  NVIM_BIN_DIR="$HOME/.local/bin"
-  # remove previous
-  [ -f "$NVIM_BIN_DIR/nvim" ] && rm "$NVIM_BIN_DIR/nvim" 
-
-  curl -L https://github.com/neovim/neovim/releases/latest/download/nvim.appimage --output "$NVIM_BIN_DIR/nvim"
-  chmod u+x "$NVIM_BIN_DIR/nvim"
+function install_pnpm() {
+  curl -fsSL https://get.pnpm.io/install.sh | sh -
 }
 
 function install_rustup() {
@@ -225,18 +210,6 @@ function user_prompt_require_pyenv_install_python() {
   echo -e "\n"
 }
 
-function user_prompt_install_lunarvim() {
-  # install lunarvim (neovim config)
-  read "continue?Install LunarVim? [Y/n] "
-  echo ""
-  if [[ "$continue" =~ ^[Yy]$ || "$continue" == "" ]]; then
-    if ! node_exists; then
-      echo "node does not exists. skipping install..."
-    fi
-    LV_BRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/rolling/utils/installer/install.sh)
-  fi
-}
-
 function clean_prev_install_dotfiles() {
   # removing directory for clean install
   if [ -d "$DOTFILES_DIR" ]; then
@@ -273,17 +246,14 @@ function dotfiles_install() {
 install_pyenv
 user_prompt_require_pyenv_install_python
 
-install_neovim
 install_rustup
 install_zoxide
 cargo install starship exa fd-find
 cargo install --locked zellij
 
-
+install_pnpm
 install_nvm
 nvm_install_node
-
-user_prompt_install_lunarvim
 
 # TODO: generate a paths file based on custom cargo/nvm/pyenv installations and include it
 
@@ -306,6 +276,6 @@ chmod -R 755 $HOME/.config/zsh/zinit
 # change default shell
 echo -e "\n\n"
 echo "change default shell to zsh by running cmd below: (restart terminal afterwards)"
-echo "chsh -s \$(which zsh)"
+echo "chsh -s \$(which fish)"
 echo -e "\n"
 
