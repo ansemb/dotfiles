@@ -9,7 +9,7 @@ export ZPLUGIN_DIR="$ZDOTDIR/zinit"
 export ZINIT_HOME="$ZPLUGIN_DIR/zinit.git"
 
 # Default programs:
-export EDITOR='lvim'
+export EDITOR='hx'
 
 # Nvm
 export NVM_DIR="$HOME/.config/nvm"
