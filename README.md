@@ -24,7 +24,8 @@ sudo pacman -S base-devel openssl zlib curl git zsh vim neovim file wget xz tk
 
 #### On mac
 ```
-brew install exa wget neovim
+brew install exa cmake fish
+brew install helix --HEAD
 ```
 
 ### (2) optional 
