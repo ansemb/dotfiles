@@ -25,6 +25,9 @@ test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew
 [ -d "/home/linuxbrew/.linuxbrew/bin" ] && pathappend "/home/linuxbrew/.linuxbrew/bin"
 [ -d "$HOME/.linuxbrew/bin" ] && pathappend "$HOME/.linuxbrew/bin"
 
+test -d /opt/homebrew/bin && eval $(/opt/homebrew/bin/brew shellenv)
+[ -d "/opt/homebrew/bin" ] && pathappend "/opt/homebrew/bin"
+
 # local bin
 pathappend "$HOME/.local/bin"
 

@@ -50,10 +50,12 @@ if test -d ~/.linuxbrew
   # local installation
   eval ~/.linuxbrew/bin/brew shellenv
   fish_add_path "$HOME/.linuxbrew/bin"
+  fish_add_path "$HOME/.linuxbrew/sbin"
 end
 
 if test -d /home/linuxbrew/.linuxbrew
   fish_add_path "/home/linuxbrew/.linuxbrew/bin"
+  fish_add_path "/home/linuxbrew/.linuxbrew/sbin"
   set -gx HOMEBREW_PREFIX "/home/linuxbrew/.linuxbrew"
   set -gx HOMEBREW_CELLAR "/home/linuxbrew/.linuxbrew/Cellar"
   set -gx HOMEBREW_REPOSITORY "/home/linuxbrew/.linuxbrew/Homebrew"
@@ -61,6 +63,19 @@ if test -d /home/linuxbrew/.linuxbrew
   set -q MANPATH
   set -q INFOPATH
 end
+
+if test -d /opt/homebrew/bin
+  fish_add_path /opt/homebrew/bin
+  fish_add_path /opt/homebrew/sbin
+  set -gx HOMEBREW_PREFIX "/opt/homebrew/bin"
+  set -gx HOMEBREW_CELLAR "/opt/homebrew/Cellar"
+  set -gx HOMEBREW_REPOSITORY "/opt/homebrew"
+  set -q PATH; set -gx MANPATH "/opt/homebrew/share/man" $MANPATH;
+  set -q MANPATH
+  set -q INFOPATH
+end
+
+fish_add_path /opt/homebrew/bin
 
 
 function dotfiles
