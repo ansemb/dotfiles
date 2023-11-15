@@ -126,7 +126,9 @@ if type -q zoxide
 end
 
 # starship
-starship init fish | source
+if type -q starship
+  starship init fish | source
+end
 
 # osxcross
 set -gx OSX_SDK_VERSION 13.1
