@@ -35,7 +35,7 @@ esc = ["collapse_selection", "keep_primary_selection"]
 
 "A-/" = "toggle_comments"
 
-"space" = { z = ":buffer-close", Z = ":buffer-close-others" }
+"space" = { x = ":buffer-close", X = ":buffer-close-others" }
 
 "C-." = "completion"
 
