@@ -34,6 +34,9 @@
                                     "modifiers": {
                                         "mandatory": [
                                             "command"
+                                        ],
+                                        "optional": [
+                                            "shift"
                                         ]
                                     }
                                 },
