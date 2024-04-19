@@ -76,6 +76,7 @@ auto-format = true
 [language-server.eslint]
 args = ["--stdio"]
 command = "vscode-eslint-language-server"
+timeout = 60
 
 [language-server.eslint.config]
 format = false
@@ -105,6 +106,7 @@ mode = "all"
 [language-server.typescript-language-server]
 args = ["--stdio"]
 command = "typescript-language-server"
+timeout = 60
 
 [language-server.typescript-language-server.config]
 documentFormatting = false
