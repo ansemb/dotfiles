@@ -18,13 +18,14 @@
                 },
                 "rules": [
                     {
-                        "description": "Swap \"command + tab\" with \"control + tab\" optional shift.",
+                        "description": "Swap \"command + tab\" with \"control + tab\" optional shift UTM, Microsoft Remote Desktop.",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "^com\\.utmapp\\.UTM$"
+                                            "^com\\.utmapp\\.UTM$",
+                                            "^com\\.microsoft\\.rdc\\.macos$"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
@@ -54,7 +55,8 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "^com\\.utmapp\\.UTM$"
+                                            "^com\\.utmapp\\.UTM$",
+                                            "^com\\.microsoft\\.rdc\\.macos$"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
@@ -108,13 +110,14 @@
                         ]
                     },
                     {
-                        "description": "Swap Command and Control keys in UTM",
+                        "description": "Swap Command and Control keys in UTM, Microsoft Remote Desktop",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "^com\\.utmapp\\.UTM$"
+                                            "^com\\.utmapp\\.UTM$",
+                                            "^com\\.microsoft\\.rdc\\.macos$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -141,7 +144,8 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "^com\\.utmapp\\.UTM$"
+                                            "^com\\.utmapp\\.UTM$",
+                                            "^com\\.microsoft\\.rdc\\.macos$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -165,7 +169,8 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "^com\\.utmapp\\.UTM$"
+                                            "^com\\.utmapp\\.UTM$",
+                                            "^com\\.microsoft\\.rdc\\.macos$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -437,6 +442,49 @@
                     "mouse_swap_wheels": false,
                     "mouse_swap_xy": false,
                     "simple_modifications": [],
+                    "treat_as_built_in_keyboard": false
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "game_pad_swap_sticks": false,
+                    "identifiers": {
+                        "is_game_pad": false,
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 33,
+                        "vendor_id": 1278
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "mouse_flip_horizontal_wheel": false,
+                    "mouse_flip_vertical_wheel": false,
+                    "mouse_flip_x": false,
+                    "mouse_flip_y": false,
+                    "mouse_swap_wheels": false,
+                    "mouse_swap_xy": false,
+                    "simple_modifications": [
+                        {
+                            "from": {
+                                "key_code": "left_control"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_command"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "right_command"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "right_control"
+                                }
+                            ]
+                        }
+                    ],
                     "treat_as_built_in_keyboard": false
                 }
             ],
