@@ -1,10 +1,13 @@
-import = ["/Users/adrian/.config/alacritty/themes/catppuccin/catppuccin-mocha.toml"]
+import = ["~/.config/alacritty/themes/catppuccin/catppuccin-mocha.toml"]
 
 [font]
 size = 14
 
 [font.normal]
-family = "DejaVuSansMonoNerdFont"
+# https://github.com/ryanoasis/nerd-fonts/releases
+# https://github.com/ryanoasis/nerd-fonts/releases/download/vX.X.X/DejaVuSansMono.zip
+# mac name
+family="DejaVuSansM Nerd Font"
 
 [[keyboard.bindings]]
 chars = "\u0000"
@@ -455,12 +458,12 @@ mods = "Alt"
 
 [[keyboard.bindings]]
 chars = "\u001B`"
-key = "Grave"
+key = "`"
 mods = "Alt"
 
 [[keyboard.bindings]]
 chars = "\u001B~"
-key = "Grave"
+key = "`"
 mods = "Alt|Shift"
 
 [[keyboard.bindings]]
@@ -515,20 +518,20 @@ mods = "Alt|Shift"
 
 [[keyboard.bindings]]
 chars = "'"
-key = "Apostrophe"
+key = "'"
 
 [[keyboard.bindings]]
 chars = "\""
-key = "Apostrophe"
+key = "'"
 mods = "Shift"
 
 [[keyboard.bindings]]
 chars = "`"
-key = "Grave"
+key = "`"
 
 [[keyboard.bindings]]
 chars = "~"
-key = "Grave"
+key = "`"
 mods = "Shift"
 
 [[keyboard.bindings]]
