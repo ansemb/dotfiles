@@ -8,7 +8,7 @@
 ```
 sudo apt install software-properties-common && \
 sudo apt-add-repository ppa:fish-shell/release-3 && \
-sudo add-apt-repository ppa:maveonair/helix-editor \
+sudo add-apt-repository ppa:maveonair/helix-editor && \
 sudo apt update && sudo apt upgrade -y && \
 sudo apt install wget curl git zsh make cmake fish helix -y && \
 sudo apt install --no-install-recommends \
