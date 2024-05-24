@@ -248,8 +248,10 @@ user_prompt_require_pyenv_install_python
 
 install_rustup
 install_zoxide
-cargo install starship exa fd-find
 cargo install --locked zellij
+
+# install starship
+curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 install_pnpm
 install_nvm
