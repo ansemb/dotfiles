@@ -7,10 +7,10 @@
 #### On debian
 ```
 sudo apt install software-properties-common && \
-sudo apt-add-repository ppa:fish-shell/release-3 && \
-sudo add-apt-repository ppa:maveonair/helix-editor && \
+sudo apt-add-repository -y ppa:fish-shell/release-3 && \
+sudo add-apt-repository -y ppa:maveonair/helix-editor && \
 sudo apt update && sudo apt upgrade -y && \
-sudo apt install wget curl git zsh make cmake fish helix -y && \
+sudo apt install wget curl git zsh make cmake fish helix exa fd-find -y && \
 sudo apt install --no-install-recommends \
 build-essential libssl-dev zlib1g-dev libbz2-dev \
 libreadline-dev libsqlite3-dev llvm \
