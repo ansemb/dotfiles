@@ -13,7 +13,7 @@ alias vim='lvim'
 alias sudo='sudo '
 
 # list aliases
-alias ls="exa -bh --color=auto"
+alias ls="eza -bh --color=auto"
 alias ll='ls -lahg' l.='ls -d .*'
 alias la='ls -A'
 alias l='ls -F' 
