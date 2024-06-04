@@ -6,16 +6,23 @@
 
 #### On debian
 ```
+sudo apt update && \
 sudo apt install software-properties-common && \
 sudo apt-add-repository -y ppa:fish-shell/release-3 && \
 sudo add-apt-repository -y ppa:maveonair/helix-editor && \
 sudo apt update && sudo apt upgrade -y && \
-sudo apt install wget curl git zsh make cmake fish helix exa fd-find -y && \
+sudo apt install wget curl git zsh make cmake fish helix gpg fd-find -y && \
 sudo apt install --no-install-recommends \
 build-essential libssl-dev zlib1g-dev libbz2-dev \
 libreadline-dev libsqlite3-dev llvm \
 libncursesw5-dev xz-utils tk-dev libxml2-dev \
-libxmlsec1-dev libffi-dev liblzma-dev -y
+libxmlsec1-dev libffi-dev liblzma-dev -y && \
+sudo mkdir -p /etc/apt/keyrings && \
+wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg && \
+echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list && \
+sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list && \
+sudo apt update && \
+sudo apt install -y eza
 ```
 
 #### On arch
@@ -24,9 +31,15 @@ sudo pacman -S base-devel openssl zlib curl git zsh vim neovim file wget xz tk
 ```
 
 #### On mac
-```
-brew install exa cmake fish
+```bash
+brew install eza cmake fish
 brew install helix --HEAD
+```
+
+change shell
+```bash
+echo "$(which fish)" | sudo tee -a /etc/shells
+chsh -s "$(which fish)"
 ```
 
 ### (2) optional 
