@@ -76,7 +76,17 @@ if test -d /opt/homebrew/bin
     set -q INFOPATH
 end
 
-fish_add_path /opt/homebrew/bin
+if test -d /opt/homebrew/opt/node@18/bin
+    fish_add_path "/opt/homebrew/opt/node@18/bin"
+end
+
+if test -d /opt/homebrew/opt/node@20/bin
+    fish_add_path "/opt/homebrew/opt/node@20/bin"
+end
+
+if test -d /opt/homebrew/opt/node@22/bin
+    fish_add_path "/opt/homebrew/opt/node@22/bin"
+end
 
 
 function dotfiles
@@ -113,7 +123,6 @@ function lt --wraps "eza -bh --color=auto -tree --long --level=2"
     eza -bh --color=auto --tree --long --level=2 $argv
 end
 
-
 # function hx --wraps "hx"
 #   "hx" $argv
 # end
@@ -136,3 +145,9 @@ set -gx OSX_SDK_VERSION 13.1
 set -gx OSX_VERSION_MIN 10.14
 set -gx MACOSX_DEPLOYMENT_TARGET "$OSX_VERSION_MIN"
 fish_add_path /usr/local/osxcross/target/bin
+
+
+set -gx NODE_OPTIONS "--max-old-space-size=16384"
+
+# load NVM
+load_nvm >/dev/stderr
