@@ -10,6 +10,11 @@ size = 14
 family="DejaVuSansM Nerd Font"
 
 [[keyboard.bindings]]
+key = "N"
+mods = "Command|Shift"
+action = "CreateNewWindow"
+
+[[keyboard.bindings]]
 chars = "\u0000"
 key = "Space"
 mods = "Command"
