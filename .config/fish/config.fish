@@ -123,6 +123,8 @@ function lt --wraps "eza -bh --color=auto -tree --long --level=2"
     eza -bh --color=auto --tree --long --level=2 $argv
 end
 
+alias sudo="sudo -s"
+
 # function hx --wraps "hx"
 #   "hx" $argv
 # end
