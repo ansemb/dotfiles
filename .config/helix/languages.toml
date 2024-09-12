@@ -21,6 +21,9 @@ name = "rust"
 indent = { tab-width = 2, unit = "  " }
 auto-format = true
 
+[language-server.rust-analyzer.config.check]
+command = "clippy"
+
 
 [[language]]
 name = "toml"
