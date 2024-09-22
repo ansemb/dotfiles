@@ -9,6 +9,7 @@ set -gx FISH_HOME "$CONFIG_HOME/fish"
 set -gx CACHEDIR "$HOME/.cache"
 
 fish_add_path "$HOME/.local/bin"
+fish_add_path /usr/local/bin
 
 # DOTFILELS
 set -gx DOTFILES_DIR "$HOME/.dotfiles"
