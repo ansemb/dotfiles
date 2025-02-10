@@ -89,6 +89,10 @@ if test -d /opt/homebrew/opt/node@22/bin
     fish_add_path "/opt/homebrew/opt/node@22/bin"
 end
 
+if test -d "$HOME/.dotnet"
+    fish_add_path "$HOME/.dotnet"
+end
+
 
 function dotfiles
     /usr/bin/git --git-dir="$DOTFILES_DIR/" --work-tree="$HOME" $argv
