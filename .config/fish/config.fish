@@ -90,6 +90,7 @@ if test -d /opt/homebrew/opt/node@22/bin
 end
 
 if test -d "$HOME/.dotnet"
+    set -Ux DOTNET_ROOT $HOME/.dotnet
     fish_add_path "$HOME/.dotnet"
 end
 
