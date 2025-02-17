@@ -2,6 +2,15 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+# install fisher (https://github.com/jorgebucaran/fisher)
+# curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+# 
+# install bash (https://github.com/edc/bass)
+# fisher install edc/bass
+# 
+# install nvm (https://github.com/jorgebucaran/nvm.fish)
+# fisher install jorgebucaran/nvm.fish
+
 
 set -Ux EDITOR hx
 set -gx CONFIG_HOME "$HOME/.config"
@@ -156,6 +165,3 @@ fish_add_path /usr/local/osxcross/target/bin
 
 
 set -gx NODE_OPTIONS "--max-old-space-size=16384"
-
-# load NVM
-load_nvm >/dev/stderr
