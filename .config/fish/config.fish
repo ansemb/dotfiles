@@ -38,6 +38,12 @@ set -gx RUSTUP_HOME "$HOME/.rustup"
 set -gx CARGO_HOME "$HOME/.cargo"
 fish_add_path "$CARGO_HOME/bin"
 
+# llvm
+if test -d /opt/homebrew/opt/llvm/bin
+    fish_add_path /opt/homebrew/opt/llvm/bin
+    set -gx LDFLAGS -L/opt/homebrew/opt/llvm/lib
+    set -gx CPPFLAGS -I/opt/homebrew/opt/llvm/include
+end
 
 
 # deno
