@@ -25,6 +25,11 @@ sudo apt update && \
 sudo apt install -y eza
 ```
 
+- [starship](https://starship.rs/)
+```bash
+curl -sS https://starship.rs/install.sh | sh
+```
+
 #### On arch
 ```
 sudo pacman -S base-devel openssl zlib curl git zsh vim neovim file wget xz tk
