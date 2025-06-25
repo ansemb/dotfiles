@@ -190,9 +190,6 @@ end
 # set FNM_PATH "$HOME/Library/Application Support/fnm"
 set FNM_PATH /opt/homebrew/bin/fnm
 if [ -f "$FNM_PATH" ]
-    echo HEREEEEEEEEEEe
-
     set PATH "$FNM_PATH" $PATH
     fnm env | source
 end
-echo "DONE!"
