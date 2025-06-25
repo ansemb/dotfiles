@@ -170,4 +170,25 @@ set -gx MACOSX_DEPLOYMENT_TARGET "$OSX_VERSION_MIN"
 fish_add_path /usr/local/osxcross/target/bin
 
 
-set -gx NODE_OPTIONS "--max-old-space-size=16384"
+set -gx NODE_OPTIONS "--max-old-space-size=32768"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f "$HOME/miniconda3/bin/conda"
+    eval "$HOME/miniconda3/bin/conda" "shell.fish" hook $argv | source
+else
+    if test -f "$HOME/miniconda3/etc/fish/conf.d/conda.fish"
+        . "$HOME/miniconda3/etc/fish/conf.d/conda.fish"
+    else
+        set -x PATH "$HOME/miniconda3/bin" $PATH
+    end
+end
+# <<< conda initialize <<<
+
+# fnm - https://github.com/Schniz/fnm
+# "curl -fsSL https://fnm.vercel.app/install | bash"
+set FNM_PATH "$HOME/Library/Application Support/fnm"
+if [ -d "$FNM_PATH" ]
+    set PATH "$FNM_PATH" $PATH
+    fnm env | source
+end
