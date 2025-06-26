@@ -66,6 +66,7 @@
                     },
                     {
                         "description": "Disable `Command+h` (hide window)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "description": "",
