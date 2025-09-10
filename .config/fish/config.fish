@@ -21,7 +21,12 @@ fish_add_path /usr/local/bin
 # fnm - https://github.com/Schniz/fnm
 # "curl -fsSL https://fnm.vercel.app/install | bash"
 # set FNM_PATH "$HOME/Library/Application Support/fnm"
-set FNM_PATH /opt/homebrew/bin/fnm
+
+if test (uname) = "Linux"
+    set FNM_PATH "/home/vscode/.local/share/fnm"
+else
+    set FNM_PATH /opt/homebrew/bin/fnm
+end
 fish_add_path "$FNM_PATH"
 
 # DOTFILELS
