@@ -87,12 +87,12 @@ chsh -s "$(which fish)"
 
 Unix (install with `deno`/`fnm`/`pnpm`):
 ```
-curl -sSf https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.sh | sh -s -- --all
+curl -sSfH https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.sh | sh -s -- --all
 ```
 
 Unix:
 ```
-curl -sSf https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.sh | sh
+curl -sSfH https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.sh | sh
 ```
 
 WSL:
@@ -102,7 +102,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/ansemb/do
 
 - print help:
 ```
-curl -sSf https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.sh | sh -s -- --help
+curl -sSfH https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.sh | sh -s -- --help
 ```
 
 <br /><br /><br /><br />
