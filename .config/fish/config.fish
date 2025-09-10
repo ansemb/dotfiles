@@ -8,9 +8,6 @@ end
 # install bash (https://github.com/edc/bass)
 # fisher install edc/bass
 # 
-# install nvm (https://github.com/jorgebucaran/nvm.fish)
-# fisher install jorgebucaran/nvm.fish
-
 
 set -Ux EDITOR hx
 set -gx CONFIG_HOME "$HOME/.config"
@@ -19,6 +16,13 @@ set -gx CACHEDIR "$HOME/.cache"
 
 fish_add_path "$HOME/.local/bin"
 fish_add_path /usr/local/bin
+
+# fnm (node version manager)
+# fnm - https://github.com/Schniz/fnm
+# "curl -fsSL https://fnm.vercel.app/install | bash"
+# set FNM_PATH "$HOME/Library/Application Support/fnm"
+set FNM_PATH /opt/homebrew/bin/fnm
+fish_add_path "$FNM_PATH"
 
 # DOTFILELS
 set -gx DOTFILES_DIR "$HOME/.dotfiles"
@@ -185,11 +189,3 @@ else
 end
 # <<< conda initialize <<<
 
-# fnm - https://github.com/Schniz/fnm
-# "curl -fsSL https://fnm.vercel.app/install | bash"
-# set FNM_PATH "$HOME/Library/Application Support/fnm"
-set FNM_PATH /opt/homebrew/bin/fnm
-if [ -f "$FNM_PATH" ]
-    set PATH "$FNM_PATH" $PATH
-    fnm env | source
-end

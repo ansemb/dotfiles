@@ -11,7 +11,7 @@ sudo apt install software-properties-common && \
 sudo apt-add-repository -y ppa:fish-shell/release-4 && \
 sudo add-apt-repository -y ppa:maveonair/helix-editor && \
 sudo apt update && sudo apt upgrade -y && \
-sudo apt install wget curl git zsh make cmake fish helix gpg fd-find -y && \
+sudo apt install wget curl git make cmake fish helix gpg fd-find -y && \
 sudo apt install --no-install-recommends \
 build-essential libssl-dev zlib1g-dev libbz2-dev \
 libreadline-dev libsqlite3-dev llvm \
@@ -83,28 +83,47 @@ echo "$(which fish)" | sudo tee -a /etc/shells
 chsh -s "$(which fish)"
 ```
 
-### (2) optional 
-To install nvm/rust in custom directory
-#### Set variables:
-```
-export NVM_DIR="/custom/installation/path/nvm"
-export RUSTUP_HOME="/custom/installation/path/rustup"
-export CARGO_HOME="/custom/installation/path/cargo"
-```
+### (2) run install script
 
-### (3) run install script
+Unix (install with `deno`/`fnm`/`pnpm`):
+```
+curl -sSf https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.sh | sh -s -- --all
+```
 
 Unix:
 ```
-curl -sSf https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.zsh | zsh
+curl -sSf https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.sh | sh
 ```
 
 WSL:
 ```
-curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.zsh | zsh
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.sh | sh
+```
+
+- print help:
+```
+curl -sSf https://raw.githubusercontent.com/ansemb/dotfiles/HEAD/install/install.sh | sh -s -- --help
 ```
 
 <br /><br /><br /><br />
+
+### Other
+
+[pyenv](https://github.com/pyenv/pyenv?tab=readme-ov-file#linuxunix):
+``` bash
+# linux
+curl -fsSL https://pyenv.run | bash
+```
+```bash
+# macos
+brew update
+brew install pyenv
+```
+
+[deno](https://deno.com/):
+```bash
+curl -fsSL https://deno.land/install.sh | sh
+```
 
 ### Other info
 
