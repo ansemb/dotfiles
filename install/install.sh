@@ -115,12 +115,16 @@ clean_prev_install_dotfiles() {
     echo "dotfiles directory already in use: ${DOTFILES_DIR}"
     echo "Warning: deleting this will delete custom config"
     ans=""
+
     printf '%s' "This needs to be deleted to continue. Delete it? [Y/n] "
-    read -r ans || true
+    read -r ans </dev/tty
+    
     echo
     case "${ans:-Y}" in
-      [Yy]*) rm -rf "${DOTFILES_DIR}" ;;
-      *) echo "exiting..."; exit 0 ;;
+      [Yy]*)
+        rm -rf "${DOTFILES_DIR}" ;;
+      *)
+        echo "exiting..."; exit 0 ;;
     esac
   fi
 }
