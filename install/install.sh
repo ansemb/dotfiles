@@ -118,7 +118,7 @@ clean_prev_install_dotfiles() {
 
     printf '%s' "This needs to be deleted to continue. Delete it? [Y/n] "
     read -r ans </dev/tty
-    
+
     echo
     case "${ans:-Y}" in
       [Yy]*)
@@ -148,6 +148,11 @@ dotfiles_update_index() {
   dotfiles update-index --assume-unchanged "${readme_file}" || true
   if [ -f "${readme_file}" ]; then
     rm -f "${readme_file}"
+  fi
+  bootstrap_file="${HOME}/bootstrap.sh"
+  dotfiles update-index --assume-unchanged "${bootstrap_file}" || true
+  if [ -f "${bootstrap_file}" ]; then
+    rm -f "${bootstrap_file}"
   fi
   dotfiles ls-files "${HOME}/install" 2>/dev/null | while IFS= read -r filename; do
     [ -z "${filename}" ] && continue
