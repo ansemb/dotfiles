@@ -1,0 +1,4 @@
+#!/bin/bash
+# wget -O ~/.local/bin/uuid https://<gist>
+# chmod u+x ~/.local/bin/uuid
+deno eval --no-lock 'import { writeAllSync } from "jsr:@std/io@0.225.2"; const t = new TextEncoder().encode(self.crypto.randomUUID()); writeAllSync(Deno.stdout, t);'

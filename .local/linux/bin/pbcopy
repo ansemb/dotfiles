@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# pbcopy for headless servers via OSC 52 (works fine inside zellij).
+# Reads stdin, base64-encodes (no newlines), sends to terminal clipboard.
+
+set -euo pipefail
+
+# Portable base64 (avoid GNU-specific -w0)
+payload="$(base64 | tr -d '\n')"
+
+# OSC 52 sequence
+seq="$(printf '\033]52;c;%s\007' "$payload")"
+
+# Write to the controlling TTY; fallback to stderr
+if tty_path="$(tty 2>/dev/null)"; then
+  printf '%s' "$seq" >"$tty_path"
+else
+  printf '%s' "$seq" >&2
+fi

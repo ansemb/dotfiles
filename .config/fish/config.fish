@@ -54,7 +54,6 @@ if test -d /opt/homebrew/opt/llvm/bin
     set -gx CPPFLAGS -I/opt/homebrew/opt/llvm/include
 end
 
-
 # deno
 set -gx DENO_INSTALL "$HOME/.deno"
 fish_add_path "$DENO_INSTALL/bin"
@@ -65,7 +64,6 @@ fish_add_path "$PNPM_HOME"
 
 # golang
 fish_add_path /usr/local/go/bin
-
 
 # gpg
 # set -gx GPG_TTY $(tty)
@@ -118,7 +116,6 @@ if test -d "$HOME/.dotnet"
     fish_add_path "$HOME/.dotnet"
 end
 
-
 function dotfiles
     /usr/bin/git --git-dir="$DOTFILES_DIR/" --work-tree="$HOME" $argv
 end
@@ -130,7 +127,6 @@ end
 function zel-last
     zellij attach (zellij list-sessions | head -1)
 end
-
 
 # aliases
 function ls --wraps "eza -bh --color=auto"
@@ -178,7 +174,6 @@ set -gx OSX_VERSION_MIN 10.14
 set -gx MACOSX_DEPLOYMENT_TARGET "$OSX_VERSION_MIN"
 fish_add_path /usr/local/osxcross/target/bin
 
-
 set -gx NODE_OPTIONS "--max-old-space-size=32768"
 
 # >>> conda initialize >>>
@@ -193,4 +188,9 @@ else
     end
 end
 # <<< conda initialize <<<
+
+switch (uname)
+  case "Linux"
+    fish_add_path -g ~/.local/linux/bin
+end
 
