@@ -22,7 +22,7 @@ fish_add_path /usr/local/bin
 # "curl -fsSL https://fnm.vercel.app/install | bash"
 # set FNM_PATH "$HOME/Library/Application Support/fnm"
 
-if test (uname) = "Linux"
+if test (uname) = Linux
     set FNM_PATH "/home/vscode/.local/share/fnm"
 else
     set FNM_PATH /opt/homebrew/bin/fnm
@@ -190,7 +190,6 @@ end
 # <<< conda initialize <<<
 
 switch (uname)
-  case "Linux"
-    fish_add_path -g ~/.local/linux/bin
+    case Linux
+        fish_add_path -g ~/.local/linux/bin
 end
-
