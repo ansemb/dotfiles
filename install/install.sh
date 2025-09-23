@@ -53,7 +53,14 @@ is_env_wsl() {
 }
 
 install_zoxide() {
+  if command -v zoxide >/dev/null 2>&1; then
+    echo "zoxide already installed; skipping."
+    echo
+    return 0
+  fi
+
   echo installing zoxide...
+
   if is_env_wsl; then
     curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash -s
   else
@@ -90,10 +97,10 @@ install_deno() {
 install_rustup() {
   echo installing rustup...
   if command -v rustup >/dev/null 2>&1; then
-    rustup default stable || true
     echo "rustup is already installed. skipping installation..."
     return
   fi
+
   echo "rustup not found."
   echo "installing rustup to: ${RUSTUP_HOME}"
   if is_env_wsl; then
