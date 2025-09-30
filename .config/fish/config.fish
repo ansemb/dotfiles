@@ -151,6 +151,14 @@ end
 
 alias sudo="sudo -s"
 
+alias git-autoremote="git config --global push.autoSetupRemote true"
+
+alias git-user-config="git config user.name ansemb; git config user.email '31008843+ansemb@users.noreply.github.com'"
+alias git-user-config-global="git config --global user.name ansemb; git config --global user.email '31008843+ansemb@users.noreply.github.com'"
+# git config --global --get user.email
+# git config --global --get user.name
+
+
 # function hx --wraps "hx"
 #   "hx" $argv
 # end
