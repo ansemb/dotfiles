@@ -94,6 +94,12 @@ install_deno() {
   echo
 }
 
+install_fisher() {
+  echo installing fisher...
+  curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+  echo
+}
+
 install_rustup() {
   echo installing rustup...
   if command -v rustup >/dev/null 2>&1; then
@@ -243,6 +249,7 @@ fi
 install_rustup
 install_zoxide
 install_starship
+install_fisher
 cargo install --locked zellij || true
 
 if [ "$should_install_deno" = true ]; then
@@ -254,6 +261,11 @@ fi
 if [ "$should_install_pnpm" = true ]; then
   install_pnpm
 fi
+
+
+# install git abbr plugin
+fish -c "fisher install jhillyerd/plugin-git"
+
 
 # install dotfiles
 clean_prev_install_dotfiles
