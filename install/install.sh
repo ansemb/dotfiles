@@ -95,9 +95,18 @@ install_deno() {
 }
 
 install_fisher() {
-  echo installing fisher...
-  curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-  echo
+  echo "installing fisher..."
+  if ! command -v fish >/dev/null 2>&1; then
+    echo "Error: fish is not installed. Please install fish first." >&2
+    return 1
+  fi
+
+  fish -c '
+    curl -sL \
+      https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish \
+      | source
+    and fisher install jorgebucaran/fisher
+  '
 }
 
 install_rustup() {
