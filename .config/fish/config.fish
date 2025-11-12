@@ -158,6 +158,11 @@ alias git-user-config-global="git config --global user.name ansemb; git config -
 # git config --global --get user.email
 # git config --global --get user.name
 
+abbr -a -- dfs dotfiles
+abbr -a -- dfsa 'dotfiles add'
+abbr -a -- dfsst 'dotfiles status'
+abbr -a -- dfsp 'dotfiles push'
+abbr -a -- dfscm 'dotfiles commit -m'
 
 # function hx --wraps "hx"
 #   "hx" $argv
