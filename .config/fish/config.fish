@@ -164,6 +164,8 @@ abbr -a -- dfsst 'dotfiles status'
 abbr -a -- dfsp 'dotfiles push'
 abbr -a -- dfscm 'dotfiles commit -m'
 
+abbr -a -- fp 'path resolve'
+
 # function hx --wraps "hx"
 #   "hx" $argv
 # end
