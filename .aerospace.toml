@@ -293,3 +293,8 @@ run = 'move-node-to-workspace 5'
 if.app-id = 'com.utmapp.UTM'
 run = 'move-node-to-workspace 5'
 
+[[on-window-detected]]
+if.app-id = 'com.microsoft.AzureVpnMac'
+run = 'move-node-to-workspace 5'
+
+
