@@ -166,6 +166,20 @@ abbr -a -- dfscm 'dotfiles commit -m'
 
 abbr -a -- fp 'path resolve'
 
+# attach the last zellij session
+function zlast
+    # -n strips formatting/colors
+    # tail -n1 gets the last line
+    # string split gets the session name (first column)
+    set session (zellij list-sessions -n | tail -n1 | string split " " -f1)
+
+    if test -n "$session"
+        zellij attach "$session"
+    else
+        echo "No zellij sessions found."
+    end
+end
+
 # function hx --wraps "hx"
 #   "hx" $argv
 # end
