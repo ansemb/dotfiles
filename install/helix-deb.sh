@@ -1,15 +1,14 @@
 #!/bin/bash
 
-# Get latest release info from GitHub API
+# Get latest release info and extract .deb download URL
 LATEST_URL="https://api.github.com/repos/helix-editor/helix/releases/latest"
-VERSION=$(curl -sL "$LATEST_URL" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
-VERSION_NUM=$(echo "$VERSION" | sed 's/^v//')
+DEB_URL=$(curl -sL "$LATEST_URL" | grep '"browser_download_url".*\.deb"' | sed -E 's/.*"browser_download_url": "([^"]+)".*/\1/')
 
-# Construct download URL
-DEB_URL="https://github.com/helix-editor/helix/releases/download/${VERSION}/helix_${VERSION_NUM}-1_amd64.deb"
+# Extract filename from URL
+DEB_FILE=$(basename "$DEB_URL")
 
 # Download and install
 wget "$DEB_URL"
 sudo apt update
-sudo apt install "./helix_${VERSION_NUM}-1_amd64.deb"
-rm "./helix_${VERSION_NUM}-1_amd64.deb"
+sudo apt install "./${DEB_FILE}"
+rm "./${DEB_FILE}"
