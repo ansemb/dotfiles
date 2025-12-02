@@ -18,10 +18,7 @@ sudo apt install -y --no-install-recommends \
   libxmlsec1-dev libffi-dev liblzma-dev
 
 # helix
-wget https://github.com/helix-editor/helix/releases/download/25.07.1/helix_25.7.1-1_amd64.deb
-sudo apt update
-sudo apt install ./helix_25.7.1-1_amd64.deb
-rm ./helix_25.7.1-1_amd64.deb
+curl -fsSL https://raw.githubusercontent.com/ansemb/dotfiles/refs/heads/master/install/helix-deb.sh | sh
 
 # eza
 sudo mkdir -p /etc/apt/keyrings
@@ -64,10 +61,7 @@ sudo apt update
 sudo apt install -y fish
 
 # helix
-wget https://github.com/helix-editor/helix/releases/download/25.07.1/helix_25.7.1-1_amd64.deb
-sudo apt update
-sudo apt install ./helix_25.7.1-1_amd64.deb
-rm ./helix_25.7.1-1_amd64.deb
+curl -fsSL https://raw.githubusercontent.com/ansemb/dotfiles/refs/heads/master/install/helix-deb.sh | sh
 
 # eza
 sudo mkdir -p /etc/apt/keyrings
