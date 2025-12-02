@@ -9,14 +9,19 @@
 sudo apt update
 sudo apt install -y software-properties-common
 sudo apt-add-repository -y ppa:fish-shell/release-4
-sudo add-apt-repository -y ppa:maveonair/helix-editor
 sudo apt update
-sudo apt install -y wget curl git make cmake fish helix gpg fd-find
+sudo apt install -y wget curl git make cmake fish gpg fd-find
 sudo apt install -y --no-install-recommends \
   build-essential libssl-dev zlib1g-dev libbz2-dev \
   libreadline-dev libsqlite3-dev llvm \
   libncursesw5-dev xz-utils tk-dev libxml2-dev \
   libxmlsec1-dev libffi-dev liblzma-dev
+
+# helix
+wget https://github.com/helix-editor/helix/releases/download/25.07.1/helix_25.7.1-1_amd64.deb
+sudo apt update
+sudo apt install ./helix_25.7.1-1_amd64.deb
+rm ./helix_25.7.1-1_amd64.deb
 
 # eza
 sudo mkdir -p /etc/apt/keyrings
