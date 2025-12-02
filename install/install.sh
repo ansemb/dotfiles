@@ -90,7 +90,7 @@ install_fnm() {
 
 install_deno() {
   echo installing deno...
-  curl -fsSL https://deno.land/install.sh | sh -s -- --no-modify-path
+  curl -fsSL https://deno.land/install.sh | sh -s -- --yes --no-modify-path
   echo
 }
 
