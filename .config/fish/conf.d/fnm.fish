@@ -5,3 +5,9 @@ if type -q fnm
     fnm completions --shell fish > "$fnm_completions_file"
   end
 end
+
+# fnm
+set FNM_PATH "/opt/homebrew/opt/fnm/bin"
+if [ -d "$FNM_PATH" ]
+  fnm env | source
+end
