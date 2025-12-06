@@ -236,6 +236,12 @@ shift-k = 'resize smart +50'
 alt-j = 'resize smart -50'
 alt-k = 'resize smart +50'
 
+f = [
+  'layout floating tiling',
+  'mode main',
+] # Toggle between floating and tiling layout
+r = ['flatten-workspace-tree', 'mode main'] # reset layout
+
 
 # finding id
 # osascript -e 'id of app "Brave"'
@@ -265,10 +271,6 @@ if.app-id = 'org.keepassxc.keepassxc'
 run = 'move-node-to-workspace S'
 
 [[on-window-detected]]
-if.app-id = 'org.keepassxc.keepassxc'
-run = 'move-node-to-workspace S'
-
-[[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'
 run = 'move-node-to-workspace E'
 
@@ -284,7 +286,6 @@ run = 'move-node-to-workspace 3'
 if.app-id = 'com.microsoft.teams2'
 run = 'move-node-to-workspace 2'
 
-
 [[on-window-detected]]
 if.app-id = 'com.microsoft.rdc.macos'
 run = 'move-node-to-workspace 5'
@@ -297,4 +298,12 @@ run = 'move-node-to-workspace 5'
 if.app-id = 'com.microsoft.AzureVpnMac'
 run = 'move-node-to-workspace 5'
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'waypad'
+run = ['layout floating', 'move-node-to-workspace C']
+# run = 'move-node-to-workspace S'
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'gimp'
+run = ['layout floating', 'move-node-to-workspace 2']
+# run = 'move-node-to-workspace S'
