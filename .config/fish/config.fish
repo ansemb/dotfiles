@@ -149,6 +149,11 @@ function lt --wraps "eza -bh --color=auto -tree --long --level=2"
     eza -bh --color=auto --tree --long --level=2 $argv
 end
 
+function dotfiles-default-config
+    dotfiles config user.name ansemb
+    dotfiles config user.email 31008843+ansemb@users.noreply.github.com
+end
+
 alias sudo="sudo -s"
 
 alias git-autoremote="git config --global push.autoSetupRemote true"
