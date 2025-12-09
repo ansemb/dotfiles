@@ -152,6 +152,8 @@ end
 function dotfiles-default-config
     dotfiles config user.name ansemb
     dotfiles config user.email 31008843+ansemb@users.noreply.github.com
+    dotfiles config branch.master.remote origin
+    dotfiles config branch.master.merge refs/heads/master
 end
 
 alias sudo="sudo -s"
