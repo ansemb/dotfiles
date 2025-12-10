@@ -73,7 +73,11 @@ sudo pacman -S base-devel openssl zlib curl git fish file wget xz eza helix
 
 #### On mac
 ```bash
-brew install cmake fish eza helix
+brew install cmake fish eza helix yazi fzf zoxide ripgrep
+```
+```bash
+# other
+brew install ffmpeg sevenzip jq poppler fd resvg imagemagick font-symbols-only-nerd-font
 ```
 
 change shell
