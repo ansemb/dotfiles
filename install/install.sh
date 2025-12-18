@@ -161,6 +161,7 @@ dotfiles_install() {
     echo ".dotfiles" >> "${HOME}/.gitignore"
   fi
   git clone --bare https://github.com/ansemb/dotfiles.git "${HOME}/.dotfiles"
+  git --git-dir="$HOME/.dotfiles" config --local core.fsmonitor false
   dotfiles checkout -f master
   dotfiles config --local status.showUntrackedFiles no
 }
