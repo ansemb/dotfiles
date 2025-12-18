@@ -111,6 +111,11 @@ if test -d /opt/homebrew/opt/node@22/bin
     fish_add_path "/opt/homebrew/opt/node@22/bin"
 end
 
+if test -d /usr/local/share/dotnet
+    set -Ux DOTNET_ROOT /usr/local/share/dotnet
+    fish_add_path /usr/local/share/dotnet
+end
+
 if test -d "$HOME/.dotnet"
     set -Ux DOTNET_ROOT $HOME/.dotnet
     fish_add_path "$HOME/.dotnet"
