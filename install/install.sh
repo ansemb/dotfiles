@@ -106,7 +106,7 @@ install_fisher() {
       https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish \
       | source
     and fisher install jorgebucaran/fisher
-  '
+  '  </dev/null
 }
 
 install_rustup() {
@@ -273,7 +273,7 @@ fi
 
 
 # install git abbr plugin
-fish -c "fisher install jhillyerd/plugin-git"
+fish -c "fisher install jhillyerd/plugin-git"  </dev/null
 
 
 # install dotfiles
