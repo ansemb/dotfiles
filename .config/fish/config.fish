@@ -129,10 +129,6 @@ function gitui
     "$CARGO_HOME/bin/gitui" -t themes/mocha.ron
 end
 
-function zel-last
-    zellij attach (zellij list-sessions | head -1)
-end
-
 # aliases
 function ls --wraps "eza -bh --color=auto"
     eza -bh --color=auto $argv
@@ -161,6 +157,18 @@ function dotfiles-default-config
     dotfiles config branch.master.merge refs/heads/master
 end
 
+function zellij-attach-last
+    set session (zellij list-sessions -rs | head -1)
+    if test -n "$session"
+        echo "zellij attach $session"
+        zellij attach "$session"
+    else
+        echo "No zellij sessions found."
+        echo "zellij list-sessions"
+        zellij list-sessions
+    end
+end
+
 alias sudo="sudo -s"
 
 alias git-autoremote="git config --global push.autoSetupRemote true"
@@ -178,19 +186,7 @@ abbr -a -- dfscm 'dotfiles commit -m'
 
 abbr -a -- fp 'path resolve'
 
-# attach the last zellij session
-function zlast
-    # -n strips formatting/colors
-    # tail -n1 gets the last line
-    # string split gets the session name (first column)
-    set session (zellij list-sessions -n | tail -n1 | string split " " -f1)
-
-    if test -n "$session"
-        zellij attach "$session"
-    else
-        echo "No zellij sessions found."
-    end
-end
+abbr -a zatt zellij-attach-last
 
 # function hx --wraps "hx"
 #   "hx" $argv
