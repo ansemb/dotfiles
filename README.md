@@ -48,11 +48,12 @@ libreadline-dev libsqlite3-dev llvm \
 libncursesw5-dev xz-utils tk-dev libxml2-dev \
 libxmlsec1-dev libffi-dev liblzma-dev -y
 
-# fish - debian 12
+# fish - debian 12 - https://software.opensuse.org/download.html?project=shells%3Afish%3Arelease%3A4&package=fish
 echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_12/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:4.list
-curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:4/Debian_12/Release.key | gpg --dearmor --yes -o  | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
+curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:4/Debian_12/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
 sudo apt update
 sudo apt install -y fish
+
 
 # helix
 curl -fsSL https://raw.githubusercontent.com/ansemb/dotfiles/refs/heads/master/install/helix-deb.sh | sh
