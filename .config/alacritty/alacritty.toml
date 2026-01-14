@@ -562,3 +562,8 @@ save_to_clipboard = true
 [window.padding]
 x = 7
 y = 7
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001b\r"
