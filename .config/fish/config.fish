@@ -205,6 +205,10 @@ if type -q starship
     starship init fish | source
 end
 
+if type -q fnm
+    fnm env --use-on-cd --shell fish | source
+end
+
 # osxcross
 set -gx OSX_SDK_VERSION 13.1
 set -gx OSX_VERSION_MIN 10.14
@@ -225,6 +229,8 @@ else
     end
 end
 # <<< conda initialize <<<
+# 
+set -gx MIDGARD_BACKFILL_CACHE_DIR "$HOME/.cache/midgard-build-cache"
 
 switch (uname)
     case Linux
