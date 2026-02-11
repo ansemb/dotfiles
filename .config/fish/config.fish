@@ -68,6 +68,10 @@ fish_add_path /usr/local/go/bin
 # gpg
 # set -gx GPG_TTY $(tty)
 
+# nuget auth - trigger CanShowDialog instead of Device Flow
+# - https://github.com/microsoft/artifacts-credprovider
+set -gx ARTIFACTS_CREDENTIALPROVIDER_FORCE_CANSHOWDIALOG_TO true
+
 # brew
 if test -d ~/.linuxbrew
     # local installation
@@ -119,6 +123,10 @@ end
 if test -d "$HOME/.dotnet"
     set -Ux DOTNET_ROOT $HOME/.dotnet
     fish_add_path "$HOME/.dotnet"
+end
+
+if test -d "$HOME/.claude-cli/currentVersion"
+    fish_add_path "$HOME/.claude-cli/currentVersion"
 end
 
 function dotfiles
