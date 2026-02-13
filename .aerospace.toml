@@ -48,6 +48,15 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 automatically-unhide-macos-hidden-apps = true
 
 
+# Assign workspaces to monitors (falls back to main when externals aren't connected)
+[workspace-to-monitor-force-assignment]
+E = ['^dell.+1', 'main']
+D = ['^dell.+1', 'main']
+A = ['^dell.+1', 'main']
+W = ['^dell.+2', 'main']
+X = ['^dell.+2', 'main']
+C = ['^dell.+2', 'main']
+
 # Possible values: (qwerty|dvorak|colemak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
