@@ -74,6 +74,7 @@ sudo pacman -S base-devel openssl zlib curl git fish file wget xz eza helix
 #### On mac
 ```bash
 brew install cmake fish eza helix yazi fzf zoxide ripgrep
+brew install --cask git-credential-manager
 ```
 ```bash
 # other
