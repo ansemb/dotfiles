@@ -125,9 +125,16 @@ if test -d "$HOME/.dotnet"
     fish_add_path "$HOME/.dotnet"
 end
 
+#### AGENCY
 if test -d "$HOME/.claude-cli/currentVersion"
     fish_add_path "$HOME/.claude-cli/currentVersion"
 end
+
+if test -d "~/.config/agency/CurrentVersion"
+    fish_add_path "~/.config/agency/CurrentVersion"
+end
+
+####
 
 function dotfiles
     /usr/bin/git --git-dir="$DOTFILES_DIR/" --work-tree="$HOME" $argv
