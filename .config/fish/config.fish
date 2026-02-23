@@ -130,8 +130,8 @@ if test -d "$HOME/.claude-cli/currentVersion"
     fish_add_path "$HOME/.claude-cli/currentVersion"
 end
 
-if test -d "~/.config/agency/CurrentVersion"
-    fish_add_path "~/.config/agency/CurrentVersion"
+if test -d "$HOME/.config/agency/CurrentVersion"
+    fish_add_path "$HOME/.config/agency/CurrentVersion"
 end
 
 ####
