@@ -184,6 +184,17 @@ function zellij-attach-last
     end
 end
 
+function tmux-attach-last
+    set session (tmux list-sessions -F '#{session_name}' 2>/dev/null | head -1)
+    if test -n "$session"
+        echo "tmux attach -t $session"
+        tmux attach -t "$session"
+    else
+        echo "No tmux sessions found. Starting new session."
+        tmux new-session
+    end
+end
+
 alias sudo="sudo -s"
 
 alias git-autoremote="git config --global push.autoSetupRemote true"
@@ -202,6 +213,7 @@ abbr -a -- dfscm 'dotfiles commit -m'
 abbr -a -- fp 'path resolve'
 
 abbr -a zatt zellij-attach-last
+abbr -a tatt tmux-attach-last
 
 # function hx --wraps "hx"
 #   "hx" $argv
@@ -251,3 +263,10 @@ switch (uname)
     case Linux
         fish_add_path -g ~/.local/linux/bin
 end
+
+# pnpm
+set -gx PNPM_HOME "/Users/adriannadausemb/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
