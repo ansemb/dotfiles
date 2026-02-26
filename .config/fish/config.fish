@@ -357,6 +357,8 @@ function zellij-rename-to-main --description "Rename current zellij session to m
 end
 
 # --- Zellij tab naming helpers ---
+# __zellij_auto_name_tab is also called from the zellij keybinding (Ctrl-Space → n)
+# via WriteChars, so new tabs are automatically named "N-".
 # Zellij keybindings can't inject dynamic values, so these are shell functions
 # instead of keybindings. Use from the command line:
 #   znt              → create tab named "9-"
@@ -367,6 +369,13 @@ end
 
 function __zellij_focused_tab_index --description "Get the 1-based index of the currently focused zellij tab"
     zellij action dump-layout 2>/dev/null | grep "^    tab " | grep -n "focus=true" | cut -d: -f1
+end
+
+function __zellij_auto_name_tab --description "Rename current zellij tab to N- (used by keybinding and zellij-new-tab)"
+    set -l idx (__zellij_focused_tab_index)
+    if test -n "$idx"
+        zellij action rename-tab "$idx-"
+    end
 end
 
 function zellij-rename-tab --description "Rename current zellij tab to N-NAME (auto-prefixes tab index)"
