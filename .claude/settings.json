@@ -7,6 +7,10 @@
   "forceLoginMethod": "console",
   "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true,
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
   "mcpServers": {
     "playwright": {
       "command": "npx",
