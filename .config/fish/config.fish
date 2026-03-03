@@ -64,6 +64,7 @@ fish_add_path "$PNPM_HOME"
 
 # golang
 fish_add_path /usr/local/go/bin
+fish_add_path "$HOME/go/bin"
 
 # gpg
 # set -gx GPG_TTY $(tty)
@@ -412,6 +413,9 @@ function zellij-new-tab --description "Create a new zellij tab, auto-named N- or
         zellij action rename-tab "$idx-$argv"
     end
 end
+
+alias claude-mcp="claude --mcp-config ~/.claude/mcp.json"
+alias agency-mcp="agency claude --mcp workiq --mcp icm --mcp bluebird --mcp ado --mcp-config ~/.claude/mcp.json"
 
 alias sudo="sudo -s"
 
