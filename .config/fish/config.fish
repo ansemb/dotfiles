@@ -177,7 +177,7 @@ end
 # Multiplexer functions
 # ---------------------------------------------------------------------------
 # Default session name for both tmux and zellij
-set -g MUX_MAIN_SESSION "main"
+set -g MUX_MAIN_SESSION main
 
 # --- Internal helpers ---
 
@@ -191,7 +191,7 @@ function __zellij_save_tab --description "Save the focused zellij tab index for 
     mkdir -p "$__MUX_STATE_DIR"
     set -l tab_idx (zellij action dump-layout 2>/dev/null | grep "^    tab " | grep -n "focus=true" | cut -d: -f1)
     if test -n "$tab_idx"
-        echo "$tab_idx" > "$__MUX_STATE_DIR/zellij-tab-$session_name"
+        echo "$tab_idx" >"$__MUX_STATE_DIR/zellij-tab-$session_name"
     end
 end
 
@@ -244,9 +244,9 @@ function __mux_check_switch_target --description "Check for pending mux switch a
     if test -f /tmp/.mux-switch-target
         set -l target (cat /tmp/.mux-switch-target)
         rm -f /tmp/.mux-switch-target
-        if test "$target" = "tmux"
+        if test "$target" = tmux
             mux-attach-tmux
-        else if test "$target" = "zellij"
+        else if test "$target" = zellij
             mux-attach-zellij
         end
     end
@@ -323,7 +323,7 @@ function mux-attach-tmux --description "Attach to main tmux session (detach from
         return 0
     else if set -q ZELLIJ
         echo "Leaving zellij → attaching tmux ($MUX_MAIN_SESSION)..."
-        echo "tmux" > /tmp/.mux-switch-target
+        echo tmux >/tmp/.mux-switch-target
         __zellij_detach
     else
         __tmux_attach_main
@@ -333,7 +333,7 @@ end
 function mux-toggle --description "Toggle between zellij and tmux (default to zellij if outside both)"
     if set -q ZELLIJ
         echo "In zellij → switching to tmux ($MUX_MAIN_SESSION)..."
-        echo "tmux" > /tmp/.mux-switch-target
+        echo tmux >/tmp/.mux-switch-target
         __zellij_detach
     else if set -q TMUX
         echo "In tmux → switching to zellij ($MUX_MAIN_SESSION)..."
@@ -495,6 +495,10 @@ end
 # pnpm
 set -gx PNPM_HOME "/Users/adriannadausemb/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+# BEGIN claude-cli MANAGED BLOCK
+fish_add_path "~/.claude-cli/CurrentVersion"
+# END claude-cli MANAGED BLOCK
