@@ -414,6 +414,34 @@ function zellij-new-tab --description "Create a new zellij tab, auto-named N- or
     end
 end
 
+# ---------------------------------------------------------------------------
+# Karabiner profile switching
+# ---------------------------------------------------------------------------
+set -g __KARABINER_CLI "/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli"
+
+function kb-internal --description "Switch Karabiner to Default profile (ISO, built-in keyboard)"
+    "$__KARABINER_CLI" --select-profile "Default profile"
+    echo "Karabiner → Default profile (ISO)"
+end
+
+function kb-external --description "Switch Karabiner to kbd-ansi-keyboard profile (ANSI, external keyboard)"
+    "$__KARABINER_CLI" --select-profile "kbd-ansi-keyboard"
+    echo "Karabiner → kbd-ansi-keyboard (ANSI)"
+end
+
+function kb-toggle --description "Toggle Karabiner between Default and kbd-ansi-keyboard profiles"
+    set -l current ("$__KARABINER_CLI" --show-current-profile-name)
+    if test "$current" = "Default profile"
+        kb-external
+    else
+        kb-internal
+    end
+end
+
+abbr -a kbt kb-toggle
+abbr -a kbi kb-internal
+abbr -a kbe kb-external
+
 alias claude-mcp="claude --mcp-config ~/.claude/mcp.json"
 alias agency-mcp="agency claude --mcp workiq --mcp icm --mcp bluebird --mcp ado --mcp-config ~/.claude/mcp.json"
 
