@@ -117,13 +117,15 @@ if test -d /opt/homebrew/opt/node@22/bin
 end
 
 if test -d /usr/local/share/dotnet
-    set -Ux DOTNET_ROOT /usr/local/share/dotnet
-    fish_add_path /usr/local/share/dotnet
+    set -gx DOTNET_ROOT /usr/local/share/dotnet
+    fish_add_path --move --prepend /usr/local/share/dotnet
+else if test -d /opt/homebrew/opt/dotnet/libexec
+    set -gx DOTNET_ROOT /opt/homebrew/opt/dotnet/libexec
+    fish_add_path --move --prepend /opt/homebrew/opt/dotnet/libexec
 end
 
-if test -d "$HOME/.dotnet"
-    set -Ux DOTNET_ROOT $HOME/.dotnet
-    fish_add_path "$HOME/.dotnet"
+if test -d "$HOME/.dotnet/tools"
+    fish_add_path "$HOME/.dotnet/tools"
 end
 
 #### AGENCY
