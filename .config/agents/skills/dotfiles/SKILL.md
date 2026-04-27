@@ -28,6 +28,24 @@ The dotfiles are tracked with a bare git repo:
 - **Remote:** `https://github.com/ansemb/dotfiles` (user: ansemb)
 - **Branch:** `master`
 
+## Agent Skills Setup
+
+Local agent skills use a shared canonical directory with agent-specific symlinks:
+
+- **Canonical skills dir:** `~/.config/agents/skills`
+- **Generic agent symlink:** `~/.agent/skills` -> `~/.config/agents/skills`
+- **Claude Code symlink:** `~/.claude/skills` -> `~/.config/agents/skills`
+- **GitHub Copilot symlink:** `~/.copilot/skills` -> `~/.config/agents/skills`
+
+Use the fish helper to recreate or repair these symlinks:
+
+```fish
+agent-sync-skills
+```
+
+The symlinks are intended to be tracked in the dotfiles repo. Prefer relative symlink targets so the setup remains portable across machines.
+Track personal skills in this canonical directory, but do not blindly add third-party skill symlinks that point at another local checkout.
+
 ### Fish abbreviations for dotfiles
 
 | Abbr    | Expands to           |
@@ -46,7 +64,7 @@ dotfiles add <file-relative-to-HOME>
 # e.g. dotfiles add .config/fish/config.fish
 ```
 
-From Claude, the equivalent is:
+From an agent shell, the equivalent is:
 ```bash
 /usr/bin/git --git-dir=/Users/adriannadausemb/.dotfiles --work-tree=/Users/adriannadausemb add <file>
 ```
