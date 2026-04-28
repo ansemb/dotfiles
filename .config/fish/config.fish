@@ -137,6 +137,14 @@ if test -d "$HOME/.config/agency/CurrentVersion"
     fish_add_path "$HOME/.config/agency/CurrentVersion"
 end
 
+# Agent skills:
+# Personal skills live in ~/.config/agents/skills and are linked into
+# ~/.agent/skills, ~/.claude/skills, and ~/.copilot/skills via agent-sync-skills.
+# Third-party skills can be installed with:
+# npx skills add https://github.com/microsoft/playwright-cli --skill playwright-cli --agent claude-code github-copilot
+# Note: the skills CLI treats GitHub Copilot as a universal .agents/skills consumer;
+# manually link ~/.agents/skills/<skill> into ~/.copilot/skills if Copilot does not pick it up.
+
 ####
 
 function dotfiles

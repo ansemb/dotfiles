@@ -11,35 +11,31 @@ function agent-sync-skills --description "Sync shared agent skills into agent-sp
         mkdir -p (dirname "$target")
 
         if test -L "$target"
-            set -l current_target (readlink "$target")
-            if test "$current_target" != "../.config/agents/skills" -a "$current_target" != "$source"
-                rm "$target"
-                ln -s ../.config/agents/skills "$target"
-                echo "Updated $target -> ../.config/agents/skills"
-            else
-                echo "OK $target -> $current_target"
-            end
-        else if test -e "$target"
-            for skill_dir in "$source"/*
-                if test -f "$skill_dir/SKILL.md"
-                    set -l skill_name (basename "$skill_dir")
-                    set -l skill_link "$target/$skill_name"
+            rm "$target"
+        else if test -e "$target"; and not test -d "$target"
+            echo "Skipped non-directory target: $target" >&2
+            continue
+        end
 
-                    if test -L "$skill_link"
-                        rm "$skill_link"
-                        ln -s "$skill_dir" "$skill_link"
-                        echo "Updated $skill_link -> $skill_dir"
-                    else if test -e "$skill_link"
-                        echo "Skipped existing non-symlink: $skill_link" >&2
-                    else
-                        ln -s "$skill_dir" "$skill_link"
-                        echo "Linked $skill_link -> $skill_dir"
-                    end
+        mkdir -p "$target"
+
+        for skill_dir in "$source"/*
+            if test -f "$skill_dir/SKILL.md"
+                set -l skill_name (basename "$skill_dir")
+                set -l skill_link "$target/$skill_name"
+                set -l relative_skill_dir "../../.config/agents/skills/$skill_name"
+
+                if test -L "$skill_link"
+                    rm "$skill_link"
+                    ln -s "$relative_skill_dir" "$skill_link"
+                    echo "Updated $skill_link -> $relative_skill_dir"
+                else if test -e "$skill_link"
+                    echo "Skipped existing non-symlink: $skill_link" >&2
+                else
+                    ln -s "$relative_skill_dir" "$skill_link"
+                    echo "Linked $skill_link -> $relative_skill_dir"
                 end
             end
-        else
-            ln -s ../.config/agents/skills "$target"
-            echo "Linked $target -> ../.config/agents/skills"
         end
     end
 end

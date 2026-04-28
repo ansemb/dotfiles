@@ -1,0 +1,52 @@
+{
+  "model": "gpt-5.5",
+  "theme": "auto",
+  "renderMarkdown": true,
+  "statusLine": {
+    "type": "command",
+    "command": "~/.copilot/statusline.sh"
+  },
+  "enabledFeatureFlags": {
+    "STATUS_LINE": true
+  },
+  "logLevel": "all",
+  "extraKnownMarketplaces": {
+    "agency": {
+      "source": {
+        "source": "github",
+        "repo": "agency-microsoft/.github-private"
+      }
+    }
+  },
+  "trustedFolders": [
+    "/Users/adriannadausemb/code/repos/1js/1JS/wt/1js-01/midgard",
+    "/Users/adriannadausemb/git/skills",
+    "/Users/adriannadausemb/code/repos/asgard/wt/asgard-wt-01",
+    "/Users/adriannadausemb"
+  ],
+  "lastLoggedInUser": {
+    "host": "https://github.com",
+    "login": "asemb_microsoft"
+  },
+  "loggedInUsers": [
+    {
+      "host": "https://github.com",
+      "login": "asemb_microsoft"
+    }
+  ],
+  "firstLaunchAt": "2026-03-11T00:00:00.000Z",
+  "sessionSync": [
+    {
+      "origin": "DefaultCollection/FAST/FAST.wiki",
+      "level": "user"
+    },
+    {
+      "origin": "gim-home/loki-skills",
+      "level": "user"
+    },
+    {
+      "origin": "DefaultCollection/FAST/Asgard",
+      "level": "user"
+    }
+  ]
+}

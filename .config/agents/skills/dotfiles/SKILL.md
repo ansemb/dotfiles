@@ -30,12 +30,19 @@ The dotfiles are tracked with a bare git repo:
 
 ## Agent Skills Setup
 
-Local agent skills use a shared canonical directory with agent-specific symlinks:
+Local agent skills use a shared canonical directory with per-agent skill symlinks:
 
 - **Canonical skills dir:** `~/.config/agents/skills`
-- **Generic agent symlink:** `~/.agent/skills` -> `~/.config/agents/skills`
-- **Claude Code symlink:** `~/.claude/skills` -> `~/.config/agents/skills`
-- **GitHub Copilot symlink:** `~/.copilot/skills` -> `~/.config/agents/skills`
+- **Generic agent skills dir:** `~/.agent/skills`
+- **Claude Code skills dir:** `~/.claude/skills`
+- **GitHub Copilot skills dir:** `~/.copilot/skills`
+
+Each agent-specific directory is a real directory. Skills inside it are symlinked back to the canonical directory, for example:
+
+```text
+~/.claude/skills/dotfiles -> ~/.config/agents/skills/dotfiles
+~/.copilot/skills/dotfiles -> ~/.config/agents/skills/dotfiles
+```
 
 Use the fish helper to recreate or repair these symlinks:
 
@@ -43,8 +50,7 @@ Use the fish helper to recreate or repair these symlinks:
 agent-sync-skills
 ```
 
-The symlinks are intended to be tracked in the dotfiles repo. Prefer relative symlink targets so the setup remains portable across machines.
-Track personal skills in this canonical directory, but do not blindly add third-party skill symlinks that point at another local checkout.
+The per-skill symlinks are intended to be tracked in the dotfiles repo. Track personal skills in this canonical directory, but do not blindly add third-party skill symlinks that point at another local checkout.
 
 ### Fish abbreviations for dotfiles
 
