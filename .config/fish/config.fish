@@ -424,6 +424,14 @@ function zellij-new-tab --description "Create a new zellij tab, auto-named N- or
     end
 end
 
+function password-generate --description "Generate a password"
+    if test (count $argv) -eq 0
+        pwgen -s 64 1
+    else
+        pwgen -s $argv 1
+    end
+end
+
 # ---------------------------------------------------------------------------
 # Karabiner profile switching
 # ---------------------------------------------------------------------------
@@ -435,7 +443,7 @@ function kb-internal --description "Switch Karabiner to Default profile (ISO, bu
 end
 
 function kb-external --description "Switch Karabiner to kbd-ansi-keyboard profile (ANSI, external keyboard)"
-    "$__KARABINER_CLI" --select-profile "kbd-ansi-keyboard"
+    "$__KARABINER_CLI" --select-profile kbd-ansi-keyboard
     echo "Karabiner → kbd-ansi-keyboard (ANSI)"
 end
 
